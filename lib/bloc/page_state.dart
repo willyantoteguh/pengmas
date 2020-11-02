@@ -51,6 +51,15 @@ class OnDetailTugasMindfull extends PageState {
   List<Object> get props => [category];
 }
 
+class OnDetailTugasKomunikasi extends PageState {
+  final Category category;
+
+  OnDetailTugasKomunikasi(this.category);
+
+  @override
+  List<Object> get props => [category];
+}
+
 class OnDetailMateriPwb extends PageState {
   final Category category;
 
@@ -189,7 +198,7 @@ class OnSuksesPage extends PageState {
 
 class OnTaskKomunikasiPage extends PageState {
   final Category category;
-  final TugasKomunikasi tugas;
+  final Tugaskomunikasi tugas;
   OnTaskKomunikasiPage(this.tugas, this.category);
 
   @override

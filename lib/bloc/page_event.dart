@@ -44,6 +44,14 @@ class GoToDetailMateriPwb extends PageEvent {
   List<Object> get props => [category];
 }
 
+class GoToDetailTugasKomunikasi extends PageEvent {
+  final Category category;
+  GoToDetailTugasKomunikasi(this.category);
+
+  @override
+  List<Object> get props => [category];
+}
+
 class GoToDetailMateriKomunikasi extends PageEvent {
   final Category category;
   GoToDetailMateriKomunikasi(this.category);
@@ -171,7 +179,7 @@ class GoToSuksesPage extends PageEvent {
 }
 
 class GoToTaskKomunikasiPage extends PageEvent {
-  final TugasKomunikasi tugas;
+  final Tugaskomunikasi tugas;
   final Category category;
   GoToTaskKomunikasiPage(this.tugas, this.category);
 

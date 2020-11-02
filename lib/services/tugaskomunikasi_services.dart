@@ -4,12 +4,16 @@ abstract class TugasKomunikasiRepo {
   Future<List<Tugaskomunikasi>> getTugas(id);
 }
 
+class Urlkom {
+  static String apiURL = "http://rsiaisyiyahnganjuk.com/pengmas/public/api/";
+}
+
 class TugasKomunikasiRepoImpl implements TugasKomunikasiRepo {
   @override
   Future<List<Tugaskomunikasi>> getTugas(id) async {
     var params = "tugas_komunikasis";
 
-    var response = await http.get(Url.apiURL + params);
+    var response = await http.get(Urlkom.apiURL + params);
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       List<Tugaskomunikasi> tugaskomunikasi =

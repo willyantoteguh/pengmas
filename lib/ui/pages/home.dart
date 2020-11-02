@@ -99,11 +99,11 @@ class HomePage extends StatelessWidget {
                     } else if (categories[index].id == 2) {
                       context
                           .bloc<PageBloc>()
-                          .add(GoToDetailMateriPwb(categories[index]));
+                          .add(GoToDetailTugasKomunikasi(categories[index]));
                     } else if (categories[index].id == 3) {
                       context
                           .bloc<PageBloc>()
-                          .add(GoToDetailMateriKomunikasi(categories[index]));
+                          .add(GoToDetailTugasKomunikasi(categories[index]));
                     }
                   },
                   child: Container(
