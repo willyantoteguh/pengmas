@@ -181,3 +181,17 @@ class OnPerkataanPageOne extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnSuksesPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnTaskKomunikasiPage extends PageState {
+  final Category category;
+  final TugasKomunikasi tugas;
+  OnTaskKomunikasiPage(this.tugas, this.category);
+
+  @override
+  List<Object> get props => [tugas, category];
+}

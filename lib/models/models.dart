@@ -10,3 +10,5 @@ part 'latihan.dart';
 part 'pertanyaan.dart';
 part 'perintah.dart';
 part 'tugas_mindfull.dart';
+part 'tugas_komunikasi.dart';
+part 'kasus_komunikasi.dart';

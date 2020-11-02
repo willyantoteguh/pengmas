@@ -68,3 +68,6 @@ part 'mindfull/tahukah.dart';
 part 'mindfull/suara.dart';
 part 'mindfull/perkataan.dart';
 part 'mindfull/taskmindfull.dart';
+part 'komunikasi/komunikasi.dart';
+part 'komunikasi/sukses.dart';
+part 'komunikasi/taskkomunikasi.dart';
