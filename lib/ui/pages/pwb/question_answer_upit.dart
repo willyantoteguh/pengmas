@@ -20,7 +20,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          //context.bloc<PageBloc>().add(GoToTaskPage());
+         // context.bloc<PageBloc>().add(GoToTaskPage());
 
           return;
         },
@@ -42,7 +42,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            //context.bloc<PageBloc>().add(GoToTaskPage());
+                          //  context.bloc<PageBloc>().add(GoToTaskPage());
                           },
                           child: Icon(Icons.arrow_back),
                         ),

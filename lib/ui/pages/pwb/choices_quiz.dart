@@ -50,7 +50,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        //context.bloc<PageBloc>().add(GoToDetailMateriPage());
+                        // context.bloc<PageBloc>().add(GoToDetailMateriPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),

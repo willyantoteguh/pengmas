@@ -51,15 +51,11 @@ part 'home.dart';
 part 'detailmateri.dart';
 part 'main/success.dart';
 part 'main/question_answer.dart';
-part 'main/rate_only.dart';
 part 'main/mood_only.dart';
 part 'main/pop_up.dart';
 part 'main/bydoing_audio.dart';
 part 'main/materi_detail_task.dart';
 part 'home2.dart';
-
-part 'main/choices_quiz.dart';
-part 'main/question_answer_upit.dart';
 part 'mindfull/sadar.dart';
 part 'mindfull/mengamati.dart';
 part 'mindfull/kalender.dart';
@@ -72,3 +68,11 @@ part 'mindfull/taskmindfull.dart';
 part 'komunikasi/komunikasi.dart';
 part 'komunikasi/sukses.dart';
 part 'komunikasi/taskkomunikasi.dart';
+
+part 'komunikasi/study_case.dart';
+
+part 'pwb/choices_quiz.dart';
+part 'pwb/question_answer_upit.dart';
+part 'pwb/rate_only.dart';
+part 'pwb/sukses_pwb.dart';
+part 'pwb/sukses_pwb2.dart';
