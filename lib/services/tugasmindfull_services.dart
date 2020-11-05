@@ -5,7 +5,8 @@ abstract class TugasRepo {
 }
 
 class Url {
-  static String apiURL = "http://rsiaisyiyahnganjuk.com/pengmas/public/api/";
+  static String apiURL =
+      "http://timkecilproject-com.preview-domain.com/pengmas/public/api/";
 }
 
 class TugasRepoImpl implements TugasRepo {

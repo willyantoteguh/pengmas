@@ -7,7 +7,8 @@ abstract class PerintahRepo {
 class PerintahRepoImpl implements PerintahRepo {
   @override
   Future<List<Perintah>> getPerintah(id) async {
-    var url = "http://rsiaisyiyahnganjuk.com/pengmas/public/api/";
+    var url =
+        "http://timkecilproject-com.preview-domain.com/pengmas/public/api/";
     var params = "pertanyaan_mindfulnesses?id_tugas=$id";
 
     var response = await http.get(Url.apiURL + params);

@@ -6,7 +6,7 @@ abstract class MaterisRepo {
 
 class Apiurl {
   static String apiURL =
-      "http://rsiaisyiyahnganjuk.com/infy/public/index.php/api/";
+      "http://timkecilproject-com.preview-domain.com/public/index.php/api/";
 }
 
 class MaterisRepoImpl implements MaterisRepo {
