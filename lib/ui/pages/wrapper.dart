@@ -44,42 +44,43 @@ class _WrapperState extends State<Wrapper> {
                     ? DetailTugasMindfull(pageState.category)
                     : (pageState is OnDetailTugasKomunikasi)
                         ? DetailTugasKomunikasi(pageState.category)
-                        : (pageState is OnDetailMateriPwb)
-                            ? DetailMateriPwb(pageState.category)
-                            : (pageState is OnDetailMateriKomunikasi)
-                                ? DetailMateriKomunikasi(pageState.category)
-                                : (pageState is OnDetailMateriPage)
-                                    ? DetailMateriPage(pageState.category)
-                                    : (pageState is OnTaskPage)
-                                        ? TaskPage(pageState.materi,
-                                            pageState.category)
-                                        : (pageState is OnTaskMindfullPage)
-                                            ? TaskMindfullPage(pageState.tugas,
+                        : (pageState is OnDetailTugasPwb)
+                            ? DetailTugasPwb(pageState.category)
+                            : (pageState is OnDetailMateriPwb)
+                                ? DetailMateriPwb(pageState.category)
+                                : (pageState is OnDetailMateriKomunikasi)
+                                    ? DetailMateriKomunikasi(pageState.category)
+                                    : (pageState is OnDetailMateriPage)
+                                        ? DetailMateriPage(pageState.category)
+                                        : (pageState is OnTaskPage)
+                                            ? TaskPage(pageState.materi,
                                                 pageState.category)
-                                            : (pageState is OnByDoingPage)
-                                                ? ByDoing()
-                                                : (pageState is OnRateEmojiPage)
-                                                    ? RateEmoji()
+                                            : (pageState is OnTaskMindfullPage)
+                                                ? TaskMindfullPage(
+                                                    pageState.tugas,
+                                                    pageState.category)
+                                                : (pageState is OnByDoingPage)
+                                                    ? ByDoing()
                                                     : (pageState
-                                                            is OnNoteHomePage)
-                                                        ? NoteHomePage()
+                                                            is OnRateEmojiPage)
+                                                        ? RateEmoji()
                                                         : (pageState
-                                                                is OnGoalsPage)
-                                                            ? GoalsPage()
+                                                                is OnNoteHomePage)
+                                                            ? NoteHomePage()
                                                             : (pageState
-                                                                    is OnSuccessPage)
-                                                                ? SuccessPage()
+                                                                    is OnGoalsPage)
+                                                                ? GoalsPage()
                                                                 : (pageState
-                                                                        is OnQuestAnswerPage)
-                                                                    ? QuestAnswerPage()
+                                                                        is OnSuccessPage)
+                                                                    ? SuccessPage()
                                                                     : (pageState
-                                                                            is OnPopUpPage)
-                                                                        ? PopUpPage()
+                                                                            is OnQuestAnswerPage)
+                                                                        ? QuestAnswerPage()
                                                                         : (pageState
-                                                                                is OnRateOnlyPage)
-                                                                            ? RateOnlyPage()
-                                                                            : (pageState is OnMoodOnlyPage)
-                                                                                ? MoodOnlyPage()
-                                                                                : (pageState is OnChoicesPage) ? ChoicesQuiz() : (pageState is OnQuestAnswerUPage) ? QuestAnswerUPage() : (pageState is OnSadarPageOne) ? SadarPageOne() : (pageState is OnMengamatiPageOne) ? MengamatiPageOne() : (pageState is OnPerspektifPageOne) ? PerspektifPageOne() : (pageState is OnKalenderPageOne) ? KalenderPageOne() : (pageState is OnKesimpulanPageOne) ? KesimpulanPage() : (pageState is OnTahukahPageOne) ? TahukahPage() : (pageState is OnSuaraPageOne) ? SuaraPageOne() : (pageState is OnPerkataanPageOne) ? PerkataanPage() : UserProfile());
+                                                                                is OnPopUpPage)
+                                                                            ? PopUpPage()
+                                                                            : (pageState is OnRateOnlyPage)
+                                                                                ? RateOnlyPage()
+                                                                                : (pageState is OnMoodOnlyPage) ? MoodOnlyPage() : (pageState is OnChoicesPage) ? ChoicesQuiz() : (pageState is OnQuestAnswerUPage) ? QuestAnswerUPage() : (pageState is OnSadarPageOne) ? SadarPageOne() : (pageState is OnMengamatiPageOne) ? MengamatiPageOne() : (pageState is OnPerspektifPageOne) ? PerspektifPageOne() : (pageState is OnKalenderPageOne) ? KalenderPageOne() : (pageState is OnKesimpulanPageOne) ? KesimpulanPage() : (pageState is OnTahukahPageOne) ? TahukahPage() : (pageState is OnSyukurPage) ? SyukurPage() : (pageState is OnSuaraPageOne) ? SuaraPageOne() : (pageState is OnPerkataanPageOne) ? PerkataanPage() : UserProfile());
   }
 }

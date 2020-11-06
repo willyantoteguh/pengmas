@@ -25,6 +25,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnDetailTugasMindfull(event.category);
     } else if (event is GoToDetailTugasKomunikasi) {
       yield OnDetailTugasKomunikasi(event.category);
+    } else if (event is GoToDetailTugasPwb) {
+      yield OnDetailTugasPwb(event.category);
     } else if (event is GoToDetailMateriPwb) {
       yield OnDetailMateriPwb(event.category);
     } else if (event is GoToDetailMateriKomunikasi) {
@@ -35,6 +37,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnTaskMindfullPage(event.tugas, event.category);
     } else if (event is GoToTaskKomunikasiPage) {
       yield OnTaskKomunikasiPage(event.tugas, event.category);
+    } else if (event is GoToTaskPwbPage) {
+      yield OnTaskPwbPage(event.tugas, event.category);
     } else if (event is GoToTaskPage) {
       yield OnTaskPage(event.materi, event.category);
     } else if (event is GoToByDoingPage) {
@@ -69,6 +73,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnKalenderPageOne();
     } else if (event is GoToKesimpulanPageOne) {
       yield OnKesimpulanPageOne();
+    } else if (event is GoToSyukurPage) {
+      yield OnSyukurPage();
     } else if (event is GoToTahukahPageOne) {
       yield OnTahukahPageOne();
     } else if (event is GoToSuaraPageOne) {

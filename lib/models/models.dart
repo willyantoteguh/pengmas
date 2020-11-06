@@ -12,3 +12,4 @@ part 'perintah.dart';
 part 'tugas_mindfull.dart';
 part 'tugas_komunikasi.dart';
 part 'kasus_komunikasi.dart';
+part 'tugas_pwb.dart';

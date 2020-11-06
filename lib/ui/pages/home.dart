@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
                     } else if (categories[index].id == 3) {
                       context
                           .bloc<PageBloc>()
-                          .add(GoToDetailTugasKomunikasi(categories[index]));
+                          .add(GoToDetailTugasPwb(categories[index]));
                     }
                   },
                   child: Container(

@@ -60,6 +60,15 @@ class OnDetailTugasKomunikasi extends PageState {
   List<Object> get props => [category];
 }
 
+class OnDetailTugasPwb extends PageState {
+  final Category category;
+
+  OnDetailTugasPwb(this.category);
+
+  @override
+  List<Object> get props => [category];
+}
+
 class OnDetailMateriPwb extends PageState {
   final Category category;
 
@@ -186,6 +195,11 @@ class OnSuaraPageOne extends PageState {
   List<Object> get props => [];
 }
 
+class OnSyukurPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class OnPerkataanPageOne extends PageState {
   @override
   List<Object> get props => [];
@@ -200,6 +214,15 @@ class OnTaskKomunikasiPage extends PageState {
   final Category category;
   final Tugaskomunikasi tugas;
   OnTaskKomunikasiPage(this.tugas, this.category);
+
+  @override
+  List<Object> get props => [tugas, category];
+}
+
+class OnTaskPwbPage extends PageState {
+  final Category category;
+  final Tugaspwb tugas;
+  OnTaskPwbPage(this.tugas, this.category);
 
   @override
   List<Object> get props => [tugas, category];

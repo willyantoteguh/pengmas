@@ -36,6 +36,14 @@ class GoToDetailTugasMindfull extends PageEvent {
   List<Object> get props => [category];
 }
 
+class GoToDetailTugasPwb extends PageEvent {
+  final Category category;
+  GoToDetailTugasPwb(this.category);
+
+  @override
+  List<Object> get props => [category];
+}
+
 class GoToDetailMateriPwb extends PageEvent {
   final Category category;
   GoToDetailMateriPwb(this.category);
@@ -128,6 +136,11 @@ class GoToChoicesPage extends PageEvent {
   List<Object> get props => [];
 }
 
+class GoToSyukurPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class GoToQuestAnswerUPage extends PageEvent {
   @override
   List<Object> get props => [];
@@ -182,6 +195,15 @@ class GoToTaskKomunikasiPage extends PageEvent {
   final Tugaskomunikasi tugas;
   final Category category;
   GoToTaskKomunikasiPage(this.tugas, this.category);
+
+  @override
+  List<Object> get props => [tugas, category];
+}
+
+class GoToTaskPwbPage extends PageEvent {
+  final Tugaspwb tugas;
+  final Category category;
+  GoToTaskPwbPage(this.tugas, this.category);
 
   @override
   List<Object> get props => [tugas, category];

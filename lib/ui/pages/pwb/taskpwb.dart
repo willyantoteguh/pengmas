@@ -1,19 +1,19 @@
 part of '../pages.dart';
 
 // ignore: must_be_immutable
-class TaskMindfullPage extends StatefulWidget {
+class TaskPwbPage extends StatefulWidget {
   final Category category;
-  final TugasMindfull tugas;
+  final Tugaspwb tugas;
 
-  TaskMindfullPage(this.tugas, this.category);
+  TaskPwbPage(this.tugas, this.category);
 
   @override
-  _TaskMindfullPageState createState() => _TaskMindfullPageState();
+  _TaskPwbPageState createState() => _TaskPwbPageState();
 }
 
-class _TaskMindfullPageState extends State<TaskMindfullPage> {
+class _TaskPwbPageState extends State<TaskPwbPage> {
   PerintahBloc perintahBloc;
-  OnTaskMindfullPage state;
+  OnTaskPwbPage state;
 
   void saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -32,7 +32,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
 
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasMindfull(widget.category));
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb(widget.category));
 
         return;
       },
@@ -59,7 +59,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                           onTap: () {
                             context
                                 .bloc<PageBloc>()
-                                .add(GoToDetailTugasMindfull(widget.category));
+                                .add(GoToDetailTugasPwb(widget.category));
                           },
                           child: Icon(Icons.arrow_back),
                         ),
@@ -235,16 +235,16 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
   }
 }
 
-class ModalTriggerMIndfull extends StatefulWidget {
+class ModalTriggerPwb extends StatefulWidget {
   final Perintah perintah;
 
-  ModalTriggerMIndfull(this.perintah);
+  ModalTriggerPwb(this.perintah);
 
   @override
   _ModalTriggerState createState() => _ModalTriggerState();
 }
 
-class _ModalTriggerMIndfullState extends State<ModalTrigger> {
+class _ModalTriggerPwbState extends State<ModalTrigger> {
   //LatihanBloc latihanBloc;
   void initState() {
     super.initState();
@@ -347,16 +347,16 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
   }
 }
 
-class ModalTriggerMIndfull2 extends StatefulWidget {
+class ModalTriggerPwb2 extends StatefulWidget {
   Materi materi;
 
-  ModalTriggerMIndfull2({this.materi});
+  ModalTriggerPwb2({this.materi});
 
   @override
-  _ModalTriggerMIndfull2State createState() => _ModalTriggerMIndfull2State();
+  _ModalTriggerPwb2State createState() => _ModalTriggerPwb2State();
 }
 
-class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
+class _ModalTriggerPwb2State extends State<ModalTriggerPwb2> {
   _showModalBottomSheet2(context) {
     showModalBottomSheet(
         context: context,
