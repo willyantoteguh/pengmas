@@ -2,6 +2,8 @@ part of '../pages.dart';
 
 // ignore: must_be_immutable
 class QuestAnswerUPage extends StatefulWidget {
+  Category category;
+
   final List<String> mood = [
     "Abdul",
     "Yuni",
@@ -20,7 +22,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-         // context.bloc<PageBloc>().add(GoToTaskPage());
+          context.bloc<PageBloc>().add(GoToMainPage());
 
           return;
         },
@@ -42,7 +44,9 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                          //  context.bloc<PageBloc>().add(GoToTaskPage());
+                            context
+                                .bloc<PageBloc>()
+                                .add(GoToDetailTugasPwb(widget.category));
                           },
                           child: Icon(Icons.arrow_back),
                         ),

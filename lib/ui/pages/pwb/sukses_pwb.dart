@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class SuccessPWBPage extends StatelessWidget {
+  Category category;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

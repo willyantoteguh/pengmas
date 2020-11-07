@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class ChoicesQuiz extends StatefulWidget {
+  Category category;
+
   @override
   _ChoicesQuizState createState() => _ChoicesQuizState();
 }
@@ -28,8 +30,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        //context.bloc<PageBloc>().add(GoToDetailMateriPage());
-
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb(widget.category));
         return;
       },
       child: Scaffold(
@@ -50,7 +51,9 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        // context.bloc<PageBloc>().add(GoToDetailMateriPage());
+                        context
+                            .bloc<PageBloc>()
+                            .add(GoToDetailTugasPwb(widget.category));
                       },
                       child: Icon(Icons.arrow_back),
                     ),

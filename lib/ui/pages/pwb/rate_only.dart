@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class RateOnlyPage extends StatefulWidget {
+  Category category;
+
   @override
   _RateOnlyPageState createState() => _RateOnlyPageState();
 }
@@ -17,7 +19,7 @@ class _RateOnlyPageState extends State<RateOnlyPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToPopUpPage());
+        context.bloc<PageBloc>().add(GoToMainPage());
 
         return;
       },
@@ -191,7 +193,7 @@ class _RateOnlyPageState extends State<RateOnlyPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25)),
                           onPressed: () {
-                            context.bloc<PageBloc>().add(GoToMoodOnlyPage());
+                            context.bloc<PageBloc>().add(GoToMainPage());
                           },
                         ),
                       ),

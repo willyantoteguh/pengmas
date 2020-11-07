@@ -199,9 +199,9 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                     } else if (tugas[pos].id == 3) {
                       context.bloc<PageBloc>().add(GoToRateOnlyPage());
                     } else if (tugas[pos].id == 4) {
-                      context.bloc<PageBloc>().add(GoToChoiceQuisPage());
+                      context.bloc<PageBloc>().add(GoToChoicesPage());
                     } else if (tugas[pos].id == 5) {
-                      context.bloc<PageBloc>().add(GoToChoiceQuisPage());
+                      context.bloc<PageBloc>().add(GoToChoicesPage());
                     } else if (tugas[pos].id == 6) {
                       context.bloc<PageBloc>().add(GoToSyukurPage());
                     }

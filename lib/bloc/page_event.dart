@@ -213,8 +213,3 @@ class GoToStudyCasePage extends PageEvent {
   @override
   List<Object> get props => [];
 }
-
-class GoToChoiceQuisPage extends PageEvent {
-  @override
-  List<Object> get props => [];
-}
