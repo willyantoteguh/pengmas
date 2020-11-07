@@ -191,15 +191,17 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                   title: Text(tugas[pos].nama, style: blackTextFont),
                   subtitle: Text(tugas[pos].createdAt),
                   onTap: () {
-                    context.bloc<PageBloc>().add(
-                        GoToTaskKomunikasiPage(tugas[pos], widget.category));
-                    /*navigateToMateriDetailPage(context, materi[pos]);
-                    if (widget.category.id == 1) {
-                      context.bloc<PageBloc>().add(
-                          GoToTaskMindfullPage(tugas[pos], widget.category));
-                    } else {
+                    //context.bloc<PageBloc>().add(GoToTaskKomunikasiPage(tugas[pos], widget.category));
+                    //navigateToMateriDetailPage(context, materi[pos]);
+                    if (tugas[pos].id == 1 || tugas[pos].id == 3 || tugas[pos].id == 6) {
+                      context.bloc<PageBloc>().add(GoToStudyCasePage());
+                    } else if (tugas[pos].id == 2) {
                       context.bloc<PageBloc>().add(GoToByDoingPage());
-                    }*/
+                    } else if (tugas[pos].id == 4) {
+                      context.bloc<PageBloc>().add(GoToByDoingPage());
+                    } else if (tugas[pos].id == 5) {
+                      context.bloc<PageBloc>().add(GoToByDoingPage());
+                    }
                   },
                 ),
               ),

@@ -32,7 +32,7 @@ class _KesimpulanPageState extends State<KesimpulanPage> {
 
   void postKesimpulan() async {
     var url =
-        'https://rsiaisyiyahnganjuk.com/pengmas/public/api/jawaban_mindfulnesses';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var id_pengguna = await prefs.getInt("id");

@@ -23,13 +23,13 @@ var categoriesData = [
   },
   {
     "id": 2,
-    "name": "Kebahagiaan",
+    "name": "Komunikasi",
     'courses': 25,
     'image': "assets/images/newpack/2 SCENE.png"
   },
   {
     "id": 3,
-    "name": "Komunikasi",
+    "name": "Kebahagiaan",
     'courses': 13,
     'image': "assets/images/newpack/4 SCENE.png"
   },

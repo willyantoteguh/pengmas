@@ -2,7 +2,7 @@ part of 'pages.dart';
 
 // ignore: must_be_immutable
 class DetailTugasPwb extends StatefulWidget {
-  Tugaspwb tugasPwb;
+  Tugaspwb tugaspwb;
   final Category category;
 
   DetailTugasPwb(this.category);
@@ -187,16 +187,24 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                   title: Text(tugas[pos].nama, style: blackTextFont),
                   subtitle: Text(tugas[pos].createdAt),
                   onTap: () {
-                    context
+                    print(tugas[pos].id);
+                    /*context
                         .bloc<PageBloc>()
                         .add(GoToTaskPwbPage(tugas[pos], widget.category));
-                    /*navigateToMateriDetailPage(context, materi[pos]);
-                    if (widget.category.id == 1) {
-                      context.bloc<PageBloc>().add(
-                          GoToTaskPwbPage(tugas[pos], widget.category));
-                    } else {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
-                    }*/
+                    navigateToMateriDetailPage(context, materi[pos]);*/
+                    if (tugas[pos].id == 1) {
+                      context.bloc<PageBloc>().add(GoToQuestAnswerPage());
+                    } else if (tugas[pos].id == 2) {
+                      context.bloc<PageBloc>().add(GoToRateOnlyPage());
+                    } else if (tugas[pos].id == 3) {
+                      context.bloc<PageBloc>().add(GoToRateOnlyPage());
+                    } else if (tugas[pos].id == 4) {
+                      context.bloc<PageBloc>().add(GoToChoiceQuisPage());
+                    } else if (tugas[pos].id == 5) {
+                      context.bloc<PageBloc>().add(GoToChoiceQuisPage());
+                    } else if (tugas[pos].id == 6) {
+                      context.bloc<PageBloc>().add(GoToSyukurPage());
+                    }
                   },
                 ),
               ),

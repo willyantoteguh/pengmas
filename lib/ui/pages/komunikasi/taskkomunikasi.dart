@@ -3,7 +3,7 @@ part of '../pages.dart';
 // ignore: must_be_immutable
 class TaskKomunikasiPage extends StatefulWidget {
   final Category category;
-  final TugasMindfull tugas;
+  final Tugaskomunikasi tugas;
 
   TaskKomunikasiPage(this.tugas, this.category);
 

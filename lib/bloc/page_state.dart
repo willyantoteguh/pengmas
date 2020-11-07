@@ -62,7 +62,6 @@ class OnDetailTugasKomunikasi extends PageState {
 
 class OnDetailTugasPwb extends PageState {
   final Category category;
-
   OnDetailTugasPwb(this.category);
 
   @override
@@ -226,4 +225,14 @@ class OnTaskPwbPage extends PageState {
 
   @override
   List<Object> get props => [tugas, category];
+}
+
+class OnStudyCasePage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnChoiceQuisPage extends PageState {
+  @override
+  List<Object> get props => [];
 }
