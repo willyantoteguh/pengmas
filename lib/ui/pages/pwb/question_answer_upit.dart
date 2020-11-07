@@ -173,7 +173,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25)),
                     onPressed: () {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
+                      context.bloc<PageBloc>().add(GoToRateOnlyPage());
                     },
                   ),
                 ),

@@ -193,7 +193,7 @@ class _RateOnlyPageState extends State<RateOnlyPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25)),
                           onPressed: () {
-                            context.bloc<PageBloc>().add(GoToMainPage());
+                            context.bloc<PageBloc>().add(GoToSuksesPage());
                           },
                         ),
                       ),

@@ -30,7 +30,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasPwb(widget.category));
+        context.bloc<PageBloc>().add(GoToMainPage());
         return;
       },
       child: Scaffold(
