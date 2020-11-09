@@ -14,6 +14,11 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
   TugasKomunikasiBloc tugaskomunikasiBloc;
   OnDetailTugasKomunikasi state;
 
+  void saveData(id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("idTugas", id.toString());
+  }
+
   @override
   void initState() {
     super.initState();
@@ -155,7 +160,7 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                               defaultMargin, 10, defaultMargin, 20),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 10, bottom: 10),
-                            child: Text("Daftar Latihan",
+                            child: Text("Daftar Latihan Komunikasi",
                                 style: kTitleTextStyle.copyWith(
                                     color: Colors.white)),
                           ),
@@ -191,17 +196,20 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                   title: Text(tugas[pos].nama, style: blackTextFont),
                   subtitle: Text(tugas[pos].createdAt),
                   onTap: () {
-                    //context.bloc<PageBloc>().add(GoToTaskKomunikasiPage(tugas[pos], widget.category));
-                    //navigateToMateriDetailPage(context, materi[pos]);
-                    if (tugas[pos].id == 1 || tugas[pos].id == 3 || tugas[pos].id == 6) {
+                    saveData(tugas[pos].id);
+                    context.bloc<PageBloc>().add(GoToStudyCasePage());
+                    /*
+                    if (tugas[pos].id == 1 ||
+                        tugas[pos].id == 3 ||
+                        tugas[pos].id == 6) {
                       context.bloc<PageBloc>().add(GoToStudyCasePage());
-                    } else if (tugas[pos].id == 2) {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
-                    } else if (tugas[pos].id == 4) {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
-                    } else if (tugas[pos].id == 5) {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
+                    } else {
+                      //context.bloc<PageBloc>().add(GoToKomunikasiPage());
                     }
+                    
+                    context.bloc<PageBloc>().add(
+                        GoToTaskKomunikasiPage(tugas[pos], widget.category));
+                    */
                   },
                 ),
               ),

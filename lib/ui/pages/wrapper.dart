@@ -72,15 +72,15 @@ class _WrapperState extends State<Wrapper> {
                                                                 ? GoalsPage()
                                                                 : (pageState
                                                                         is OnSuccessPage)
-                                                                    ? SuccessPage()
+                                                                    ? SuksesPage()
                                                                     : (pageState
-                                                                            is OnQuestAnswerPage)
-                                                                        ? QuestAnswerPage()
+                                                                            is OnSuksesPage)
+                                                                        ? SuccessPage()
                                                                         : (pageState
-                                                                                is OnPopUpPage)
-                                                                            ? PopUpPage()
-                                                                            : (pageState is OnRateOnlyPage)
-                                                                                ? RateOnlyPage()
-                                                                                : (pageState is OnStudyCasePage) ? StudyCase() : (pageState is OnMoodOnlyPage) ? MoodOnlyPage() : (pageState is OnChoicesPage) ? ChoicesQuiz() : (pageState is OnQuestAnswerUPage) ? QuestAnswerUPage() : (pageState is OnSadarPageOne) ? SadarPageOne() : (pageState is OnMengamatiPageOne) ? MengamatiPageOne() : (pageState is OnPerspektifPageOne) ? PerspektifPageOne() : (pageState is OnKalenderPageOne) ? KalenderPageOne() : (pageState is OnKesimpulanPageOne) ? KesimpulanPage() : (pageState is OnTahukahPageOne) ? TahukahPage() : (pageState is OnSyukurPage) ? SyukurPage() : (pageState is OnSuaraPageOne) ? SuaraPageOne() : (pageState is OnPerkataanPageOne) ? PerkataanPage() : UserProfile());
+                                                                                is OnQuestAnswerPage)
+                                                                            ? QuestAnswerPage()
+                                                                            : (pageState is OnPopUpPage)
+                                                                                ? PopUpPage()
+                                                                                : (pageState is OnRateOnlyPage) ? RateOnlyPage() : (pageState is OnKomunikasiPage) ? KomunikasiPage() : (pageState is OnStudyCasePage) ? StudyCase() : (pageState is OnMoodOnlyPage) ? MoodOnlyPage() : (pageState is OnChoicesPage) ? ChoicesQuiz() : (pageState is OnQuestAnswerUPage) ? QuestAnswerUPage() : (pageState is OnSadarPageOne) ? SadarPageOne() : (pageState is OnMengamatiPageOne) ? MengamatiPageOne() : (pageState is OnPerspektifPageOne) ? PerspektifPageOne() : (pageState is OnKalenderPageOne) ? KalenderPageOne() : (pageState is OnKesimpulanPageOne) ? KesimpulanPage() : (pageState is OnTahukahPageOne) ? TahukahPage() : (pageState is OnSyukurPage) ? SyukurPage() : (pageState is OnSuaraPageOne) ? SuaraPageOne() : (pageState is OnPerkataanPageOne) ? PerkataanPage() : UserProfile());
   }
 }

@@ -85,6 +85,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnSuksesPage();
     } else if (event is GoToStudyCasePage) {
       yield OnStudyCasePage();
+    } else if (event is GoToKomunikasiPage) {
+      yield OnKomunikasiPage();
     }
   }
 }

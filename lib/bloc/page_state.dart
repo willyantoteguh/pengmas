@@ -231,3 +231,8 @@ class OnStudyCasePage extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnKomunikasiPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
