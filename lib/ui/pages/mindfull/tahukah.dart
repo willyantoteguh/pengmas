@@ -51,7 +51,7 @@ class TahukahPage extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             onPressed: () {
-              context.bloc<PageBloc>().add(GoToSuaraPageOne());
+              context.bloc<PageBloc>().add(GoToMainPage());
             },
           ),
         ),

@@ -1,7 +1,7 @@
 part of '../pages.dart';
 
 // ignore: must_be_immutable
-class SuccessPWBPage extends StatelessWidget {
+class Inti6Page extends StatelessWidget {
   Category category;
 
   @override
@@ -11,17 +11,17 @@ class SuccessPWBPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Container(
+        /*Container(
           width: 300,
           height: 300,
           margin: EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/images/newpack/2 SCENE.png"))),
-        ),
+        ),*/
         Align(
           child: Text(
-            "SELAMAT!!",
+            "Apa sih Inti Dari Tantangan ini?",
             textAlign: TextAlign.center,
             style: blackTextFont.copyWith(fontSize: 20),
           ),
@@ -30,7 +30,7 @@ class SuccessPWBPage extends StatelessWidget {
           padding: const EdgeInsets.only(
               top: 10, left: defaultMargin, right: defaultMargin),
           child: Text(
-              "Anda menemukan satu mimpi yang bisa digapai. \n SEMANGAT YA! \n KAMI PERCAYA ANDA BISA.",
+              "Menentukan tujuan hidup bagi seseorang merupakan hal yang penting karena akan menentukan arah hidup seseorang. Tujuan hidup akan menjadi motivasi untuk merencanakan langkah-langkah menuju masa depan yang lebih baik.",
               textAlign: TextAlign.center,
               style: blackTextFont.copyWith(fontSize: 16)),
         ),
@@ -47,14 +47,14 @@ class SuccessPWBPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)),
               child: Text(
-                "Lihat Agenda",
+                "Beranda",
                 style: whiteTextFont.copyWith(fontSize: 16),
               ),
               onPressed: () {
-                context.bloc<PageBloc>().add(GoToInti1Page());
+                context.bloc<PageBloc>().add(GoToPopUpPage());
               }),
         ),
-        Row(
+        /*Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -63,7 +63,7 @@ class SuccessPWBPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                context.bloc<PageBloc>().add(GoToInti1Page());
+                context.bloc<PageBloc>().add(GoToMainPage());
               },
               child: Text(
                 "Kembali ke Beranda",
@@ -71,7 +71,7 @@ class SuccessPWBPage extends StatelessWidget {
               ),
             )
           ],
-        ),
+        ),*/
       ],
     ));
   }

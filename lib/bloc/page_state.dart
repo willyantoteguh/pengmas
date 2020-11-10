@@ -134,6 +134,16 @@ class OnQuestAnswerPage extends PageState {
   List<Object> get props => [];
 }
 
+class OnQuestAnswerUPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnQuestChoicesPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class OnPopUpPage extends PageState {
   @override
   List<Object> get props => [];
@@ -150,11 +160,6 @@ class OnMoodOnlyPage extends PageState {
 }
 
 class OnChoicesPage extends PageState {
-  @override
-  List<Object> get props => [];
-}
-
-class OnQuestAnswerUPage extends PageState {
   @override
   List<Object> get props => [];
 }
@@ -233,6 +238,36 @@ class OnStudyCasePage extends PageState {
 }
 
 class OnKomunikasiPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInti1Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInti2Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInti3Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInti4Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInti5Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInti6Page extends PageState {
   @override
   List<Object> get props => [];
 }

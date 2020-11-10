@@ -15,6 +15,7 @@ class _UserProfileState extends State<UserProfile> {
     if (this.mounted) {
       setState(() {
         nama = prefs.getString("nama");
+        email = prefs.getString("email");
       });
     }
   }
@@ -42,7 +43,7 @@ class _UserProfileState extends State<UserProfile> {
             children: <Widget>[
               UserAccount(nama),
               NoteHomePage(),
-              GoalsPage(),
+              ProfilePage(nama, email),
             ],
             onPageChanged: (index) {
               setState(() {
@@ -101,7 +102,7 @@ class _UserProfileState extends State<UserProfile> {
                           : "assets/images/notes_inactive.png"),
                     )),
                 BottomNavigationBarItem(
-                    title: Text("Agenda",
+                    title: Text("Profile",
                         style: GoogleFonts.raleway(
                             fontSize: 13, fontWeight: FontWeight.w600)),
                     icon: Container(

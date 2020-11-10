@@ -116,6 +116,11 @@ class GoToQuestAnswerPage extends PageEvent {
   List<Object> get props => [];
 }
 
+class GoToQuestChoicesPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class GoToPopUpPage extends PageEvent {
   @override
   List<Object> get props => [];
@@ -215,6 +220,36 @@ class GoToStudyCasePage extends PageEvent {
 }
 
 class GoToKomunikasiPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInti1Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInti2Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInti3Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInti4Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInti5Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInti6Page extends PageEvent {
   @override
   List<Object> get props => [];
 }

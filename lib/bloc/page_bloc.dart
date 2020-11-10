@@ -53,6 +53,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnSuccessPage();
     } else if (event is GoToQuestAnswerPage) {
       yield OnQuestAnswerPage();
+    } else if (event is GoToQuestAnswerUPage) {
+      yield OnQuestAnswerUPage();
     } else if (event is GoToPopUpPage) {
       yield OnPopUpPage();
     } else if (event is GoToRateOnlyPage) {
@@ -63,6 +65,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnChoicesPage();
     } else if (event is GoToQuestAnswerUPage) {
       yield OnQuestAnswerUPage();
+    } else if (event is GoToQuestChoicesPage) {
+      yield OnQuestChoicesPage();
     } else if (event is GoToSadarPageOne) {
       yield OnSadarPageOne();
     } else if (event is GoToMengamatiPageOne) {
@@ -87,6 +91,20 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnStudyCasePage();
     } else if (event is GoToKomunikasiPage) {
       yield OnKomunikasiPage();
+    } else if (event is GoToKomunikasiPage) {
+      yield OnKomunikasiPage();
+    } else if (event is GoToInti1Page) {
+      yield OnInti1Page();
+    } else if (event is GoToInti2Page) {
+      yield OnInti2Page();
+    } else if (event is GoToInti3Page) {
+      yield OnInti3Page();
+    } else if (event is GoToInti4Page) {
+      yield OnInti4Page();
+    } else if (event is GoToInti5Page) {
+      yield OnInti5Page();
+    } else if (event is GoToInti6Page) {
+      yield OnInti6Page();
     }
   }
 }

@@ -1,19 +1,19 @@
 part of '../pages.dart';
 
 // ignore: must_be_immutable
-class QuestAnswerUPage extends StatefulWidget {
+class QuestChoicesPage extends StatefulWidget {
   Category category;
 
   final List<String> mood = [
-    "Abdul",
-    "Yuni",
+    "Sudah",
+    "Belum",
   ];
 
   @override
-  _QuestAnswerUPageState createState() => _QuestAnswerUPageState();
+  _QuestChoicesPageState createState() => _QuestChoicesPageState();
 }
 
-class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
+class _QuestChoicesPageState extends State<QuestChoicesPage> {
   Color myFeedbackColor = mainColor;
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
@@ -66,7 +66,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
               Column(
                 children: <Widget>[
                   Text(
-                    'Dari cerita tadi\n, Siapakah yang lebih bahagia ?',
+                    'Apakah anda sudah menelepon orang terkasih?',
                     textAlign: TextAlign.center,
                     style: purpleTextFont.copyWith(fontSize: 16),
                   ),
@@ -83,7 +83,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                   margin:
                       EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 0),
                   child: Align(
-                    child: Text("Apa alasannya ?",
+                    child: Text("Bagaimana Rasanya ?",
                         style: kTitleTextStyle, textAlign: TextAlign.center),
                   )),
               SizedBox(height: 25),

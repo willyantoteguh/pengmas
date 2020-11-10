@@ -120,7 +120,7 @@ class _PlayListState extends State<PlayList> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25)),
                 onPressed: () {
-                  context.bloc<PageBloc>().add(GoToRateEmojiPage());
+                  context.bloc<PageBloc>().add(GoToQuestAnswerUPage());
                 },
               ),
             ),

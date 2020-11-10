@@ -141,7 +141,7 @@ class QuestAnswerPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25)),
                     onPressed: () {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
+                      context.bloc<PageBloc>().add(GoToRateOnlyPage());
                     },
                   ),
                 ),
