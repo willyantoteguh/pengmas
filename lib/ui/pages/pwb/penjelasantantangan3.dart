@@ -1,7 +1,7 @@
 part of '../pages.dart';
 
 // ignore: must_be_immutable
-class Inti1Page extends StatelessWidget {
+class PenjelasanTantangan3Page extends StatelessWidget {
   Category category;
 
   @override
@@ -21,7 +21,7 @@ class Inti1Page extends StatelessWidget {
         ),*/
         Align(
           child: Text(
-            "Apa sih Inti Dari Tantangan ini?",
+            "Penjelasan Tantangan",
             textAlign: TextAlign.center,
             style: blackTextFont.copyWith(fontSize: 20),
           ),
@@ -30,7 +30,29 @@ class Inti1Page extends StatelessWidget {
           padding: const EdgeInsets.only(
               top: 10, left: defaultMargin, right: defaultMargin),
           child: Text(
-              "Manusia pada dasarnya akan selalu berkembang lebih baik. Kemauan yang kuat dari dalam diri untuk berkembang, memahami potensi yang kita miliki, menemukan komunitas/ruang yang mendukung akan menuntun kita untuk menjadi manusia lebih baik. ",
+              " Kemampuan untuk mengelola kegiatan terkait dengan kemampuan untuk menentukan prioritas dalam hidup kita. Pada tantangan kali ini, ada beberapa kegiatan yang harus anda letakkan di kotak prioritas ",
+              textAlign: TextAlign.center,
+              style: blackTextFont.copyWith(fontSize: 16)),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: 10, left: defaultMargin, right: defaultMargin),
+          child: Text(" Caranya :",
+              textAlign: TextAlign.justify,
+              style: blackTextFont.copyWith(fontSize: 16)),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: 10, left: defaultMargin, right: defaultMargin),
+          child: Text("1. Bacalah kegiatan-kegiatan yang tertulis. ",
+              textAlign: TextAlign.center,
+              style: blackTextFont.copyWith(fontSize: 16)),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: 10, left: defaultMargin, right: defaultMargin),
+          child: Text(
+              "2. Pilih kegiatan yang penting dan mendesak di kotak I, kegiatan yang penting dan tidak mendesak di kotak II, kegiatan yang mendesak tapi tidak penting dikotak III, dan kegiatan yang tidak penting dan tidak mendesak di kotak IV. ",
               textAlign: TextAlign.center,
               style: blackTextFont.copyWith(fontSize: 16)),
         ),
@@ -47,31 +69,13 @@ class Inti1Page extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)),
               child: Text(
-                "Beranda",
+                "Lanjut",
                 style: whiteTextFont.copyWith(fontSize: 16),
               ),
               onPressed: () {
-                context.bloc<PageBloc>().add(GoToSuksesPage());
+                context.bloc<PageBloc>().add(GoToChoicesPage());
               }),
         ),
-        /*Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Lanjut Nugas? ",
-              style: greyTextFont.copyWith(fontWeight: FontWeight.w400),
-            ),
-            GestureDetector(
-              onTap: () {
-                context.bloc<PageBloc>().add(GoToMainPage());
-              },
-              child: Text(
-                "Kembali ke Beranda",
-                style: purpleTextFont,
-              ),
-            )
-          ],
-        ),*/
       ],
     ));
   }

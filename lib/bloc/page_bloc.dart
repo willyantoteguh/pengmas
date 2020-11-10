@@ -59,6 +59,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnPopUpPage();
     } else if (event is GoToRateOnlyPage) {
       yield OnRateOnlyPage();
+    } else if (event is GoToStudyRateOnlyPage) {
+      yield OnStudyRateOnlyPage();
     } else if (event is GoToMoodOnlyPage) {
       yield OnMoodOnlyPage();
     } else if (event is GoToChoicesPage) {
@@ -105,6 +107,14 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnInti5Page();
     } else if (event is GoToInti6Page) {
       yield OnInti6Page();
+    } else if (event is GoToStudyChoicePage) {
+      yield OnStudyChoicePage();
+    } else if (event is GoToStudyChoicePart2Page) {
+      yield OnStudyChoicePart2Page();
+    } else if (event is GoToStudyChoicePart3Page) {
+      yield OnStudyChoicePart3Page();
+    } else if (event is GoToPenjelasanTantangan3Page) {
+      yield OnPenjelasanTantangan3Page();
     }
   }
 }

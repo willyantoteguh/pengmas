@@ -193,11 +193,13 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                         .add(GoToTaskPwbPage(tugas[pos], widget.category));
                     navigateToMateriDetailPage(context, materi[pos]);*/
                     if (tugas[pos].id == 1) {
-                      context.bloc<PageBloc>().add(GoToQuestAnswerPage());
+                      context.bloc<PageBloc>().add(GoToStudyChoicePage());
                     } else if (tugas[pos].id == 2) {
                       context.bloc<PageBloc>().add(GoToByDoingPage());
                     } else if (tugas[pos].id == 3) {
-                      context.bloc<PageBloc>().add(GoToChoicesPage());
+                      context
+                          .bloc<PageBloc>()
+                          .add(GoToPenjelasanTantangan3Page());
                     } else if (tugas[pos].id == 4) {
                       context.bloc<PageBloc>().add(GoToQuestChoicesPage());
                     } else if (tugas[pos].id == 5) {

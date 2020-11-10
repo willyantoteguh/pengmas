@@ -131,6 +131,11 @@ class GoToRateOnlyPage extends PageEvent {
   List<Object> get props => [];
 }
 
+class GoToStudyRateOnlyPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class GoToMoodOnlyPage extends PageEvent {
   @override
   List<Object> get props => [];
@@ -250,6 +255,26 @@ class GoToInti5Page extends PageEvent {
 }
 
 class GoToInti6Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToStudyChoicePage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToStudyChoicePart2Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToStudyChoicePart3Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToPenjelasanTantangan3Page extends PageEvent {
   @override
   List<Object> get props => [];
 }

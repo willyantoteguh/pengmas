@@ -63,7 +63,7 @@ class SuccessPWBPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                context.bloc<PageBloc>().add(GoToInti1Page());
+                context.bloc<PageBloc>().add(GoToMainPage());
               },
               child: Text(
                 "Kembali ke Beranda",

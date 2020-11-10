@@ -91,6 +91,27 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                    child: Container(
+                  height: 45,
+                  width: 250,
+                  margin: EdgeInsets.only(top: 30, bottom: 20),
+                  child: RaisedButton(
+                      elevation: 0,
+                      color: mainColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Text(
+                        "Lanjut",
+                        style: whiteTextFont.copyWith(fontSize: 16),
+                      ),
+                      onPressed: () {
+                        context.bloc<PageBloc>().add(GoToSuksesPage());
+                      }),
+                )),
               ],
             ),
           ),

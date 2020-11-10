@@ -11,7 +11,7 @@ class Inti2Page extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-         Align(
+        Align(
           child: Text(
             "Apa sih Inti Dari Tantangan ini?",
             textAlign: TextAlign.center,
@@ -43,7 +43,7 @@ class Inti2Page extends StatelessWidget {
                 style: whiteTextFont.copyWith(fontSize: 16),
               ),
               onPressed: () {
-                context.bloc<PageBloc>().add(GoToPopUpPage());
+                context.bloc<PageBloc>().add(GoToSuksesPage());
               }),
         ),
         /*Row(

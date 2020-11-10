@@ -154,6 +154,11 @@ class OnRateOnlyPage extends PageState {
   List<Object> get props => [];
 }
 
+class OnStudyRateOnlyPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class OnMoodOnlyPage extends PageState {
   @override
   List<Object> get props => [];
@@ -268,6 +273,26 @@ class OnInti5Page extends PageState {
 }
 
 class OnInti6Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnStudyChoicePage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnStudyChoicePart2Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnStudyChoicePart3Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnPenjelasanTantangan3Page extends PageState {
   @override
   List<Object> get props => [];
 }
