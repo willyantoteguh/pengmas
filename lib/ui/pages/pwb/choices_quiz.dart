@@ -109,7 +109,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
                         style: whiteTextFont.copyWith(fontSize: 16),
                       ),
                       onPressed: () {
-                        context.bloc<PageBloc>().add(GoToSuksesPage());
+                        context.bloc<PageBloc>().add(GoToInti3Page());
                       }),
                 )),
               ],

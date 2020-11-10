@@ -278,3 +278,7 @@ class GoToPenjelasanTantangan3Page extends PageEvent {
   @override
   List<Object> get props => [];
 }
+class GoToPenjelasanTantangan4Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}

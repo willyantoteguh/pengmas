@@ -115,6 +115,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnStudyChoicePart3Page();
     } else if (event is GoToPenjelasanTantangan3Page) {
       yield OnPenjelasanTantangan3Page();
+    } else if (event is GoToPenjelasanTantangan4Page) {
+      yield OnPenjelasanTantangan3Page();
     }
   }
 }

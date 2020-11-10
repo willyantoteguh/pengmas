@@ -296,3 +296,9 @@ class OnPenjelasanTantangan3Page extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnPenjelasanTantangan4Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+

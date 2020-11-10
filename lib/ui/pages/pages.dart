@@ -90,3 +90,4 @@ part 'pwb/studychoice.dart';
 part 'pwb/studychoicepart2.dart';
 part 'pwb/studychoicepart3.dart';
 part 'pwb/penjelasantantangan3.dart';
+part 'pwb/penjelasantantangan4.dart';

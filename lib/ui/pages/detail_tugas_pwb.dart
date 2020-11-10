@@ -201,7 +201,9 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                           .bloc<PageBloc>()
                           .add(GoToPenjelasanTantangan3Page());
                     } else if (tugas[pos].id == 4) {
-                      context.bloc<PageBloc>().add(GoToQuestChoicesPage());
+                      context
+                          .bloc<PageBloc>()
+                          .add(GoToPenjelasanTantangan4Page());
                     } else if (tugas[pos].id == 5) {
                       context.bloc<PageBloc>().add(GoToChoicesPage());
                     } else if (tugas[pos].id == 6) {
