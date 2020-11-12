@@ -6,13 +6,13 @@ class KalenderPageOne extends StatefulWidget {
 }
 
 class _KalenderPageOneState extends State<KalenderPageOne> {
-  String _date = "";
-  bool viewVisible1 = false;
-  bool viewVisible2 = false;
-  bool viewVisible3 = false;
-  bool viewVisible4 = false;
-  bool viewVisible5 = false;
-  bool viewVisible6 = false;
+  String _date = "Silahkan Pilih Tanggal";
+  bool viewVisible1 = true;
+  bool viewVisible2 = true;
+  bool viewVisible3 = true;
+  bool viewVisible4 = true;
+  bool viewVisible5 = true;
+  bool viewVisible6 = true;
   //SharedPreferences prefs;
 
   TextEditingController kapan = TextEditingController();
@@ -210,7 +210,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                                           Text(
                                             " $_date",
                                             style: TextStyle(
-                                                color: accentColor1,
+                                                color: Colors.indigoAccent,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18.0),
                                           ),
@@ -222,7 +222,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                                 Text(
                                   "Ganti",
                                   style: TextStyle(
-                                      color: accentColor1,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0),
                                 ),
