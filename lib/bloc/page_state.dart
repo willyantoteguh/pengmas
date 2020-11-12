@@ -306,3 +306,8 @@ class OnTantangan5Page extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnTugas6Page extends PageState {
+  @override
+  List<Object> get props => [];
+}

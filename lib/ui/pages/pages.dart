@@ -21,7 +21,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_html/flutter_html.dart';
-
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import '../../bloc/blocs.dart';
 import '../../models/models.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -92,3 +92,4 @@ part 'pwb/studychoicepart3.dart';
 part 'pwb/penjelasantantangan3.dart';
 part 'pwb/penjelasantantangan4.dart';
 part 'pwb/tantangan5.dart';
+part 'pwb/tugas6.dart';

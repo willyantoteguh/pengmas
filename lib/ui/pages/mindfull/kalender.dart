@@ -6,6 +6,7 @@ class KalenderPageOne extends StatefulWidget {
 }
 
 class _KalenderPageOneState extends State<KalenderPageOne> {
+  String _date = "";
   bool viewVisible1 = false;
   bool viewVisible2 = false;
   bool viewVisible3 = false;
@@ -22,7 +23,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   TextEditingController tindakan = TextEditingController();
 
   void save() async {
-    String jawaban1 = kapan.text;
+    String jawaban1 = '$_date';
     String jawaban2 = bagaimana.text;
     String jawaban3 = fisik.text;
     String jawaban4 = pikiran.text;
@@ -157,19 +158,83 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
           Container(
             child: Align(
               child: Material(
-                color: Color(0xFFE4E4E4),
+                color: accentColor4,
                 elevation: 10.0,
                 borderRadius: BorderRadius.circular(20.0),
                 shadowColor: Color(0x802196F3),
                 child: Container(
-                  height: 300,
+                  height: 50,
                   width: (MediaQuery.of(context).size.width -
                       2 * defaultMargin -
                       24),
                   child: ListView(children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Padding(
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                          elevation: 4.0,
+                          onPressed: () {
+                            DatePicker.showDatePicker(context,
+                                theme: DatePickerTheme(
+                                  containerHeight: 210.0,
+                                ),
+                                showTitleActions: true,
+                                minTime: DateTime(2000, 1, 1),
+                                maxTime: DateTime(2022, 12, 31),
+                                onConfirm: (date) {
+                              print('confirm $date');
+                              _date =
+                                  '${date.year} - ${date.month} - ${date.day}';
+                              setState(() {});
+                            },
+                                currentTime: DateTime.now(),
+                                locale: LocaleType.en);
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 50.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.date_range,
+                                            size: 18.0,
+                                            color: accentColor1,
+                                          ),
+                                          Text(
+                                            " $_date",
+                                            style: TextStyle(
+                                                color: accentColor1,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.0),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                  "Ganti",
+                                  style: TextStyle(
+                                      color: accentColor1,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        /*Padding(
                           padding: const EdgeInsets.fromLTRB(
                               10, defaultMargin, 10, defaultMargin),
                           child: TextField(
@@ -186,7 +251,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             child: Text(
                               kapan.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
