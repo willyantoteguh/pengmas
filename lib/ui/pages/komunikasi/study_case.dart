@@ -155,7 +155,6 @@ class _StudyCaseState extends State<StudyCase> {
                         shrinkWrap: true,
                         itemCount: kasus.length,
                         itemBuilder: (context, index) {
-                          //print(kasus[index]["kasus"]);
                           return Column(
                             children: [
                               Container(
