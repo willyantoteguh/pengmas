@@ -24,44 +24,70 @@ class _RateEmojiState extends State<RateEmoji> {
   Color myFeedbackColor = mainColor;
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
+  bool visible = false;
 
   void postRate() async {
     String jawaban = controller.text;
+    setState(() {
+      visible = true;
+    });
     var url =
-        'https://rsiaisyiyahnganjuk.com/pengmas/public/api/pengalaman_mindfulnesses';
+        'http://timkecilproject.com/pengmas/public/api/pengalaman_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
     var idTugas = await prefs.getString("idTugas");
     print(id_pengguna);
-    var data = {
-      "id_tugas": idTugas,
-      "id_pengguna": id_pengguna.toString(),
-      "perasaan": myFeedbackText,
-      "kesulitan": selectedMood[0],
-      "pengalaman": jawaban
-    };
-    var response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      context.bloc<PageBloc>().add(GoToSuccessPage());
-    } else {
+    if (jawaban == '' || selectedMood == null) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error saat mengirim jawaban"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+          return CupertinoAlertDialog(
+            title: Text("Error"),
+            content: Text("Form Tidak Boleh Kosong"),
           );
         },
+        barrierDismissible: true,
       );
+      setState(() {
+        visible = false;
+      });
+    } else {
+      var data = {
+        "id_tugas": idTugas,
+        "id_pengguna": id_pengguna.toString(),
+        "perasaan": myFeedbackText,
+        "kesulitan": selectedMood.toString(),
+        "pengalaman": jawaban
+      };
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        setState(() {
+          visible = false;
+        });
+        context.bloc<PageBloc>().add(GoToSuccessPage());
+      } else {
+        setState(() {
+          visible = false;
+        });
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Error saat mengirim jawaban"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
@@ -284,7 +310,14 @@ class _RateEmojiState extends State<RateEmoji> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
+                    Visibility(
+                      visible: visible,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    SizedBox(height: 15),
                     Container(
                       height: 50,
                       width: 200,

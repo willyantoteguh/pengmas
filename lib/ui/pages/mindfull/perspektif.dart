@@ -20,44 +20,60 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
     });
     String jawaban = controller.text;
     var url =
-        'https://rsiaisyiyahnganjuk.com/pengmas/public/api/jawaban_mindfulnesses';
+        'http://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
     var idTugas = await prefs.getString("idTugas");
     print(id_pengguna);
-    var data = {
-      "id_tugas": idTugas,
-      "id_pengguna": id_pengguna.toString(),
-      "jawaban": jawaban
-    };
-    var response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      setState(() {
-        visible = false;
-      });
-      context.bloc<PageBloc>().add(GoToRateEmojiPage());
-    } else {
-      setState(() {
-        visible = false;
-      });
+    if (jawaban == '') {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error saat mengirim jawaban"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+          return CupertinoAlertDialog(
+            title: Text("Error"),
+            content: Text("Form Tidak Boleh Kosong"),
           );
         },
+        barrierDismissible: true,
       );
+      setState(() {
+        visible = false;
+      });
+    } else {
+      var data = {
+        "id_tugas": idTugas,
+        "id_pengguna": id_pengguna.toString(),
+        "jawaban": jawaban
+      };
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        setState(() {
+          visible = false;
+        });
+        context.bloc<PageBloc>().add(GoToRateEmojiPage());
+      } else {
+        setState(() {
+          visible = false;
+        });
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Error saat mengirim jawaban"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
@@ -288,12 +304,14 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
                           padding: const EdgeInsets.fromLTRB(
                               10, defaultMargin, 10, defaultMargin),
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: InputDecoration.collapsed(
                               border: InputBorder.none,
                               hintText: 'Saya baru menyadari...',
                             ),
                             controller: controller,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
                         Padding(
@@ -311,10 +329,12 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
           ),
           SizedBox(height: 35),
           Visibility(
-              visible: visible,
-              child: Container(
-                  margin: EdgeInsets.only(bottom: 30),
-                  child: CircularProgressIndicator())),
+            visible: visible,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          SizedBox(height: 35),
           Container(
             height: 50,
             margin: EdgeInsets.only(left: 50, right: 50),

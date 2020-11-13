@@ -6,12 +6,14 @@ class KalenderPageOne extends StatefulWidget {
 }
 
 class _KalenderPageOneState extends State<KalenderPageOne> {
-  bool viewVisible1 = false;
-  bool viewVisible2 = false;
-  bool viewVisible3 = false;
-  bool viewVisible4 = false;
-  bool viewVisible5 = false;
-  bool viewVisible6 = false;
+  String _date = "Silahkan Pilih Tanggal";
+  String _jam = '';
+  bool viewVisible1 = true;
+  bool viewVisible2 = true;
+  bool viewVisible3 = true;
+  bool viewVisible4 = true;
+  bool viewVisible5 = true;
+  bool viewVisible6 = true;
   //SharedPreferences prefs;
 
   TextEditingController kapan = TextEditingController();
@@ -22,19 +24,40 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   TextEditingController tindakan = TextEditingController();
 
   void save() async {
-    String jawaban1 = kapan.text;
+    String jawaban1 = '$_date';
     String jawaban2 = bagaimana.text;
     String jawaban3 = fisik.text;
     String jawaban4 = pikiran.text;
     String jawaban5 = perasaan.text;
     String jawaban6 = tindakan.text;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('kapan', jawaban1);
-    prefs.setString('bagaimana', jawaban2);
-    prefs.setString('fisik', jawaban3);
-    prefs.setString('pikiran', jawaban4);
-    prefs.setString('perasaan', jawaban5);
-    prefs.setString('tindakan', jawaban6);
+    if (jawaban1 == 'Silahkan Pilih Tanggal' ||
+        jawaban2 == '' ||
+        jawaban3 == '' ||
+        jawaban4 == '' ||
+        jawaban5 == '' ||
+        jawaban6 == '') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Form Tidak Boleh Ada yang Kosong"),
+
+            //content: Text("Form Tidak Boleh Kosong"),
+          );
+        },
+        barrierDismissible: true,
+      );
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('kapan', jawaban1);
+      prefs.setString('jam', _jam);
+      prefs.setString('bagaimana', jawaban2);
+      prefs.setString('fisik', jawaban3);
+      prefs.setString('pikiran', jawaban4);
+      prefs.setString('perasaan', jawaban5);
+      prefs.setString('tindakan', jawaban6);
+      context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
+    }
   }
 
   void showWidget1() {
@@ -157,19 +180,87 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
           Container(
             child: Align(
               child: Material(
-                color: Color(0xFFE4E4E4),
+                color: accentColor4,
                 elevation: 10.0,
                 borderRadius: BorderRadius.circular(20.0),
                 shadowColor: Color(0x802196F3),
                 child: Container(
-                  height: 300,
+                  height: 50,
                   width: (MediaQuery.of(context).size.width -
                       2 * defaultMargin -
                       24),
                   child: ListView(children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Padding(
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                          elevation: 4.0,
+                          onPressed: () {
+                            DatePicker.showDatePicker(context,
+                                theme: DatePickerTheme(
+                                  containerHeight: 210.0,
+                                ),
+                                showTitleActions: true,
+                                minTime: DateTime(2000, 1, 1),
+                                maxTime: DateTime(2022, 12, 31),
+                                onConfirm: (date) {
+                              print('confirm $date');
+
+                              setState(() {
+                                _date =
+                                    '${date.year} - ${date.month} - ${date.day}';
+                                _jam = '${date.hour}';
+                                print(_jam);
+                              });
+                            },
+                                currentTime: DateTime.now(),
+                                locale: LocaleType.en);
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 50.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.date_range,
+                                            size: 18.0,
+                                            color: accentColor1,
+                                          ),
+                                          Text(
+                                            " $_date",
+                                            style: TextStyle(
+                                                color: Colors.indigoAccent,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.0),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                  "Ganti",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        /*Padding(
                           padding: const EdgeInsets.fromLTRB(
                               10, defaultMargin, 10, defaultMargin),
                           child: TextField(
@@ -186,7 +277,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             child: Text(
                               kapan.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
@@ -252,14 +343,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: bagaimana,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              bagaimana.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -326,14 +413,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: fisik,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              fisik.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -400,14 +483,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: pikiran,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              pikiran.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -474,14 +553,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: perasaan,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              perasaan.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -548,14 +623,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: tindakan,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              tindakan.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -577,7 +648,6 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
               onPressed: () {
                 //String jawaban = controller.text;
                 save();
-                context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
               },
             ),
           ),

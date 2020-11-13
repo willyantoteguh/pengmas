@@ -15,6 +15,11 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
   TugasPwbBloc tugasPwbBloc;
   OnDetailTugasPwb state;
 
+  void saveData(id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("idTugas", id.toString());
+  }
+
   @override
   void initState() {
     super.initState();
@@ -192,6 +197,7 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                         .bloc<PageBloc>()
                         .add(GoToTaskPwbPage(tugas[pos], widget.category));
                     navigateToMateriDetailPage(context, materi[pos]);*/
+                    saveData(tugas[pos].id);
                     if (tugas[pos].id == 1) {
                       context.bloc<PageBloc>().add(GoToStudyChoicePage());
                     } else if (tugas[pos].id == 2) {

@@ -6,7 +6,64 @@ class StudyChoicePage extends StatefulWidget {
 }
 
 class _StudyChoicePageState extends State<StudyChoicePage> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController jwb1 = TextEditingController();
+  TextEditingController jwb2 = TextEditingController();
+  TextEditingController jwb3 = TextEditingController();
+  TextEditingController jwb4 = TextEditingController();
+
+  String idTugas = '';
+  int idUser;
+  String nama;
+  @override
+  void initState() {
+    super.initState();
+    getId();
+  }
+
+  void getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idTugas = prefs.getString('idTugas');
+      idUser = prefs.getInt("id");
+      nama = prefs.getString('nama');
+    });
+  }
+
+  void postKebahagiaan() async {
+    String j1 = jwb1.text;
+    String j2 = jwb2.text;
+    String j3 = jwb3.text;
+    String j4 = jwb4.text;
+    var jawaban = "1.$j1  2.$j2  3.$j3  4.$j4";
+    var url =
+        'http://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+    var data = {
+      "id_tugas": idTugas,
+      "id_pengguna": idUser.toString(),
+      "jawaban": jawaban
+    };
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      context.bloc<PageBloc>().add(GoToStudyChoicePart2Page());
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Error saat mengirim jawaban"),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +124,14 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   border: InputBorder.none,
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
-                                controller: controller,
+                                controller: jwb1,
                                 maxLength: 200,
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.all(30),
                                 child: Text(
-                                  controller.text,
+                                  jwb1.text,
                                   style: kTitleTextStyle,
                                 )),
                           ],
@@ -108,14 +165,14 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   border: InputBorder.none,
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
-                                controller: controller,
+                                controller: jwb2,
                                 maxLength: 200,
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.all(30),
                                 child: Text(
-                                  controller.text,
+                                  jwb2.text,
                                   style: kTitleTextStyle,
                                 )),
                           ],
@@ -149,14 +206,14 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   border: InputBorder.none,
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
-                                controller: controller,
+                                controller: jwb3,
                                 maxLength: 200,
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.all(30),
                                 child: Text(
-                                  controller.text,
+                                  jwb3.text,
                                   style: kTitleTextStyle,
                                 )),
                           ],
@@ -190,14 +247,14 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   border: InputBorder.none,
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
-                                controller: controller,
+                                controller: jwb4,
                                 maxLength: 200,
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.all(30),
                                 child: Text(
-                                  controller.text,
+                                  jwb4.text,
                                   style: kTitleTextStyle,
                                 )),
                           ],
@@ -220,7 +277,8 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25)),
                   onPressed: () {
-                    context.bloc<PageBloc>().add(GoToStudyChoicePart2Page());
+                    postKebahagiaan();
+                    //context.bloc<PageBloc>().add(GoToStudyChoicePart2Page());
                   },
                 ),
               ),

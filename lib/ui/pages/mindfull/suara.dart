@@ -12,38 +12,54 @@ class _SuaraPageOneState extends State<SuaraPageOne> {
   void postSuara() async {
     String jawaban = controller.text;
     var url =
-        'https://rsiaisyiyahnganjuk.com/pengmas/public/api/jawaban_mindfulnesses';
+        'http://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
     var idTugas = await prefs.getString("idTugas");
     print(id_pengguna);
-    var data = {
-      "id_tugas": idTugas,
-      "id_pengguna": id_pengguna.toString(),
-      "jawaban": jawaban
-    };
-    var response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      context.bloc<PageBloc>().add(GoToPerkataanPageOne());
-    } else {
+    if (jawaban == '') {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error saat mengirim jawaban"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+          return CupertinoAlertDialog(
+            title: Text("Error"),
+            content: Text("Form Tidak Boleh Kosong"),
+            actions: [
+              CupertinoDialogAction(
+                  isDefaultAction: true, child: new Text("Close"))
             ],
           );
         },
       );
+    } else {
+      var data = {
+        "id_tugas": idTugas,
+        "id_pengguna": id_pengguna.toString(),
+        "jawaban": jawaban
+      };
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        context.bloc<PageBloc>().add(GoToPerkataanPageOne());
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Error saat mengirim jawaban"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 

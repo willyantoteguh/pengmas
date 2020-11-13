@@ -12,6 +12,7 @@ class _KesimpulanPageState extends State<KesimpulanPage> {
   String pikiran = '';
   String perasaan = '';
   String tindakan = '';
+  String jam = '';
   @override
   void initState() {
     super.initState();
@@ -22,6 +23,7 @@ class _KesimpulanPageState extends State<KesimpulanPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       kapan = prefs.getString('kapan');
+      jam = prefs.getString('jam');
       bagaimana = prefs.getString('bagaimana');
       fisik = prefs.getString('fisik');
       pikiran = prefs.getString('pikiran');
@@ -38,7 +40,7 @@ class _KesimpulanPageState extends State<KesimpulanPage> {
     var id_pengguna = await prefs.getInt("id");
     var idTugas = await prefs.getString("idTugas");
     String jawaban =
-        "Pada tanggal $kapan\n Pukul\n Saya mengalami $bagaimana\n Ketika itu, saya menyadari apa yang dirasakan oleh tubuh saya, yaitu $fisik\n Saya berfikir $pikiran\n Saya merasa $perasaan\n Dalam situasi seperti ini, biasanya saya melakukan $tindakan";
+        "Pada tanggal $kapan\n Pukul $jam\n Saya mengalami $bagaimana\n Ketika itu, saya menyadari apa yang dirasakan oleh tubuh saya, yaitu $fisik\n Saya berfikir $pikiran\n Saya merasa $perasaan\n Dalam situasi seperti ini, biasanya saya melakukan $tindakan";
     print(id_pengguna);
     var data = {
       "id_tugas": idTugas,
@@ -119,8 +121,7 @@ class _KesimpulanPageState extends State<KesimpulanPage> {
                 Container(
                   margin:
                       EdgeInsets.fromLTRB(defaultMargin, 5, defaultMargin, 5),
-                  child: Text(
-                      'Pukul..................................................',
+                  child: Text('Pukul $jam',
                       overflow: TextOverflow.clip,
                       textAlign: TextAlign.left,
                       style: blackTextFont.copyWith(fontSize: 14)),

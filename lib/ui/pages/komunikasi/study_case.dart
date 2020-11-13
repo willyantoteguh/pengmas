@@ -173,9 +173,7 @@ class _StudyCaseState extends State<StudyCase> {
                                 child: Padding(
                                   padding: EdgeInsets.all(defaultMargin),
                                   child: SingleChildScrollView(
-                                    child: Text(
-                                        //'Pada suatu hari, Ibu Tuti secara tidak sengaja melihat anaknya sedang duduk lesu sambil menunjukkan ekspresi sedih di mukanya setelah pembelajaran jarak jauh telah selesai. Anak Ibu melihat ke arah Ibu kemudian menghampiri sambil menangis. Anak Ibu Tuti bercerita panjang lebar kalau ia tidak memahami pelajaran yang diberikan oleh guru dan ketika hendak bertanya kepada guru, koneksinya buruk hingga akhir pembelajaran. Ia bercerita sambil sesenggukan menangis. ',
-                                        kasus[index]["kasus"],
+                                    child: Text(kasus[index]["kasus"],
                                         textAlign: TextAlign.justify,
                                         style: whiteTextFont.copyWith(
                                             fontSize: 14,
