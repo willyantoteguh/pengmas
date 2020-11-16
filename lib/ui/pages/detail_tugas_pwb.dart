@@ -26,6 +26,120 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
 
   @override
   Widget build(BuildContext context) {
+    var column = Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 20, left: 10),
+          height: 50,
+          child: Stack(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onTap: () {
+                    context.bloc<PageBloc>().add(GoToMainPage());
+                  },
+                  child: Icon(Icons.arrow_back),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+              SizedBox(height: 30),
+              ClipPath(
+                clipper: BestSellerClipper(),
+                child: Container(
+                  color: accentColor2,
+                  padding:
+                      EdgeInsets.only(left: 10, top: 5, right: 20, bottom: 5),
+                  child: Text(
+                    "Tenang".toUpperCase(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Text("Kebahagiaan", style: kHeadingextStyle),
+            ],
+          ),
+        ),
+        SizedBox(height: 60),
+        Expanded(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(0),
+                  ),
+                  color: accentColor4,
+                ),
+                child: BlocListener<TugasBloc, TugasState>(
+                  listener: (context, state) {
+                    if (state is TugasErrorState) {
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(state.message),
+                        ),
+                      );
+                    }
+                  },
+                  child: BlocBuilder<TugasPwbBloc, TugasPwbState>(
+                    // ignore: missing_return
+                    builder: (context, state) {
+                      if (state is TugasPwbInitialState) {
+                        return buildLoading();
+                      } else if (state is TugasPwbLoadingState) {
+                        return buildLoading();
+                      } else if (state is TugasPwbLoadedState) {
+                        return buildTugaspwbList(state.tugaspwb);
+                      } else if (state is TugasPwbErrorState) {
+                        return buildErrorUi(state.message);
+                      }
+                    },
+                  ),
+                ),
+                // child: Stack(
+                //   children: <Widget>[
+                //     Padding(
+                //       padding: const EdgeInsets.all(30),
+                //       child: Column(
+                //         // crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: <Widget>[
+
+                //         ],
+                //       ),
+                //     ),
+                //   ],
+                // ),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.fromLTRB(defaultMargin, 10, defaultMargin, 20),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text("Daftar Latihan",
+                      style: kTitleTextStyle.copyWith(color: Colors.white)),
+                ),
+              ),
+              // SizedBox(height: 30),
+            ],
+          ),
+        ),
+      ],
+    );
     return WillPopScope(
       onWillPop: () {
         context.bloc<PageBloc>().add(GoToMainPage());
@@ -47,121 +161,7 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                   alignment: Alignment.topRight,
                 ),
               ),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: 20, left: 10),
-                    height: 50,
-                    child: Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: GestureDetector(
-                            onTap: () {
-                              context.bloc<PageBloc>().add(GoToMainPage());
-                            },
-                            child: Icon(Icons.arrow_back),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        ),
-                        SizedBox(height: 30),
-                        ClipPath(
-                          clipper: BestSellerClipper(),
-                          child: Container(
-                            color: accentColor2,
-                            padding: EdgeInsets.only(
-                                left: 10, top: 5, right: 20, bottom: 5),
-                            child: Text(
-                              "Tenang".toUpperCase(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                        Text("Kebahagiaan", style: kHeadingextStyle),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 60),
-                  Expanded(
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(0),
-                            ),
-                            color: accentColor4,
-                          ),
-                          child: BlocListener<TugasBloc, TugasState>(
-                            listener: (context, state) {
-                              if (state is TugasErrorState) {
-                                Scaffold.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(state.message),
-                                  ),
-                                );
-                              }
-                            },
-                            child: BlocBuilder<TugasPwbBloc, TugasPwbState>(
-                              // ignore: missing_return
-                              builder: (context, state) {
-                                if (state is TugasPwbInitialState) {
-                                  return buildLoading();
-                                } else if (state is TugasPwbLoadingState) {
-                                  return buildLoading();
-                                } else if (state is TugasPwbLoadedState) {
-                                  return buildTugaspwbList(state.tugaspwb);
-                                } else if (state is TugasPwbErrorState) {
-                                  return buildErrorUi(state.message);
-                                }
-                              },
-                            ),
-                          ),
-                          // child: Stack(
-                          //   children: <Widget>[
-                          //     Padding(
-                          //       padding: const EdgeInsets.all(30),
-                          //       child: Column(
-                          //         // crossAxisAlignment: CrossAxisAlignment.start,
-                          //         children: <Widget>[
-
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(
-                              defaultMargin, 10, defaultMargin, 20),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 10),
-                            child: Text("Daftar Latihan",
-                                style: kTitleTextStyle.copyWith(
-                                    color: Colors.white)),
-                          ),
-                        ),
-                        // SizedBox(height: 30),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              child: column,
             ),
           ),
         ]),
@@ -207,7 +207,7 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                     } else if (tugas[pos].id == 5) {
                       context.bloc<PageBloc>().add(GoToTantangan5Page());
                     } else if (tugas[pos].id == 6) {
-                      context.bloc<PageBloc>().add(GoToTantangan5Page());
+                      context.bloc<PageBloc>().add(GoToTugas6Page());
                       /*} else if (tugas[pos].id == 6) {
                       context.bloc<PageBloc>().add(GoToSyukurPage());*/
                     }

@@ -293,3 +293,8 @@ class GoToTugas6Page extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
+class GoToInputTujuanPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}

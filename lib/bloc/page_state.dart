@@ -311,3 +311,8 @@ class OnTugas6Page extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnInputTujuanPage extends PageState {
+  @override
+  List<Object> get props => [];
+}

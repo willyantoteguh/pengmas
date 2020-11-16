@@ -1,255 +1,259 @@
-
 part of '../pages.dart';
 
+class Tugas6Page extends StatefulWidget {
+  @override
+  _Tugas6PageState createState() => _Tugas6PageState();
+}
 
-class Tugas6Page extends StatelessWidget {
-          @override
+class _Tugas6PageState extends State<Tugas6Page> {
+  CarouselSlider carouselSlider;
+  // int _current = 0;
+
+  @override
   Widget build(BuildContext context) {
-          // Figma Flutter Generator MaslukmanWidget - FRAME
-    return Container(
-      width: 411,
-      height: 731,
-      decoration: BoxDecoration(
-          borderRadius : BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
-            bottomLeft: Radius.circular(40),
-            bottomRight: Radius.circular(40),
+    return Scaffold(
+        body: Stack(
+      children: <Widget>[
+        Container(color: accentColor4),
+        SafeArea(
+          child: Container(
+            color: Color(0xFFF6F7F9),
           ),
-      color : Color.fromRGBO(255, 255, 255, 1),
-  ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-        top: -61,
-        left: -60,
-        child: Container(
-        width: 531,
-        height: 854,
-        decoration: BoxDecoration(
-          color : Color.fromRGBO(239, 239, 239, 1),
-  )
-      )
-      ),Positioned(
-        top: 165,
-        left: 22,
-        child: Container(
-        width: 367,
-        height: 201,
-        decoration: BoxDecoration(
-          borderRadius : BorderRadius.only(
-            topLeft: Radius.circular(28),
-            topRight: Radius.circular(28),
-            bottomLeft: Radius.circular(28),
-            bottomRight: Radius.circular(28),
-          ),
-      image : DecorationImage(
-          image: AssetImage('assets/images/Image6.png'),
-          fit: BoxFit.fitWidth
-      ),
-  )
-      )
-      ),Positioned(
-        top: 482,
-        left: 22,
-        child: Container(
-        width: 174,
-        height: 192,
-        decoration: BoxDecoration(
-          borderRadius : BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-      color : Color.fromRGBO(255, 255, 255, 1),
-  )
-      )
-      ),Positioned(
-        top: 482,
-        left: 206,
-        child: Container(
-        width: 174,
-        height: 192,
-        decoration: BoxDecoration(
-          borderRadius : BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-      color : Color.fromRGBO(255, 255, 255, 1),
-  )
-      )
-      ),Positioned(
-        top: 34,
-        left: 22,
-        child: Container(
-        width: 24,
-        height: 24,
-        decoration: BoxDecoration(
-          image : DecorationImage(
-          image: AssetImage('assets/images/Goback.png'),
-          fit: BoxFit.fitWidth
-      ),
-  )
-      )
-      ),Positioned(
-        top: 385,
-        left: 34,
-        child: Text('Modul 1', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 18,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),Positioned(
-        top: 427,
-        left: 34,
-        child: Text('Detail Modul', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 26,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),Positioned(
-        top: 625,
-        left: 61,
-        child: Text('BACA', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 26,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),Positioned(
-        top: 625,
-        left: 247,
-        child: Text('LIHAT', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 26,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),Positioned(
-        top: 104,
-        left: 34,
-        child: Text('Deskripsi Modul 1', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 14,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),Positioned(
-        top: 386,
-        left: 109,
-        child: Text('Deskripsi Modul 1', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 14,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),Positioned(
-        top: 509,
-        left: 42,
-        child: Container(
-        width: 129,
-        height: 100,
-        decoration: BoxDecoration(
-          image : DecorationImage(
-          image: AssetImage('assets/images/Image8.png'),
-          fit: BoxFit.fitWidth
-      ),
-  )
-      )
-      ),Positioned(
-        top: 509,
-        left: 230,
-        child: Container(
-        width: 135,
-        height: 99,
-        decoration: BoxDecoration(
-          image : DecorationImage(
-          image: AssetImage('assets/images/Image9.png'),
-          fit: BoxFit.fitWidth
-      ),
-  )
-      )
-      ),Positioned(
-        top: 627,
-        left: 137,
-        child: Container(
-        width: 30,
-        height: 30,
-        decoration: BoxDecoration(
-          image : DecorationImage(
-          image: AssetImage('assets/images/Forwardbutton.png'),
-          fit: BoxFit.fitWidth
-      ),
-  )
-      )
-      ),Positioned(
-        top: 627,
-        left: 326,
-        child: Container(
-        width: 30,
-        height: 30,
-        decoration: BoxDecoration(
-          image : DecorationImage(
-          image: AssetImage('assets/images/Forwardbutton.png'),
-          fit: BoxFit.fitWidth
-      ),
-  )
-      )
-      ),Positioned(
-        top: 654,
-        left: 0,
-        child: null
-      ),Positioned(
-        top: -1,
-        left: 0,
-        child: null
-      ),Positioned(
-        top: -32,
-        left: 108,
-        child: Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-          
-  ),
-      child: Stack(
-        children: <Widget>[
-          
-        ]
-      )
-    )
-      ),Positioned(
-        top: 77,
-        left: 34,
-        child: Text('Modul 1', textAlign: TextAlign.center, style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
-        fontFamily: 'Roboto',
-        fontSize: 18,
-        letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-        fontWeight: FontWeight.normal,
-        height: 1
-      ),)
-      ),
-        ]
-      )
-    );
-          }
-        }
-        
+        ),
+        ListView(
+          children: <Widget>[
+            Column(children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 20, bottom: 20, left: 10),
+                height: 50,
+                child: Stack(
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                        // onTap: () {
+                        //   context
+                        //       .bloc<PageBloc>()
+                        //       .add(GoToDetailMateriPage(widget.category));
+                        // },
+                        child: Icon(Icons.arrow_back),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: defaultMargin),
+                  child: Text('Tantangan',
+                      textAlign: TextAlign.left,
+                      style: blackTextFont.copyWith(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                ),
+              ),
+              SizedBox(height: 30),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: defaultMargin),
+                  child: Text(
+                    'Coba renungkan dan tuliskan apa rencana hidup Anda dimasa depan',
+                    textAlign: TextAlign.left,
+                    style: blackTextFont.copyWith(fontSize: 16),
+                  ),
+                ),
+              ),
+            ]),
+            SizedBox(height: 30),
+            CarouselSlider(
+              height: 250.0,
+
+              // enlargeCenterPage: true,
+              // autoPlay: true,
+              // initialPage: 0,
+              // pauseAutoPlayOnTouch: Duration(seconds: 10),
+              // aspectRatio: 16 / 9,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              // enableInfiniteScroll: true,
+              // autoPlayAnimationDuration: Duration(milliseconds: 800),
+              viewportFraction: 0.5,
+              initialPage: 0,
+              enlargeCenterPage: true,
+              autoPlay: true,
+              reverse: true,
+              enableInfiniteScroll: false,
+              autoPlayInterval: Duration(seconds: 2),
+              autoPlayAnimationDuration: Duration(milliseconds: 2000),
+              pauseAutoPlayOnTouch: Duration(seconds: 10),
+              scrollDirection: Axis.horizontal,
+              // onPageChanged: (index) {
+              //   setState(() {
+              //     _current = index;
+              //   });
+              // },
+              items: [
+                Container(
+                  margin: EdgeInsets.all(1.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.61),
+                          Colors.black.withOpacity(0)
+                        ]),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://images.unsplash.com/photo-1578242174372-e26b3681587f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          context.bloc<PageBloc>().add(GoToInputTujuanPage());
+                        },
+                        child: Text('Tujuan Jangka Pendek',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'Kurang dari 5 tahun kedepan',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.61),
+                          Colors.black.withOpacity(0)
+                        ]),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://images.unsplash.com/photo-1523735961257-ea378102c288?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          context.bloc<PageBloc>().add(GoToInputTujuanPage());
+                        },
+                        child: Text('Tujuan jangka menengah',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          '5 sampai 10 tahun kedepan',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.61),
+                          Colors.black.withOpacity(0)
+                        ]),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://images.unsplash.com/photo-1591305097470-0fad344325aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          context.bloc<PageBloc>().add(GoToInputTujuanPage());
+                        },
+                        child: Text('Tujuan Jangka Panjang',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'Lebih dari 10 tahun',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     OutlineButton(
+            //       onPressed: goToPrevious,
+            //       child: Text("<"),
+            //     ),
+            //     OutlineButton(
+            //       onPressed: goToNext,
+            //       child: Text(">"),
+            //     ),
+            //   ],
+            // ),
+          ],
+        )
+      ],
+    ));
+  }
+
+  // goToPrevious() {
+  //   carouselSlider.previousPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.ease);
+  // }
+
+  // goToNext() {
+  //   carouselSlider.nextPage(
+  //       duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  // }
+}

@@ -503,9 +503,6 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                   maintainState: true,
                   visible: viewVisible5,
                   child: Container(
-                      // height: 200,
-                      // width: 200,
-                      // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
                           child: Text(
