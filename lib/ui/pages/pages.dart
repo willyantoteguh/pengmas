@@ -28,7 +28,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../bloc/blocs.dart';
 import '../../models/models.dart';
 import 'package:audioplayers/audioplayers.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:bubble/bubble.dart';
 
 part 'sign_in.dart';
@@ -95,3 +95,5 @@ part 'pwb/studychoicepart3.dart';
 part 'pwb/penjelasantantangan3.dart';
 part 'pwb/penjelasantantangan4.dart';
 part 'pwb/tantangan5.dart';
+part 'pwb/tugas6.dart';
+part 'pwb/tugas6.2.dart';
