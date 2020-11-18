@@ -32,7 +32,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
     idUser = prefs.getInt("id");
     var jwb = "yang lebih bahagia : $mood    alasannya : $jawaban";
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
       "id_tugas": idTugas,
       "id_pengguna": idUser.toString(),

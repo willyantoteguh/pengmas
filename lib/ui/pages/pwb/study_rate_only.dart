@@ -38,7 +38,7 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
     var jawaban = "$sliderValue  $myFeedbackText";
 
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
       "id_tugas": idTugas,
       "id_pengguna": idUser.toString(),

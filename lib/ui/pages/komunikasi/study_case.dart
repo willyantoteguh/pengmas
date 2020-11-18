@@ -30,7 +30,7 @@ class _StudyCaseState extends State<StudyCase> {
   getPilihan(param) async {
     //print(param);
     var response = await http.get(
-        "http://timkecilproject.com/pengmas/public/api/pilihan_komunikasis?id_kasus=$param");
+        "https://timkecilproject.com/pengmas/public/api/pilihan_komunikasis?id_kasus=$param");
     var body = jsonDecode(response.body);
     //var data = body["data"];
     return body;

@@ -36,7 +36,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
     String j4 = jwb4.text;
     var jawaban = "1.$j1  2.$j2  3.$j3  4.$j4";
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
       "id_tugas": idTugas,
       "id_pengguna": idUser.toString(),

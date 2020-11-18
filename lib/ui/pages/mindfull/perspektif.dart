@@ -20,7 +20,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
     });
     String jawaban = controller.text;
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 

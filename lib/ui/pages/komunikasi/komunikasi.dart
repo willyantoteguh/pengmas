@@ -29,7 +29,7 @@ class _KomunikasiPageState extends State<KomunikasiPage> {
   getTugas() async {
     print(idTugas);
     var response = await http.get(
-        "http://timkecilproject.com/pengmas/public/api/tugas_komunikasis/$idTugas");
+        "https://timkecilproject.com/pengmas/public/api/tugas_komunikasis/$idTugas");
     var body = jsonDecode(response.body);
 
     return body;
@@ -38,7 +38,7 @@ class _KomunikasiPageState extends State<KomunikasiPage> {
   void postKomunikasi() async {
     String jawaban = controller.text;
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_komunikasis';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_komunikasis';
     var data = {
       "id_tugas": idTugas,
       "id_pengguna": idUser.toString(),

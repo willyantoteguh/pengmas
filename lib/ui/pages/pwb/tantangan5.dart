@@ -33,7 +33,7 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
     var jawaban = "Kelebihan : $j1   Kekurangan : $j2";
 
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
       "id_tugas": idTugas,
       "id_pengguna": idUser.toString(),

@@ -44,7 +44,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
       });
     } else {
       var url =
-          'http://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+          'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
       var data = {
         "id_tugas": idTugas,
         "id_pengguna": idUser.toString(),
