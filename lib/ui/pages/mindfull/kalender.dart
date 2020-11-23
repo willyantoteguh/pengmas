@@ -106,7 +106,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToPerspektifPageOne());
+        context.bloc<PageBloc>().add(GoToMainPage());
 
         return;
       },
@@ -128,7 +128,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToPerspektifPageOne());
+                        context.bloc<PageBloc>().add(GoToMainPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -215,7 +215,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                               });
                             },
                                 currentTime: DateTime.now(),
-                                locale: LocaleType.en);
+                                locale: LocaleType.id);
                           },
                           child: Container(
                             alignment: Alignment.center,

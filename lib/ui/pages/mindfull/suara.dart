@@ -71,7 +71,7 @@ class _SuaraPageOneState extends State<SuaraPageOne> {
 
   void hideWidget() {
     setState(() {
-      viewVisible1 = false;
+      viewVisible1 = true;
     });
   }
 
@@ -108,13 +108,13 @@ class _SuaraPageOneState extends State<SuaraPageOne> {
                     margin: EdgeInsets.only(left: 20, right: 20),
                     child: RaisedButton(
                       child: Row(children: <Widget>[
-                        Text('Baca Lagi',
-                            style: whiteTextFont.copyWith(
-                                fontSize: 18, fontWeight: FontWeight.w400)),
                         Icon(
                           Icons.arrow_back,
                           color: Colors.white,
-                        )
+                        ),
+                        Text('Baca Lagi',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 18, fontWeight: FontWeight.w400)),
                       ]),
                       color: mainColor,
                       shape: RoundedRectangleBorder(
@@ -124,7 +124,7 @@ class _SuaraPageOneState extends State<SuaraPageOne> {
                       },
                     ),
                   ),
-                  Container(
+                  /*Container(
                     height: 30,
                     margin: EdgeInsets.only(left: 20, right: 20),
                     child: RaisedButton(
@@ -144,7 +144,7 @@ class _SuaraPageOneState extends State<SuaraPageOne> {
                         context.bloc<PageBloc>().add(GoToMainPage());
                       },
                     ),
-                  ),
+                  ),*/
                 ],
               ),
 
@@ -214,18 +214,18 @@ class _SuaraPageOneState extends State<SuaraPageOne> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              // hintText: 'Saya baru menyadari...',
+                              hintText: 'Saya memikirkan tentang...',
                             ),
                             controller: controller,
-                            maxLength: 200,
+                            //maxLength: 200,
                           ),
                         ),
-                        Padding(
+                        /*Padding(
                             padding: const EdgeInsets.all(30),
                             child: Text(
                               controller.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
