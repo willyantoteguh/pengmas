@@ -32,7 +32,7 @@ class _RateEmojiState extends State<RateEmoji> {
       visible = true;
     });
     var url =
-        'http://timkecilproject.com/pengmas/public/api/pengalaman_mindfulnesses';
+        'https://timkecilproject.com/pengmas/public/api/pengalaman_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -75,7 +75,7 @@ class _RateEmojiState extends State<RateEmoji> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: new Text("Error saat mengirim jawaban"),
+              title: new Text("Isi Jawaban Terlebih Dahulu"),
               actions: <Widget>[
                 FlatButton(
                   child: new Text("OK"),
@@ -139,7 +139,7 @@ class _RateEmojiState extends State<RateEmoji> {
                           shadowColor: Color(0x802196F3),
                           child: Container(
                               width: 200.0,
-                              height: 280.0,
+                              height: 230.0,
                               child: Column(
                                 children: <Widget>[
                                   Padding(
@@ -229,7 +229,7 @@ class _RateEmojiState extends State<RateEmoji> {
                                     child: Container(
                                         child: Align(
                                       alignment: Alignment.bottomCenter,
-                                      child: RaisedButton(
+                                      /*child: RaisedButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 new BorderRadius.circular(
@@ -241,7 +241,7 @@ class _RateEmojiState extends State<RateEmoji> {
                                               color: Color(0xffffffff)),
                                         ),
                                         onPressed: () {},
-                                      ),
+                                      ),*/
                                     )),
                                   ),
                                 ],
@@ -291,18 +291,18 @@ class _RateEmojiState extends State<RateEmoji> {
                                             'Ceritakan pengalamanmu disini',
                                       ),
                                       autofocus: true,
-                                      onChanged: (isifield) {
+                                      /*onChanged: (isifield) {
                                         setState(() {});
-                                      },
+                                      },*/
                                       controller: controller,
-                                      maxLength: 200,
+                                      //maxLength: 200,
                                     ),
                                   ),
                                   SizedBox(height: 20),
-                                  Container(
+                                  /*Container(
                                       margin: EdgeInsets.all(20),
                                       child: Text(controller.text,
-                                          style: kTitleTextStyle))
+                                          style: kTitleTextStyle))*/
                                 ],
                               ),
                             ]),

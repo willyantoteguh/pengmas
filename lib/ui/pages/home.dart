@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                   context.bloc<PageBloc>().add(GoToGoalsPage());
                 },
                 child: Text(
-                  "Lihat Semua",
+                  "Riwayat",
                   style: kSubtitleTextSyule.copyWith(color: kBlueColor),
                 ),
               ),
@@ -123,17 +123,19 @@ class HomePage extends StatelessWidget {
                             ])),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      /*mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,*/
                       children: <Widget>[
                         Text(
                           categories[index].name,
                           style: kTitleTextStyle,
                         ),
-                        Text(
+                        /*Text(
                           '${categories[index].numOfCourses} Latihan',
                           style: TextStyle(
                             color: kTextColor.withOpacity(.5),
                           ),
-                        )
+                        )*/
                       ],
                     ),
                   ),

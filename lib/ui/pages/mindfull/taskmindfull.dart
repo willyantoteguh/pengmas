@@ -66,7 +66,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                       ),
                       Center(
                         child: Text(
-                          'Latihan:\nTenang',
+                          'Latihan:',
                           textAlign: TextAlign.center,
                           style: blackTextFont.copyWith(fontSize: 20),
                         ),
@@ -154,27 +154,6 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                   },
                 ),
               ),
-              /*
-              Container(
-                margin: EdgeInsets.only(left: 30, right: 30),
-                child: Theme(
-                    data: Theme.of(context)
-                        .copyWith(canvasColor: Colors.transparent),
-                    child: ModalTrigger(widget.materi)),
-              ),
-              SizedBox(height: 30),
-              
-              Container(
-                margin: EdgeInsets.only(left: 30, right: 30),
-                child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(canvasColor: Colors.transparent),
-                  child: ModalTrigger2(
-                    materi: materi,
-                  ),
-                ),
-              ),
-              */
               SizedBox(height: 45),
               Container(
                 height: 50,
@@ -261,7 +240,7 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
-                    topRight: Radius.circular(0),
+                    topRight: Radius.circular(40),
                   )),
               child: ListView(children: <Widget>[
                 Column(children: <Widget>[
@@ -277,10 +256,10 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                     ),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.only(left: 40),
+                        margin: EdgeInsets.only(left: 0),
                         child: Text(
                           widget.perintah.pertanyaan,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: blackTextFont.copyWith(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         ),
@@ -296,7 +275,7 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                       thickness: 1,
                     )),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(40, 20, 20, 20),
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: Html(
                     data: widget.perintah.detail,
                     //style: purpleTextFont.copyWith(fontSize: 16),
@@ -330,6 +309,7 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                   child: Text(
                     widget.perintah.pertanyaan,
                     style: purpleTextFont.copyWith(fontSize: 13),
+                    textAlign: TextAlign.left,
                   ),
                 ),
               ),
@@ -388,7 +368,7 @@ class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
                         child: Text(
                           // widget.materi.judul,
                           'Judul',
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: blackTextFont.copyWith(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         ),

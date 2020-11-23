@@ -44,14 +44,14 @@ class SuccessPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)),
               child: Text(
-                "Lihat Agenda",
+                "Beranda",
                 style: whiteTextFont.copyWith(fontSize: 16),
               ),
               onPressed: () {
                 context.bloc<PageBloc>().add(GoToPopUpPage());
               }),
         ),
-        Row(
+        /*Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -68,7 +68,7 @@ class SuccessPage extends StatelessWidget {
               ),
             )
           ],
-        ),
+        ),*/
       ],
     ));
   }

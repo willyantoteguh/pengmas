@@ -6,17 +6,16 @@ class PerspektifPageOne extends StatefulWidget {
 }
 
 class _PerspektifPageOneState extends State<PerspektifPageOne> {
-  bool viewVisible1 = false;
-  bool viewVisible2 = false;
-  bool viewVisible3 = false;
-  bool viewVisible4 = false;
-  bool visible = false;
+  bool viewVisible1 = true;
+  bool viewVisible2 = true;
+  bool viewVisible3 = true;
+  bool viewVisible4 = true;
 
   TextEditingController controller = TextEditingController();
 
   Future postJawaban() async {
     setState(() {
-      visible = true;
+      //visible = true;
     });
     String jawaban = controller.text;
     var url =
@@ -39,7 +38,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
         barrierDismissible: true,
       );
       setState(() {
-        visible = false;
+        //visible = false;
       });
     } else {
       var data = {
@@ -50,12 +49,12 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
       var response = await http.post(url, body: data);
       if (response.statusCode == 200) {
         setState(() {
-          visible = false;
+          //visible = false;
         });
         context.bloc<PageBloc>().add(GoToRateEmojiPage());
       } else {
         setState(() {
-          visible = false;
+          //visible = false;
         });
         showDialog(
           context: context,
@@ -309,17 +308,17 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
                               hintText: 'Saya baru menyadari...',
                             ),
                             controller: controller,
-                            maxLength: 200,
+                            //maxLength: 200,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
+                        /*Padding(
                             padding: const EdgeInsets.all(30),
                             child: Text(
                               controller.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
@@ -328,12 +327,12 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
             ),
           ),
           SizedBox(height: 35),
-          Visibility(
-            visible: visible,
+          /*Visibility(
+            //visible: visible,
             child: Center(
               child: CircularProgressIndicator(),
             ),
-          ),
+          ),*/
           SizedBox(height: 35),
           Container(
             height: 50,

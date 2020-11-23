@@ -273,7 +273,7 @@ class _ModalTriggerKomunikasiState extends State<ModalTrigger> {
                     ),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.only(left: 40),
+                        //margin: EdgeInsets.only(left: 40),
                         child: Text(
                           widget.perintah.pertanyaan,
                           textAlign: TextAlign.center,

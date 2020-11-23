@@ -39,7 +39,7 @@ class _StudyCaseState extends State<StudyCase> {
   getPertanyaan() async {
     print(id);
     var response = await http.get(
-        "http://timkecilproject.com/pengmas/public/api/tugas_komunikasis/$id");
+        "https://timkecilproject.com/pengmas/public/api/tugas_komunikasis/$id");
     var body = jsonDecode(response.body);
     print(body);
     //var data = body["data"];
@@ -48,7 +48,7 @@ class _StudyCaseState extends State<StudyCase> {
 
   getKasus() async {
     var response = await http.get(
-        "http://timkecilproject.com/pengmas/public/api/kasus_komunikasis?id_tugas=$id");
+        "https://timkecilproject.com/pengmas/public/api/kasus_komunikasis?id_tugas=$id");
     var body = jsonDecode(response.body);
     var data = body["data"];
     return body;
@@ -57,7 +57,7 @@ class _StudyCaseState extends State<StudyCase> {
   void postPilihan() async {
     String temp = controller.text;
     var url =
-        'http://timkecilproject.com/pengmas/public/api/jawaban_komunikasis';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_komunikasis';
     if (id == '1' || id == '3' || id == '6') {
       var data = {
         "id_tugas": id,

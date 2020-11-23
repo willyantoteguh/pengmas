@@ -43,7 +43,7 @@ class _DetailTugasMindfullState extends State<DetailTugasMindfull> {
               decoration: BoxDecoration(
                 color: Color(0xFFF6F7F9),
                 image: DecorationImage(
-                  image: AssetImage("assets/images/newpack/6 SCENE.png"),
+                  image: AssetImage("assets/images/newpack/9-SCENE.png"),
                   alignment: Alignment.topRight,
                 ),
               ),
@@ -149,12 +149,12 @@ class _DetailTugasMindfullState extends State<DetailTugasMindfull> {
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               defaultMargin, 10, defaultMargin, 20),
-                          child: Padding(
+                          /*child: Padding(
                             padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: Text("Daftar Latihan",
                                 style: kTitleTextStyle.copyWith(
                                     color: Colors.white)),
-                          ),
+                          ),*/
                         ),
                         // SizedBox(height: 30),
                       ],
@@ -176,16 +176,16 @@ class _DetailTugasMindfullState extends State<DetailTugasMindfull> {
           // String number;
           // var isDone = false;
           return Container(
-            margin: EdgeInsets.only(top: 30),
+            margin: EdgeInsets.only(top: 10),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                  defaultMargin, 10, defaultMargin, 0),
+              padding:
+                  const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 0),
               child: Card(
                 color: Colors.yellow,
                 child: ListTile(
                   trailing: Icon(MdiIcons.arrowRightDropCircle),
                   title: Text(tugas[pos].nama, style: blackTextFont),
-                  subtitle: Text(tugas[pos].createdAt),
+                  /*subtitle: Text(tugas[pos].createdAt),*/
                   onTap: () {
                     context
                         .bloc<PageBloc>()
