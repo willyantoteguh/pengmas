@@ -119,6 +119,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -155,6 +158,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -188,6 +194,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -221,6 +230,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -254,6 +266,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -287,6 +302,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -320,6 +338,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -353,6 +374,9 @@ class _SadarPageOneState extends State<SadarPageOne> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),

@@ -153,6 +153,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -189,6 +192,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -222,6 +228,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -255,6 +264,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -288,6 +300,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -307,8 +322,9 @@ class _SyukurPageState extends State<SyukurPage> {
                       // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
-                          child: Text('Diri Sendiri',
-                              textAlign: TextAlign.justify,
+                          child: Text(
+                              'Apa yang anda syukuri dari diri anda sendiri?',
+                              textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 20))))),
             ],
           ),
@@ -334,7 +350,7 @@ class _SyukurPageState extends State<SyukurPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: '1.\n2.\n3.',
+                              hintText: 'isikan disini...',
                             ),
                             controller: dirisendiri,
                             //maxLength: 200,
@@ -366,8 +382,9 @@ class _SyukurPageState extends State<SyukurPage> {
                       // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
-                          child: Text('Keluarga',
-                              textAlign: TextAlign.justify,
+                          child: Text(
+                              'Apa yang anda syukuri dari keluarga anda?',
+                              textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 20))))),
             ],
           ),
@@ -393,7 +410,7 @@ class _SyukurPageState extends State<SyukurPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: '1.\n2.\n3.',
+                              hintText: 'Isikan disini...',
                             ),
                             controller: keluarga,
                             //maxLength: 200,
@@ -425,8 +442,9 @@ class _SyukurPageState extends State<SyukurPage> {
                       // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
-                          child: Text('Pekerjaan',
-                              textAlign: TextAlign.justify,
+                          child: Text(
+                              'Apa yang anda syukuri dari pekerjaan anda?',
+                              textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 20))))),
             ],
           ),
@@ -452,7 +470,7 @@ class _SyukurPageState extends State<SyukurPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: '1.\n2.\n3.',
+                              hintText: 'isikan disini...',
                             ),
                             controller: pekerjaan,
                             //maxLength: 200,

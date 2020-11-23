@@ -109,7 +109,7 @@ class _RateEmojiState extends State<RateEmoji> {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        "Bagaimana perasaanmu saat ini ?",
+                        "Bagaimana perasaanmu saat ini ? \n Geser tombol sesuai perasaanmu.",
                         textAlign: TextAlign.center,
                         style: purpleTextFont.copyWith(fontSize: 16),
                       ),
@@ -290,7 +290,7 @@ class _RateEmojiState extends State<RateEmoji> {
                                         hintText:
                                             'Ceritakan pengalamanmu disini',
                                       ),
-                                      autofocus: true,
+                                      autofocus: false,
                                       /*onChanged: (isifield) {
                                         setState(() {});
                                       },*/

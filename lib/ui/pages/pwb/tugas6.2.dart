@@ -35,11 +35,9 @@ class _Tugas6PageState extends State<Tugas6Page> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
-                        // onTap: () {
-                        //   context
-                        //       .bloc<PageBloc>()
-                        //       .add(GoToDetailMateriPage(widget.category));
-                        // },
+                        onTap: () {
+                          context.bloc<PageBloc>().add(GoToMainPage());
+                        },
                         child: Icon(Icons.arrow_back),
                       ),
                     ),

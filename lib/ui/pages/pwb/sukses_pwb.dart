@@ -17,7 +17,7 @@ class SuccessPWBPage extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/newpack/2 SCENE.png"))),
+                  image: AssetImage("assets/images/selamat.png"))),
         ),
         Align(
           child: Text(
@@ -47,14 +47,14 @@ class SuccessPWBPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)),
               child: Text(
-                "Lihat Agenda",
+                "Beranda",
                 style: whiteTextFont.copyWith(fontSize: 16),
               ),
               onPressed: () {
-                context.bloc<PageBloc>().add(GoToInti1Page());
+                context.bloc<PageBloc>().add(GoToMainPage());
               }),
         ),
-        Row(
+        /*Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -71,7 +71,7 @@ class SuccessPWBPage extends StatelessWidget {
               ),
             )
           ],
-        ),
+        ),*/
       ],
     ));
   }
