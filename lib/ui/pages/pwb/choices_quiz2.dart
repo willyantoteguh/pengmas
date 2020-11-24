@@ -1,29 +1,23 @@
 part of '../pages.dart';
 
-class ChoicesQuiz extends StatefulWidget {
+class ChoicesQuiz2 extends StatefulWidget {
   Category category;
 
   @override
-  _ChoicesQuizState createState() => _ChoicesQuizState();
+  _ChoicesQuiz2State createState() => _ChoicesQuiz2State();
 }
 
-class _ChoicesQuizState extends State<ChoicesQuiz> {
+class _ChoicesQuiz2State extends State<ChoicesQuiz2> {
   int _rgProgramming = -1;
   String _selectedValue;
 
   final List<RadioGroup> _programmingList = [
     RadioGroup(
-        index: 1,
-        text:
-            "1. Mengantar anak ke Rumah sakit karena pendarahan di kepala yang tidak berhenti"),
+        index: 1, text: "9. Menjawab telepon dari nomor yang tidak dikenal."),
     RadioGroup(
-        index: 2,
-        text:
-            "2. Membuat laporan kerja untuk di presentasikan di rapat keesokan harinya"),
-    RadioGroup(
-        index: 3,
-        text: "3. Menyiapkan materi ujian/tugas yang harus dikumpulkan besok"),
-    RadioGroup(index: 4, text: "4. Beri contoh lain.."),
+        index: 2, text: "10. Menyediakan kue untuk arisan/acara keluarga."),
+    RadioGroup(index: 3, text: "11. Belanja kudapan untuk keluarga."),
+    RadioGroup(index: 4, text: "12. Beri contoh lain.."),
   ];
 
   @override
@@ -74,7 +68,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Kuadran I"),
+                Text("Kuadran III"),
                 Text(
                     "Sangat penting dan sangat mendesak(lakukan segera sendiri)"),
                 SizedBox(height: 25),
@@ -109,7 +103,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
                         style: whiteTextFont.copyWith(fontSize: 16),
                       ),
                       onPressed: () {
-                        context.bloc<PageBloc>().add(GoToChoices1Page());
+                        context.bloc<PageBloc>().add(GoToChoices3Page());
                       }),
                 )),
               ],
@@ -143,8 +137,8 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
   }
 }
 
-class RadioGroup {
-  final int index;
-  final String text;
-  RadioGroup({this.index, this.text});
+class RadioGroup2 {
+  final int index1;
+  final String text1;
+  RadioGroup2({this.index1, this.text1});
 }

@@ -19,7 +19,8 @@ class _SyukurPageState extends State<SyukurPage> {
     String jawaban1 = dirisendiri.text;
     String jawaban2 = keluarga.text;
     String jawaban3 = pekerjaan.text;
-    var jawaban = "1.$jawaban1  2.$jawaban2  3.$jawaban3";
+    var jawaban =
+        "Diri Sendiri.$jawaban1  Keluarga.$jawaban2  Pekerjaan.$jawaban3";
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 

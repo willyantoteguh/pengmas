@@ -146,6 +146,21 @@ class GoToChoicesPage extends PageEvent {
   List<Object> get props => [];
 }
 
+class GoToChoices1Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToChoices2Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToChoices3Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class GoToSyukurPage extends PageEvent {
   @override
   List<Object> get props => [];

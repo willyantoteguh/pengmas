@@ -169,6 +169,21 @@ class OnChoicesPage extends PageState {
   List<Object> get props => [];
 }
 
+class OnChoices1Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnChoices2Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnChoices3Page extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class OnSadarPageOne extends PageState {
   @override
   List<Object> get props => [];

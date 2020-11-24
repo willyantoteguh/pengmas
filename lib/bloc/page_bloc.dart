@@ -65,6 +65,12 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnMoodOnlyPage();
     } else if (event is GoToChoicesPage) {
       yield OnChoicesPage();
+    } else if (event is GoToChoices1Page) {
+      yield OnChoices1Page();
+    } else if (event is GoToChoices2Page) {
+      yield OnChoices2Page();
+    } else if (event is GoToChoices3Page) {
+      yield OnChoices3Page();
     } else if (event is GoToQuestAnswerUPage) {
       yield OnQuestAnswerUPage();
     } else if (event is GoToQuestChoicesPage) {
