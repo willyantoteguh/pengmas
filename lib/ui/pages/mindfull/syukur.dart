@@ -19,6 +19,7 @@ class _SyukurPageState extends State<SyukurPage> {
     String jawaban1 = dirisendiri.text;
     String jawaban2 = keluarga.text;
     String jawaban3 = pekerjaan.text;
+    var jawaban = "1.$jawaban1  2.$jawaban2  3.$jawaban3";
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 
@@ -45,9 +46,7 @@ class _SyukurPageState extends State<SyukurPage> {
       var data = {
         "id_tugas": idTugas,
         "id_pengguna": id_pengguna.toString(),
-        "jawaban1": jawaban1,
-        "jawaban2": jawaban2,
-        "jawaban3": jawaban3,
+        "jawaban": jawaban,
       };
       var response = await http.post(url, body: data);
       if (response.statusCode == 200) {
