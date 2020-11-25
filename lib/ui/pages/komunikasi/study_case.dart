@@ -8,7 +8,7 @@ class StudyCase extends StatefulWidget {
 class _StudyCaseState extends State<StudyCase> {
   TextEditingController controller = TextEditingController();
 
-  String id = '';
+  int id;
   String nama;
   String jawaban;
 
@@ -22,7 +22,7 @@ class _StudyCaseState extends State<StudyCase> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      id = prefs.getString('idTugas');
+      id = prefs.getInt('idTugas');
       nama = prefs.getString('nama');
     });
   }
@@ -56,11 +56,12 @@ class _StudyCaseState extends State<StudyCase> {
 
   void postPilihan() async {
     String temp = controller.text;
+
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_komunikasis';
-    if (id == '1' || id == '3' || id == '6') {
+    if (id == 1 || id == 3 || id == 6) {
       var data = {
-        "id_tugas": id,
+        "id_tugas": id.toString(),
         "perasaan": nama,
         "jawaban": jawaban,
       };
@@ -87,8 +88,8 @@ class _StudyCaseState extends State<StudyCase> {
       }
     } else {
       var data = {
-        "id_tugas": id,
-        "perasaan": nama,
+        "id_tugas": id.toString(),
+        "perasaan": nama.toString(),
         "jawaban": temp,
       };
       var response = await http.post(url, body: data);
@@ -117,214 +118,225 @@ class _StudyCaseState extends State<StudyCase> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(children: <Widget>[
-      Container(color: accentColor4),
-      SafeArea(
-          child: Container(
-        color: Color(0xFFF6F7F9),
-      )),
-      ListView(children: <Widget>[
-        Column(
-          children: <Widget>[
-            Container(
-              height: 70,
-              width: 200,
-              margin: EdgeInsets.only(left: 20, right: 20, top: defaultMargin),
-              child: RaisedButton(
-                child: Text('Misi Pertama !',
-                    style: whiteTextFont.copyWith(
-                        fontSize: 18, fontWeight: FontWeight.w400)),
-                color: accentColor2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
-                onPressed: () {
-                  // context.bloc<PageBloc>().add(GoToSuksesPage());
-                },
-              ),
-            ),
-            SizedBox(height: 25),
-            (() {
-              if (id == '1' || id == '3' || id == '6') {
-                return FutureBuilder(
-                  future: getKasus(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      var kasus = snapshot.data["data"];
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: kasus.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                height: 200,
-                                width: (MediaQuery.of(context).size.width -
-                                    2 * defaultMargin -
-                                    24),
-                                margin: EdgeInsets.fromLTRB(
-                                    defaultMargin, 25, defaultMargin, 25),
-                                decoration: BoxDecoration(
-                                  color: Colors.lightBlueAccent,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(defaultMargin),
+    return WillPopScope(
+        onWillPop: () {
+          context.bloc<PageBloc>().add(GoToDetailTugasKomunikasi());
+
+          return;
+        },
+        child: Scaffold(
+            body: Stack(children: <Widget>[
+          Container(color: accentColor4),
+          SafeArea(
+              child: Container(
+            color: Color(0xFFF6F7F9),
+          )),
+          ListView(children: <Widget>[
+            Column(
+              children: <Widget>[
+                Container(
+                  height: 70,
+                  width: 200,
+                  margin:
+                      EdgeInsets.only(left: 20, right: 20, top: defaultMargin),
+                  child: RaisedButton(
+                    child: Text('Misi Pertama !',
+                        style: whiteTextFont.copyWith(
+                            fontSize: 18, fontWeight: FontWeight.w400)),
+                    color: accentColor2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    onPressed: () {
+                      context.bloc<PageBloc>().add(GoToDetailTugasKomunikasi());
+                    },
+                  ),
+                ),
+                SizedBox(height: 25),
+                (() {
+                  if (id == 1 || id == 3 || id == 6) {
+                    return FutureBuilder(
+                      future: getKasus(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          var kasus = snapshot.data["data"];
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: kasus.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: (MediaQuery.of(context).size.width -
+                                        2 * defaultMargin -
+                                        24),
+                                    margin: EdgeInsets.fromLTRB(
+                                        defaultMargin, 25, defaultMargin, 25),
+                                    decoration: BoxDecoration(
+                                      color: Colors.lightBlueAccent,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(defaultMargin),
+                                      child: SingleChildScrollView(
+                                        child: Text(kasus[index]["kasus"],
+                                            textAlign: TextAlign.justify,
+                                            style: whiteTextFont.copyWith(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
+                                    ),
+                                  ),
+                                  FutureBuilder(
+                                    future: getPilihan(kasus[index]["id"]),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasData) {
+                                        var pilihan = snapshot.data["data"];
+                                        //print(pilihan);
+                                        return ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: pilihan.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            _checked.add(false);
+                                            return CheckboxListTile(
+                                                title: Text(
+                                                    pilihan[index]["pilihan"]),
+                                                controlAffinity:
+                                                    ListTileControlAffinity
+                                                        .leading,
+                                                onChanged: (bool value) {
+                                                  setState(() {
+                                                    if (_checked[index] ==
+                                                        false) {
+                                                      _checked[index] = true;
+                                                      jawaban = pilihan[index]
+                                                          ["pilihan"];
+                                                    } else {
+                                                      _checked[index] = false;
+                                                    }
+                                                  });
+                                                },
+                                                value: _checked[index]);
+                                          },
+                                        );
+                                      } else {
+                                        return Center(
+                                            child: CircularProgressIndicator());
+                                      }
+                                    },
+                                  ),
+                                ],
+                              );
+                              // ignore: dead_code
+                            },
+                          );
+                        } else {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                      },
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 280,
+                          margin: EdgeInsets.fromLTRB(
+                              defaultMargin, 25, defaultMargin, 25),
+                          decoration: BoxDecoration(
+                            color: accentColor1,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: FutureBuilder(
+                            future: getPertanyaan(),
+                            builder:
+                                (BuildContext context, AsyncSnapshot snapshot) {
+                              if (snapshot.hasData) {
+                                var tugas = snapshot.data["data"];
+                                print(tugas["pertanyaan"]);
+                                return Padding(
+                                  padding: EdgeInsets.all(15),
                                   child: SingleChildScrollView(
-                                    child: Text(kasus[index]["kasus"],
+                                    child: Text(tugas["pertanyaan"],
                                         textAlign: TextAlign.justify,
                                         style: whiteTextFont.copyWith(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400)),
                                   ),
-                                ),
-                              ),
-                              FutureBuilder(
-                                future: getPilihan(kasus[index]["id"]),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    var pilihan = snapshot.data["data"];
-                                    //print(pilihan);
-                                    return ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: pilihan.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        _checked.add(false);
-                                        return CheckboxListTile(
-                                            title:
-                                                Text(pilihan[index]["pilihan"]),
-                                            controlAffinity:
-                                                ListTileControlAffinity.leading,
-                                            onChanged: (bool value) {
-                                              setState(() {
-                                                if (_checked[index] == false) {
-                                                  _checked[index] = true;
-                                                  jawaban =
-                                                      pilihan[index]["pilihan"];
-                                                } else {
-                                                  _checked[index] = false;
-                                                }
-                                              });
-                                            },
-                                            value: _checked[index]);
-                                      },
-                                    );
-                                  } else {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                },
-                              ),
-                            ],
-                          );
-                          // ignore: dead_code
-                        },
-                      );
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                  },
-                );
-              } else {
-                return Column(
-                  children: [
-                    Container(
-                      height: 100,
-                      width: 280,
-                      margin: EdgeInsets.fromLTRB(
-                          defaultMargin, 25, defaultMargin, 25),
-                      decoration: BoxDecoration(
-                        color: accentColor1,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: FutureBuilder(
-                        future: getPertanyaan(),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          if (snapshot.hasData) {
-                            var tugas = snapshot.data["data"];
-                            print(tugas["pertanyaan"]);
-                            return Padding(
-                              padding: EdgeInsets.all(15),
-                              child: SingleChildScrollView(
-                                child: Text(tugas["pertanyaan"],
-                                    textAlign: TextAlign.justify,
-                                    style: whiteTextFont.copyWith(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                            );
-                          } else {
-                            return Center(child: CircularProgressIndicator());
-                          }
-                        },
-                      ),
-                    ),
-                    Container(
-                      child: Align(
-                        child: Material(
-                          color: Color(0xFFE4E4E4),
-                          elevation: 10.0,
-                          borderRadius: BorderRadius.circular(20.0),
-                          shadowColor: Color(0x802196F3),
-                          child: Container(
-                            height: 300,
-                            width: (MediaQuery.of(context).size.width -
-                                2 * defaultMargin -
-                                24),
-                            child: ListView(children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        10, defaultMargin, 10, defaultMargin),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Tulis jawabannya disini...',
-                                      ),
-                                      controller: controller,
-                                      maxLength: 200,
-                                    ),
-                                  ),
-                                  Padding(
-                                      padding: const EdgeInsets.all(30),
-                                      child: Text(
-                                        controller.text,
-                                        style: kTitleTextStyle,
-                                      )),
-                                ],
-                              ),
-                            ]),
+                                );
+                              } else {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
+                            },
                           ),
                         ),
+                        Container(
+                          child: Align(
+                            child: Material(
+                              color: Color(0xFFE4E4E4),
+                              elevation: 10.0,
+                              borderRadius: BorderRadius.circular(20.0),
+                              shadowColor: Color(0x802196F3),
+                              child: Container(
+                                height: 300,
+                                width: (MediaQuery.of(context).size.width -
+                                    2 * defaultMargin -
+                                    24),
+                                child: ListView(children: <Widget>[
+                                  Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(10,
+                                            defaultMargin, 10, defaultMargin),
+                                        child: TextField(
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText:
+                                                'Tulis jawabannya disini...',
+                                          ),
+                                          controller: controller,
+                                          maxLength: 200,
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: const EdgeInsets.all(30),
+                                          child: Text(
+                                            controller.text,
+                                            style: kTitleTextStyle,
+                                          )),
+                                    ],
+                                  ),
+                                ]),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                }()),
+                SizedBox(height: 35),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: FloatingActionButton(
+                      elevation: 20,
+                      backgroundColor: mainColor,
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
                       ),
-                    ),
-                  ],
-                );
-              }
-            }()),
-            SizedBox(height: 35),
-            Align(
-              alignment: Alignment.topCenter,
-              child: FloatingActionButton(
-                  elevation: 20,
-                  backgroundColor: mainColor,
-                  child: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    //context.bloc<PageBloc>().add(GoToKomunikasiPage());
-                    postPilihan();
-                  }),
+                      onPressed: () {
+                        //context.bloc<PageBloc>().add(GoToKomunikasiPage());
+                        postPilihan();
+                      }),
+                ),
+                SizedBox(height: 100),
+              ],
             ),
-            SizedBox(height: 100),
-          ],
-        ),
-      ]),
-    ]));
+          ]),
+        ])));
   }
 }

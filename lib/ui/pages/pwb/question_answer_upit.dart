@@ -17,8 +17,9 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
   Color myFeedbackColor = mainColor;
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
-  String idTugas;
+  int idTugas;
   var idUser;
+  String namaTugas;
   bool visible = false;
 
   void postKebahagiaan() async {
@@ -28,13 +29,14 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
     String jawaban = controller.text;
     String mood = selectedMood.toString();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    idTugas = prefs.getString('idTugas');
+    idTugas = prefs.getInt('idTugas');
     idUser = prefs.getInt("id");
+    namaTugas = prefs.getString("namaTugas");
     var jwb = "yang lebih bahagia : $mood    alasannya : $jawaban";
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
       "jawaban": jwb,
     };
@@ -55,6 +57,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
     } else {
       var response = await http.post(url, body: data);
       if (response.statusCode == 200) {
+        setDone(namaTugas);
         setState(() {
           visible = false;
         });
@@ -84,7 +87,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          context.bloc<PageBloc>().add(GoToMainPage());
+          context.bloc<PageBloc>().add(GoToByDoingPage());
 
           return;
         },
@@ -106,9 +109,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            context
-                                .bloc<PageBloc>()
-                                .add(GoToDetailTugasPwb(widget.category));
+                            context.bloc<PageBloc>().add(GoToByDoingPage());
                           },
                           child: Icon(Icons.arrow_back),
                         ),

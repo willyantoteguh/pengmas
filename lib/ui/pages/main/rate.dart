@@ -25,6 +25,22 @@ class _RateEmojiState extends State<RateEmoji> {
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
   bool visible = false;
+  String namaTugas;
+  bool isDone = false;
+
+  tugas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      namaTugas = prefs.getString("namaTugas");
+      isDone = prefs.getBool(namaTugas + 'isDone');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    tugas();
+  }
 
   void postRate() async {
     String jawaban = controller.text;
@@ -37,9 +53,25 @@ class _RateEmojiState extends State<RateEmoji> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
-    var idTugas = await prefs.getString("idTugas");
+    var idTugas = await prefs.getInt("idTugas");
+
     print(id_pengguna);
-    if (jawaban == '' || selectedMood == null) {
+    if (isDone == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Tugas Sudah Dikerjakan"),
+            //content: Text("Tugas Sudah Dikerjakan"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      setState(() {
+        visible = false;
+      });
+      context.bloc<PageBloc>().add(GoToSuccessPage());
+    } else if (jawaban == '' || selectedMood == null) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -55,7 +87,7 @@ class _RateEmojiState extends State<RateEmoji> {
       });
     } else {
       var data = {
-        "id_tugas": idTugas,
+        "id_tugas": idTugas.toString(),
         "id_pengguna": id_pengguna.toString(),
         "perasaan": myFeedbackText,
         "kesulitan": selectedMood.toString(),
@@ -63,6 +95,7 @@ class _RateEmojiState extends State<RateEmoji> {
       };
       var response = await http.post(url, body: data);
       if (response.statusCode == 200) {
+        setDone(namaTugas);
         setState(() {
           visible = false;
         });
@@ -93,8 +126,31 @@ class _RateEmojiState extends State<RateEmoji> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: <Widget>[
+    return WillPopScope(
+      onWillPop: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        int id = prefs.getInt("idTugas");
+        if (id == 1) {
+          context.bloc<PageBloc>().add(GoToSadarPageOne());
+          return;
+        } else if (id == 2) {
+          context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+          return;
+        } else if (id == 3) {
+          context.bloc<PageBloc>().add(GoToPerspektifPageOne());
+          return;
+        } else if (id == 4) {
+          context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
+          return;
+        } else if (id == 5) {
+          context.bloc<PageBloc>().add(GoToPerkataanPageOne());
+          return;
+        } else if (id == 6) {
+          context.bloc<PageBloc>().add(GoToSyukurPage());
+          return;
+        }
+      },
+      child: Stack(children: <Widget>[
         Container(color: accentColor4),
         SafeArea(
             child: Container(

@@ -15,9 +15,10 @@ class _RateOnlyPageState extends State<RateOnlyPage> {
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
 
-  String idTugas = '';
+  int idTugas;
   int idUser;
   String nama;
+  String namaTugas;
   @override
   void initState() {
     super.initState();
@@ -27,9 +28,10 @@ class _RateOnlyPageState extends State<RateOnlyPage> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idTugas = prefs.getString('idTugas');
+      idTugas = prefs.getInt('idTugas');
       idUser = prefs.getInt("id");
       nama = prefs.getString('nama');
+      namaTugas = prefs.getString("namaTugas");
     });
   }
 
@@ -40,12 +42,13 @@ class _RateOnlyPageState extends State<RateOnlyPage> {
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
       "jawaban": jawaban
     };
     var response = await http.post(url, body: data);
     if (response.statusCode == 200) {
+      setDone(namaTugas);
       context.bloc<PageBloc>().add(GoToInti1Page());
     } else {
       showDialog(

@@ -73,7 +73,7 @@ class _SadarPageOneState extends State<SadarPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        ///context.bloc<PageBloc>().add(GoToTaskPage());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -95,7 +95,7 @@ class _SadarPageOneState extends State<SadarPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        //context.bloc<PageBloc>().add(GoToTaskPage());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),

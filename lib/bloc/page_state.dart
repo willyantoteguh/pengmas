@@ -43,29 +43,18 @@ class OnDetailMateriMindfull extends PageState {
 }
 
 class OnDetailTugasMindfull extends PageState {
-  final Category category;
-
-  OnDetailTugasMindfull(this.category);
-
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [];
 }
 
 class OnDetailTugasKomunikasi extends PageState {
-  final Category category;
-
-  OnDetailTugasKomunikasi(this.category);
-
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [];
 }
 
 class OnDetailTugasPwb extends PageState {
-  final Category category;
-  OnDetailTugasPwb(this.category);
-
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [];
 }
 
 class OnDetailMateriPwb extends PageState {
@@ -96,12 +85,8 @@ class OnTaskPage extends PageState {
 }
 
 class OnTaskMindfullPage extends PageState {
-  final Category category;
-  final TugasMindfull tugas;
-  OnTaskMindfullPage(this.tugas, this.category);
-
   @override
-  List<Object> get props => [tugas, category];
+  List<Object> get props => [];
 }
 
 class OnByDoingPage extends PageState {

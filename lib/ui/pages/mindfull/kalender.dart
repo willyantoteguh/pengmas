@@ -23,6 +23,23 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   TextEditingController perasaan = TextEditingController();
   TextEditingController tindakan = TextEditingController();
 
+  String namaTugas;
+  bool isDone = false;
+
+  tugas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      namaTugas = prefs.getString("namaTugas");
+      isDone = prefs.getBool(namaTugas + 'isDone');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    tugas();
+  }
+
   void save() async {
     String jawaban1 = '$_date';
     String jawaban2 = bagaimana.text;
@@ -30,7 +47,19 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
     String jawaban4 = pikiran.text;
     String jawaban5 = perasaan.text;
     String jawaban6 = tindakan.text;
-    if (jawaban1 == 'Silahkan Pilih Tanggal' ||
+    if (isDone == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Tugas Sudah Dikerjakan"),
+            //content: Text("Tugas Sudah Dikerjakan"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      context.bloc<PageBloc>().add(GoToSuccessPage());
+    } else if (jawaban1 == 'Silahkan Pilih Tanggal' ||
         jawaban2 == '' ||
         jawaban3 == '' ||
         jawaban4 == '' ||
@@ -106,7 +135,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMainPage());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -128,7 +157,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToMainPage());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),

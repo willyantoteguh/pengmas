@@ -22,7 +22,7 @@ class _PlayListState extends State<PlayList> {
 
   YoutubePlayerController _liveController;
 
-  String id;
+  int id;
   String nama;
   String jawaban;
 
@@ -31,17 +31,17 @@ class _PlayListState extends State<PlayList> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      id = prefs.getString('idTugas');
+      id = prefs.getInt('idTugas');
       nama = prefs.getString('nama');
     });
   }
 
   getKasus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    id = prefs.getString('idTugas');
+    id = prefs.getInt('idTugas');
     var response = await http.get(
-        "http://timkecilproject.com/pengmas/public/api/kasus_kebahagiaans?id_tugas=" +
-            id);
+        "https://timkecilproject.com/pengmas/public/api/kasus_kebahagiaans?id_tugas=" +
+            id.toString());
     var body = jsonDecode(response.body);
     print(body);
     return body;
@@ -49,15 +49,15 @@ class _PlayListState extends State<PlayList> {
 
   @override
   void initState() {
-    getId();
     super.initState();
+    getId();
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        //context.bloc<PageBloc>().add(GoToDetailMateriPage());
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
 
         return;
       },

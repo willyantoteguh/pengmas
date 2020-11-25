@@ -11,7 +11,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
   TextEditingController jwb3 = TextEditingController();
   TextEditingController jwb4 = TextEditingController();
 
-  String idTugas = '';
+  int idTugas;
   int idUser;
   String nama;
   @override
@@ -23,7 +23,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idTugas = prefs.getString('idTugas');
+      idTugas = prefs.getInt('idTugas');
       idUser = prefs.getInt("id");
       nama = prefs.getString('nama');
     });
@@ -38,7 +38,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
       "jawaban": jawaban
     };
@@ -69,7 +69,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToNoteHomePage());
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
 
         return;
       },

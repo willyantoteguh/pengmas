@@ -9,7 +9,7 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
   TextEditingController jwb1 = TextEditingController();
   TextEditingController jwb2 = TextEditingController();
 
-  String idTugas = '';
+  int idTugas;
   int idUser;
   String nama;
   @override
@@ -21,7 +21,7 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idTugas = prefs.getString('idTugas');
+      idTugas = prefs.getInt('idTugas');
       idUser = prefs.getInt("id");
       nama = prefs.getString('nama');
     });
@@ -35,7 +35,7 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
       "jawaban": jawaban
     };
@@ -66,7 +66,7 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToNoteHomePage());
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
 
         return;
       },

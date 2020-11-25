@@ -2,11 +2,6 @@ part of '../pages.dart';
 
 // ignore: must_be_immutable
 class TaskMindfullPage extends StatefulWidget {
-  final Category category;
-  final TugasMindfull tugas;
-
-  TaskMindfullPage(this.tugas, this.category);
-
   @override
   _TaskMindfullPageState createState() => _TaskMindfullPageState();
 }
@@ -14,17 +9,30 @@ class TaskMindfullPage extends StatefulWidget {
 class _TaskMindfullPageState extends State<TaskMindfullPage> {
   PerintahBloc perintahBloc;
   OnTaskMindfullPage state;
+  int id;
+  String nama;
 
-  void saveData() async {
+  void setData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("idTugas", widget.tugas.id.toString());
+    setState(() {
+      id = prefs.getInt("idTugas");
+      nama = prefs.getString("namaTugas");
+    });
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int no = prefs.getInt("idTugas");
+    print(no);
+    perintahBloc = BlocProvider.of<PerintahBloc>(context);
+    perintahBloc.add(FetchPerintahEvent(no));
   }
 
   @override
   void initState() {
     super.initState();
-    perintahBloc = BlocProvider.of<PerintahBloc>(context);
-    perintahBloc.add(FetchPerintahEvent(widget.tugas.id));
+    setData();
+    getData();
   }
 
   Widget build(BuildContext context) {
@@ -32,7 +40,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
 
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasMindfull(widget.category));
+        context.bloc<PageBloc>().add(GoToDetailTugasMindfull());
 
         return;
       },
@@ -59,7 +67,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                           onTap: () {
                             context
                                 .bloc<PageBloc>()
-                                .add(GoToDetailTugasMindfull(widget.category));
+                                .add(GoToDetailTugasMindfull());
                           },
                           child: Icon(Icons.arrow_back),
                         ),
@@ -110,7 +118,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                             children: <Widget>[
                               Center(
                                 child: Text(
-                                  widget.tugas.nama,
+                                  nama,
                                   maxLines: 2,
                                   style: whiteTextFont.copyWith(
                                       fontSize: 16,
@@ -166,20 +174,20 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25)),
                   onPressed: () {
-                    print(widget.tugas.id);
+                    print(id);
                     //navigateToMateriDetailPage(context, materi[pos]);
-                    saveData();
-                    if (widget.tugas.id == 1) {
+
+                    if (id == 1) {
                       context.bloc<PageBloc>().add(GoToSadarPageOne());
-                    } else if (widget.tugas.id == 2) {
+                    } else if (id == 2) {
                       context.bloc<PageBloc>().add(GoToMengamatiPageOne());
-                    } else if (widget.tugas.id == 3) {
+                    } else if (id == 3) {
                       context.bloc<PageBloc>().add(GoToPerspektifPageOne());
-                    } else if (widget.tugas.id == 4) {
+                    } else if (id == 4) {
                       context.bloc<PageBloc>().add(GoToKalenderPageOne());
-                    } else if (widget.tugas.id == 5) {
+                    } else if (id == 5) {
                       context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
-                    } else if (widget.tugas.id == 6) {
+                    } else if (id == 6) {
                       context.bloc<PageBloc>().add(GoToSyukurPage());
                     }
                   },

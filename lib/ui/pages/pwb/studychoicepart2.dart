@@ -8,7 +8,7 @@ class StudyChoicePart2Page extends StatefulWidget {
 class _StudyChoicePart2PageState extends State<StudyChoicePart2Page> {
   TextEditingController controller = TextEditingController();
 
-  String idTugas = '';
+  int idTugas;
   int idUser;
   String nama;
   @override
@@ -20,7 +20,7 @@ class _StudyChoicePart2PageState extends State<StudyChoicePart2Page> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idTugas = prefs.getString('idTugas');
+      idTugas = prefs.getInt('idTugas');
       idUser = prefs.getInt("id");
       nama = prefs.getString('nama');
     });
@@ -32,7 +32,7 @@ class _StudyChoicePart2PageState extends State<StudyChoicePart2Page> {
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
       "jawaban": j1
     };
@@ -63,7 +63,7 @@ class _StudyChoicePart2PageState extends State<StudyChoicePart2Page> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToNoteHomePage());
+        context.bloc<PageBloc>().add(GoToStudyChoicePage());
 
         return;
       },

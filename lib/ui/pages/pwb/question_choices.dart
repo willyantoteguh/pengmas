@@ -95,9 +95,7 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            context
-                                .bloc<PageBloc>()
-                                .add(GoToDetailTugasPwb(widget.category));
+                            context.bloc<PageBloc>().add(GoToDetailTugasPwb());
                           },
                           child: Icon(Icons.arrow_back),
                         ),

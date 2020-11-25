@@ -32,7 +32,7 @@ class _TaskPwbPageState extends State<TaskPwbPage> {
 
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasPwb(widget.category));
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
 
         return;
       },
@@ -57,9 +57,7 @@ class _TaskPwbPageState extends State<TaskPwbPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            context
-                                .bloc<PageBloc>()
-                                .add(GoToDetailTugasPwb(widget.category));
+                            context.bloc<PageBloc>().add(GoToDetailTugasPwb());
                           },
                           child: Icon(Icons.arrow_back),
                         ),

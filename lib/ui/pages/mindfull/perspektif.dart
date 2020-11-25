@@ -13,6 +13,23 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
 
   TextEditingController controller = TextEditingController();
 
+  String namaTugas;
+  bool isDone = false;
+
+  tugas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      namaTugas = prefs.getString("namaTugas");
+      isDone = prefs.getBool(namaTugas + 'isDone');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    tugas();
+  }
+
   Future postJawaban() async {
     setState(() {
       //visible = true;
@@ -24,9 +41,21 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
-    var idTugas = await prefs.getString("idTugas");
+    var idTugas = await prefs.getInt("idTugas");
     print(id_pengguna);
-    if (jawaban == '') {
+    if (isDone == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Tugas Sudah Dikerjakan"),
+            //content: Text("Tugas Sudah Dikerjakan"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      context.bloc<PageBloc>().add(GoToSuccessPage());
+    } else if (jawaban == '') {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -42,7 +71,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
       });
     } else {
       var data = {
-        "id_tugas": idTugas,
+        "id_tugas": idTugas.toString(),
         "id_pengguna": id_pengguna.toString(),
         "jawaban": jawaban
       };
@@ -110,7 +139,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -132,7 +161,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),

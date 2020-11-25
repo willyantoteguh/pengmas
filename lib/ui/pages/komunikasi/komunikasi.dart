@@ -8,9 +8,10 @@ class KomunikasiPage extends StatefulWidget {
 class _KomunikasiPageState extends State<KomunikasiPage> {
   TextEditingController controller = TextEditingController();
 
-  String idTugas = '';
+  int idTugas;
   int idUser;
   String nama;
+  String namaTugas;
   @override
   void initState() {
     super.initState();
@@ -20,9 +21,10 @@ class _KomunikasiPageState extends State<KomunikasiPage> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idTugas = prefs.getString('idTugas');
+      idTugas = prefs.getInt('idTugas');
       idUser = prefs.getInt("id");
       nama = prefs.getString('nama');
+      namaTugas = prefs.getString('namaTugas');
     });
   }
 
@@ -40,13 +42,14 @@ class _KomunikasiPageState extends State<KomunikasiPage> {
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_komunikasis';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
       "jawaban": jawaban,
       "perasaan": nama
     };
     var response = await http.post(url, body: data);
     if (response.statusCode == 200) {
+      setDone(namaTugas);
       context.bloc<PageBloc>().add(GoToSuksesPage());
     } else {
       showDialog(
@@ -72,7 +75,7 @@ class _KomunikasiPageState extends State<KomunikasiPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToNoteHomePage());
+        context.bloc<PageBloc>().add(GoToStudyCasePage());
 
         return;
       },

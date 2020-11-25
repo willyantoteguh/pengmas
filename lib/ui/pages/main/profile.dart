@@ -52,7 +52,8 @@ class ProfilePage extends StatelessWidget {
               ),
               SizedBox(height: 40),
               RaisedButton(
-                onPressed: () {
+                onPressed: () async {
+                  delPref();
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) {
                     return SignInPage();

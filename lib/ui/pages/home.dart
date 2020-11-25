@@ -91,19 +91,16 @@ class HomePage extends StatelessWidget {
               mainAxisSpacing: 20,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    await prefs.setInt("cat", categories[index].id);
                     if (categories[index].id == 1) {
-                      context
-                          .bloc<PageBloc>()
-                          .add(GoToDetailTugasMindfull(categories[index]));
+                      context.bloc<PageBloc>().add(GoToDetailTugasMindfull());
                     } else if (categories[index].id == 2) {
-                      context
-                          .bloc<PageBloc>()
-                          .add(GoToDetailTugasKomunikasi(categories[index]));
+                      context.bloc<PageBloc>().add(GoToDetailTugasKomunikasi());
                     } else if (categories[index].id == 3) {
-                      context
-                          .bloc<PageBloc>()
-                          .add(GoToDetailTugasPwb(categories[index]));
+                      context.bloc<PageBloc>().add(GoToDetailTugasPwb());
                     }
                   },
                   child: Container(

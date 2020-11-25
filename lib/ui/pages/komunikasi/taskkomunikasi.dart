@@ -32,7 +32,7 @@ class _TaskKomunikasiPageState extends State<TaskKomunikasiPage> {
 
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasMindfull(widget.category));
+        context.bloc<PageBloc>().add(GoToDetailTugasMindfull());
 
         return;
       },
@@ -59,7 +59,7 @@ class _TaskKomunikasiPageState extends State<TaskKomunikasiPage> {
                           onTap: () {
                             context
                                 .bloc<PageBloc>()
-                                .add(GoToDetailTugasMindfull(widget.category));
+                                .add(GoToDetailTugasMindfull());
                           },
                           child: Icon(Icons.arrow_back),
                         ),

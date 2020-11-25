@@ -27,7 +27,7 @@ class _SyukurPageState extends State<SyukurPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
-    var idTugas = await prefs.getString("idTugas");
+    var idTugas = await prefs.getInt("idTugas");
     print(id_pengguna);
     if (jawaban1 == '' || jawaban2 == '' || jawaban3 == '') {
       showDialog(
@@ -45,7 +45,7 @@ class _SyukurPageState extends State<SyukurPage> {
       );
     } else {
       var data = {
-        "id_tugas": idTugas,
+        "id_tugas": idTugas.toString(),
         "id_pengguna": id_pengguna.toString(),
         "jawaban": jawaban,
       };
@@ -107,7 +107,7 @@ class _SyukurPageState extends State<SyukurPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMainPage());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -129,7 +129,7 @@ class _SyukurPageState extends State<SyukurPage> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToMainPage());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),

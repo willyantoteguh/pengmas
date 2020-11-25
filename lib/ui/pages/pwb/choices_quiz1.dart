@@ -11,6 +11,56 @@ class _ChoicesQuiz1State extends State<ChoicesQuiz1> {
   int _rgProgramming = -1;
   String _selectedValue;
 
+  int idTugas;
+  int idUser;
+  String nama;
+  @override
+  void initState() {
+    super.initState();
+    getId();
+  }
+
+  void getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idTugas = prefs.getInt('idTugas');
+      idUser = prefs.getInt("id");
+      nama = prefs.getString('nama');
+    });
+  }
+
+  void postKebahagiaan() async {
+    String jwb = 'Kuadran II : $_selectedValue';
+    var url =
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+    var data = {
+      "id_tugas": idTugas.toString(),
+      "id_pengguna": idUser.toString(),
+      "jawaban": jwb
+    };
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      context.bloc<PageBloc>().add(GoToChoices2Page());
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Error saat mengirim jawaban"),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   final List<RadioGroup> _programmingList = [
     RadioGroup(index: 1, text: "5. Bersih-bersih rumah."),
     RadioGroup(index: 2, text: "6. Bersih-bersih rumah."),
@@ -24,7 +74,7 @@ class _ChoicesQuiz1State extends State<ChoicesQuiz1> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMainPage());
+        context.bloc<PageBloc>().add(GoToChoicesPage());
         return;
       },
       child: Scaffold(
@@ -45,9 +95,7 @@ class _ChoicesQuiz1State extends State<ChoicesQuiz1> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context
-                            .bloc<PageBloc>()
-                            .add(GoToDetailTugasPwb(widget.category));
+                        context.bloc<PageBloc>().add(GoToChoicesPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -103,7 +151,7 @@ class _ChoicesQuiz1State extends State<ChoicesQuiz1> {
                         style: whiteTextFont.copyWith(fontSize: 16),
                       ),
                       onPressed: () {
-                        context.bloc<PageBloc>().add(GoToChoices2Page());
+                        postKebahagiaan();
                       }),
                 )),
               ],
