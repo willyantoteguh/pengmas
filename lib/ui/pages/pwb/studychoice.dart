@@ -125,7 +125,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: jwb1,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -166,7 +166,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: jwb2,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -207,7 +207,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: jwb3,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -248,7 +248,7 @@ class _StudyChoicePageState extends State<StudyChoicePage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: jwb4,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(

@@ -119,7 +119,7 @@ class _StudyChoicePart2PageState extends State<StudyChoicePart2Page> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: controller,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(

@@ -161,7 +161,7 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
                                     // hintText: 'Ceritakan pengalamanmu disini',
                                   ),
                                   controller: controller,
-                                  maxLength: 200,
+                                  //maxLength: 200,
                                 ),
                               ),
                               Padding(

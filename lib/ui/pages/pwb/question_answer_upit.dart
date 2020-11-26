@@ -175,7 +175,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                                     // hintText: 'Ceritakan pengalamanmu disini',
                                   ),
                                   controller: controller,
-                                  maxLength: 200,
+                                  //maxLength: 200,
                                 ),
                               ),
                               Padding(

@@ -139,7 +139,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: harmonis,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -197,7 +197,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: pekerjaan,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -255,7 +255,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: spiritualitas,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -313,7 +313,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: kesehatan,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
@@ -371,7 +371,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
                                 controller: finansial,
-                                maxLength: 200,
+                                //maxLength: 200,
                               ),
                             ),
                             Padding(
