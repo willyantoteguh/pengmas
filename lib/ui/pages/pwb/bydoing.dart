@@ -193,7 +193,7 @@ class _PlayListState extends State<PlayList> {
               height: 50,
               margin: EdgeInsets.only(left: 50, right: 50),
               child: RaisedButton(
-                child: Text('Selesai',
+                child: Text('Lanjut',
                     style: whiteTextFont.copyWith(
                         fontSize: 18, fontWeight: FontWeight.w400)),
                 color: mainColor,
