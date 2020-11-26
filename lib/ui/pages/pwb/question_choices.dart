@@ -18,7 +18,7 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
 
-  String idTugas = '';
+  int idTugas;
   int idUser;
   String nama;
   @override
@@ -30,7 +30,7 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
   void getId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idTugas = prefs.getString('idTugas');
+      idTugas = prefs.getInt('idTugas');
       idUser = prefs.getInt("id");
       nama = prefs.getString('nama');
     });
@@ -42,9 +42,9 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
     var url =
         'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
     var data = {
-      "id_tugas": idTugas,
+      "id_tugas": idTugas.toString(),
       "id_pengguna": idUser.toString(),
-      "jawaban": jawaban
+      "jawaban": jawaban.toString()
     };
     var response = await http.post(url, body: data);
     if (response.statusCode == 200) {

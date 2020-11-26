@@ -80,7 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               )),
                               SizedBox(height: 15.0),
                               Text(
-                                'Learn Something New\nToday and Tomorrow . .',
+                                'Hallo... \nTerima kasih sudah membuka aplikasi pengmas ini',
                                 style: purpleTextFont.copyWith(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                               SizedBox(height: 15.0),
                               Text(
-                                'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                                'Yuk langsung buka aplikasinya',
                                 style: purpleTextFont.copyWith(fontSize: 16),
                               ),
                               SizedBox(height: 15.0),
