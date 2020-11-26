@@ -55,7 +55,7 @@ class _InputTujuanPageState extends State<InputTujuanPage> {
         setState(() {
           visible = false;
         });
-        context.bloc<PageBloc>().add(GoToStudyChoicePart2Page());
+        context.bloc<PageBloc>().add(GoToInti6Page());
       } else {
         setState(() {
           visible = false;
