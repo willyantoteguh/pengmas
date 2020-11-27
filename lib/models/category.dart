@@ -19,19 +19,19 @@ var categoriesData = [
     "id": 1,
     "name": "Mindfullness",
     'courses': 8,
-    'image': "assets/images/newpack/6 SCENE.png"
+    'image': "assets/images/newpack/10-SCENE.png"
   },
   {
     "id": 2,
     "name": "Komunikasi",
     'courses': 8,
-    'image': "assets/images/newpack/2 SCENE.png"
+    'image': "assets/images/newpack/8 SCENE.png"
   },
   {
     "id": 3,
     "name": "Kebahagiaan",
     'courses': 8,
-    'image': "assets/images/newpack/4 SCENE.png"
+    'image': "assets/images/newpack/9-SCENE.png"
   },
   // {"name": "Kepribadian", 'courses': 17, 'image': "assets/images/business.png"},
 ];

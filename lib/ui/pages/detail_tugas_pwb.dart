@@ -76,21 +76,6 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                         SizedBox(height: 30),
-                        ClipPath(
-                          clipper: BestSellerClipper(),
-                          child: Container(
-                            color: accentColor2,
-                            padding: EdgeInsets.only(
-                                left: 10, top: 5, right: 20, bottom: 5),
-                            child: Text(
-                              "Tenang".toUpperCase(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
                         Text("Kebahagiaan", style: kHeadingextStyle),
                       ],
                     ),
@@ -149,13 +134,13 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
                         ),
                         Container(
                           margin: EdgeInsets.fromLTRB(
-                              defaultMargin, 10, defaultMargin, 20),
-                          /*child: Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 10),
-                            child: Text("Daftar Latihan",
-                                style: kTitleTextStyle.copyWith(
-                                    color: Colors.white)),
-                          ),*/
+                              defaultMargin, 10, defaultMargin, 40),
+                          // /*child: Padding(
+                          //   padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          //   child: Text("Daftar Latihan",
+                          //       style: kTitleTextStyle.copyWith(
+                          //           color: Colors.white)),
+                          // ),*/
                         ),
                         // SizedBox(height: 30),
                       ],

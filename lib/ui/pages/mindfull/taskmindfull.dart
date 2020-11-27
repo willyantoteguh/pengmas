@@ -99,7 +99,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                               // borderRadius: BorderRadius.all(Radius.circular(20)),
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://images.unsplash.com/photo-1590510923941-59240b77124d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
+                                      "https://images.unsplash.com/photo-1522621032211-ac0031dfbddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80"),
                                   fit: BoxFit.cover)),
                         ),
                         Container(
@@ -362,12 +362,12 @@ class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
                 Column(children: <Widget>[
                   Row(children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.only(left: 5.0),
                       child: IconButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon: Icon(Icons.cancel, color: mainColor, size: 20),
+                        icon: Icon(Icons.cancel, color: mainColor, size: 10),
                       ),
                     ),
                     Center(
@@ -398,8 +398,8 @@ class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
                     // '1. Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.\n'
                     // '2. Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.\n'
                     // '3. Lorem ipsum dolor sit amet, consect adipiscing elit, sed do.\n',
-                    style: purpleTextFont.copyWith(fontSize: 16),
-                    textAlign: TextAlign.left,
+                    style: purpleTextFont.copyWith(fontSize: 18),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ]),

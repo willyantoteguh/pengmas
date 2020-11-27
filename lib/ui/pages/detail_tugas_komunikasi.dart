@@ -44,7 +44,7 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
               decoration: BoxDecoration(
                 color: Color(0xFFF6F7F9),
                 image: DecorationImage(
-                  image: AssetImage("assets/images/newpack/5 SCENE.png"),
+                  image: AssetImage("assets/images/newpack/8 SCENE.png"),
                   alignment: Alignment.topRight,
                 ),
               ),
@@ -76,21 +76,6 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                         SizedBox(height: 30),
-                        ClipPath(
-                          clipper: BestSellerClipper(),
-                          child: Container(
-                            color: accentColor2,
-                            padding: EdgeInsets.only(
-                                left: 10, top: 5, right: 20, bottom: 5),
-                            child: Text(
-                              "Tenang".toUpperCase(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
                         Text("Komunikasi", style: kHeadingextStyle),
                       ],
                     ),

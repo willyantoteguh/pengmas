@@ -42,7 +42,7 @@ class _DetailTugasMindfullState extends State<DetailTugasMindfull> {
               decoration: BoxDecoration(
                 color: Color(0xFFF6F7F9),
                 image: DecorationImage(
-                  image: AssetImage("assets/images/newpack/9-SCENE.png"),
+                  image: AssetImage("assets/images/newpack/10-SCENE.png"),
                   alignment: Alignment.topRight,
                 ),
               ),
@@ -74,22 +74,7 @@ class _DetailTugasMindfullState extends State<DetailTugasMindfull> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                         SizedBox(height: 30),
-                        ClipPath(
-                          clipper: BestSellerClipper(),
-                          child: Container(
-                            color: accentColor2,
-                            padding: EdgeInsets.only(
-                                left: 10, top: 5, right: 20, bottom: 5),
-                            child: Text(
-                              "Tenang".toUpperCase(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                        Text("Mindfull", style: kHeadingextStyle),
+                        Text("Mindfullness", style: kHeadingextStyle),
                       ],
                     ),
                   ),
