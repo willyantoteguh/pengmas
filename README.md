@@ -1,6 +1,6 @@
-# project1
+PENGMAS APP
 
-A new Flutter project.
+Psychological assessment application with Flutter
 
 ## Getting Started
 
