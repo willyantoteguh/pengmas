@@ -7,6 +7,7 @@ class KalenderPageOne extends StatefulWidget {
 
 class _KalenderPageOneState extends State<KalenderPageOne> {
   String _date = "Silahkan Pilih Tanggal";
+  String _jam = '';
   bool viewVisible1 = true;
   bool viewVisible2 = true;
   bool viewVisible3 = true;
@@ -234,12 +235,16 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                                 maxTime: DateTime(2022, 12, 31),
                                 onConfirm: (date) {
                               print('confirm $date');
-                              _date =
-                                  '${date.year} - ${date.month} - ${date.day}';
-                              setState(() {});
+
+                              setState(() {
+                                _date =
+                                    '${date.year} - ${date.month} - ${date.day}';
+                                _jam = '${date.hour}';
+                                print(_jam);
+                              });
                             },
                                 currentTime: DateTime.now(),
-                                locale: LocaleType.en);
+                                locale: LocaleType.id);
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -366,7 +371,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                               border: InputBorder.none,
                             ),
                             controller: bagaimana,
-                            maxLength: 200,
+                            //maxLength: 200,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
                           ),
@@ -436,7 +441,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                               border: InputBorder.none,
                             ),
                             controller: fisik,
-                            maxLength: 200,
+                            //maxLength: 200,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
                           ),
@@ -506,7 +511,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                               border: InputBorder.none,
                             ),
                             controller: pikiran,
-                            maxLength: 200,
+                            //maxLength: 200,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
                           ),
@@ -541,6 +546,9 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                   maintainState: true,
                   visible: viewVisible5,
                   child: Container(
+                      // height: 200,
+                      // width: 200,
+                      // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
                           child: Text(
@@ -573,7 +581,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                               border: InputBorder.none,
                             ),
                             controller: perasaan,
-                            maxLength: 200,
+                            //maxLength: 200,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
                           ),
@@ -643,7 +651,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                               border: InputBorder.none,
                             ),
                             controller: tindakan,
-                            maxLength: 200,
+                            //maxLength: 200,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
                           ),
