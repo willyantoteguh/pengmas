@@ -15,6 +15,58 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
 
+  int idTugas;
+  int idUser;
+  String nama;
+  @override
+  void initState() {
+    super.initState();
+    getId();
+  }
+
+  void getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idTugas = prefs.getInt('idTugas');
+      idUser = prefs.getInt("id");
+      nama = prefs.getString('nama');
+    });
+  }
+
+  void postKebahagiaan() async {
+    String j1 = controller.text;
+    var jawaban = "$sliderValue ";
+
+    var url =
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+    var data = {
+      "id_tugas": idTugas.toString(),
+      "id_pengguna": idUser.toString(),
+      "jawaban": jawaban
+    };
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      context.bloc<PageBloc>().add(GoToInti1Page());
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Error saat mengirim jawaban"),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -69,7 +121,7 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
                             shadowColor: Color(0x802196F3),
                             child: Container(
                                 width: 200.0,
-                                height: 280.0,
+                                height: 230.0,
                                 child: Column(
                                   children: <Widget>[
                                     Padding(
@@ -109,35 +161,37 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
                                                 myFeedback =
                                                     FontAwesomeIcons.sadTear;
                                                 myFeedbackColor = Colors.red;
-                                                myFeedbackText = "SANGAT BURUK";
+                                                myFeedbackText =
+                                                    "SANGAT TIDAK SERIUS";
                                               }
                                               if (sliderValue >= 1.1 &&
                                                   sliderValue <= 2.0) {
                                                 myFeedback =
                                                     FontAwesomeIcons.frown;
                                                 myFeedbackColor = Colors.yellow;
-                                                myFeedbackText = "BURUK";
+                                                myFeedbackText = "TIDAK SERIUS";
                                               }
                                               if (sliderValue >= 2.1 &&
                                                   sliderValue <= 3.0) {
                                                 myFeedback =
                                                     FontAwesomeIcons.meh;
                                                 myFeedbackColor = Colors.amber;
-                                                myFeedbackText = "BIASA";
+                                                myFeedbackText = "CUKUP SERIUS";
                                               }
                                               if (sliderValue >= 3.1 &&
                                                   sliderValue <= 4.0) {
                                                 myFeedback =
                                                     FontAwesomeIcons.smile;
                                                 myFeedbackColor = mainColor;
-                                                myFeedbackText = "BAIK";
+                                                myFeedbackText = "SERIUS";
                                               }
                                               if (sliderValue >= 4.1 &&
                                                   sliderValue <= 5.0) {
                                                 myFeedback =
                                                     FontAwesomeIcons.laugh;
                                                 myFeedbackColor = accentColor4;
-                                                myFeedbackText = "SANGAT BAIK";
+                                                myFeedbackText =
+                                                    "SANGAT SERIUS";
                                               }
                                             });
                                           },
@@ -155,7 +209,7 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
                                             fontWeight: FontWeight.w600),
                                       )),
                                     ),
-                                    Padding(
+                                    /*Padding(
                                       padding: const EdgeInsets.all(6.0),
                                       child: Container(
                                           child: Align(
@@ -174,7 +228,7 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
                                           onPressed: () {},
                                         ),
                                       )),
-                                    ),
+                                    ),*/
                                   ],
                                 )),
                           ),
@@ -193,7 +247,8 @@ class _StudyRateOnlyPageState extends State<StudyRateOnlyPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25)),
                           onPressed: () {
-                            context.bloc<PageBloc>().add(GoToInti1Page());
+                            postKebahagiaan();
+                            //context.bloc<PageBloc>().add(GoToInti1Page());
                           },
                         ),
                       ),

@@ -3,9 +3,6 @@ part of 'pages.dart';
 // ignore: must_be_immutable
 class DetailTugasPwb extends StatefulWidget {
   Tugaspwb tugaspwb;
-  final Category category;
-
-  DetailTugasPwb(this.category);
 
   @override
   _DetailTugasPwbState createState() => _DetailTugasPwbState();
@@ -15,13 +12,17 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
   TugasPwbBloc tugasPwbBloc;
   OnDetailTugasPwb state;
 
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int id = prefs.getInt("cat");
+    tugasPwbBloc = BlocProvider.of<TugasPwbBloc>(context);
+    tugasPwbBloc.add(FetchTugasPwbEvent(id));
+  }
+
   @override
   void initState() {
     super.initState();
-
-    //int id = state.category.id;
-    tugasPwbBloc = BlocProvider.of<TugasPwbBloc>(context);
-    tugasPwbBloc.add(FetchTugasPwbEvent(widget.category.id));
+    getData();
   }
 
   @override
@@ -157,7 +158,7 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
               decoration: BoxDecoration(
                 color: Color(0xFFF6F7F9),
                 image: DecorationImage(
-                  image: AssetImage("assets/images/newpack/6 SCENE.png"),
+                  image: AssetImage("assets/images/newpack/9-SCENE.png"),
                   alignment: Alignment.topRight,
                 ),
               ),
@@ -173,96 +174,54 @@ class _DetailTugasPwbState extends State<DetailTugasPwb> {
     return ListView.builder(
         itemCount: tugas.length,
         itemBuilder: (ctx, pos) {
-          // String number;
-          // var isDone = false;
-          return Container(
-            margin: EdgeInsets.only(top: 30),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                  defaultMargin, 10, defaultMargin, 0),
-              child: Card(
-                color: Colors.yellow,
-                child: ListTile(
-                  trailing: Icon(MdiIcons.arrowRightDropCircle),
-                  title: Text(tugas[pos].nama, style: blackTextFont),
-                  subtitle: Text(tugas[pos].createdAt),
-                  onTap: () {
-                    print(tugas[pos].id);
-                    /*context
+          return FutureBuilder(
+            future: getRiwayat(tugas[pos].nama),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              bool isDone = snapshot.data;
+              return Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                          defaultMargin, 0, defaultMargin, 0),
+                      child: Card(
+                        color: isDone != true ? Colors.yellow : Colors.red,
+                        child: ListTile(
+                          trailing: Icon(MdiIcons.arrowRightDropCircle),
+                          title: Text(tugas[pos].nama, style: blackTextFont),
+                          /*subtitle: Text(tugas[pos].createdAt),*/
+                          onTap: () {
+                            print(tugas[pos].id);
+                            /*context
                         .bloc<PageBloc>()
                         .add(GoToTaskPwbPage(tugas[pos], widget.category));
                     navigateToMateriDetailPage(context, materi[pos]);*/
-                    if (tugas[pos].id == 1) {
-                      context.bloc<PageBloc>().add(GoToStudyChoicePage());
-                    } else if (tugas[pos].id == 2) {
-                      context.bloc<PageBloc>().add(GoToByDoingPage());
-                    } else if (tugas[pos].id == 3) {
-                      context
-                          .bloc<PageBloc>()
-                          .add(GoToPenjelasanTantangan3Page());
-                    } else if (tugas[pos].id == 4) {
-                      context
-                          .bloc<PageBloc>()
-                          .add(GoToPenjelasanTantangan4Page());
-                    } else if (tugas[pos].id == 5) {
-                      context.bloc<PageBloc>().add(GoToTantangan5Page());
-                    } else if (tugas[pos].id == 6) {
-                      context.bloc<PageBloc>().add(GoToTugas6Page());
-                      /*} else if (tugas[pos].id == 6) {
+                            if (tugas[pos].id == 1) {
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToStudyChoicePage());
+                            } else if (tugas[pos].id == 2) {
+                              context.bloc<PageBloc>().add(GoToByDoingPage());
+                            } else if (tugas[pos].id == 3) {
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToPenjelasanTantangan3Page());
+                            } else if (tugas[pos].id == 4) {
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToPenjelasanTantangan4Page());
+                            } else if (tugas[pos].id == 5) {
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToTantangan5Page());
+                            } else if (tugas[pos].id == 6) {
+                              context.bloc<PageBloc>().add(GoToTugas6Page());
+                              /*} else if (tugas[pos].id == 6) {
                       context.bloc<PageBloc>().add(GoToSyukurPage());*/
-                    }
-                  },
-                ),
-              ),
-              // child: InkWell(
-              //   onTap: () {
-              //     navigateToMateriDetailPage(context, materi[pos]);
-              //   },
-              //   child: Row(
-              //     children: <Widget>[
-              //       Text(
-              //         number,
-              //         style: kHeadingextStyle.copyWith(
-              //           color: kTextColor.withOpacity(.15),
-              //           fontSize: 32,
-              //         ),
-              //       ),
-              //       SizedBox(width: 20),
-              //       RichText(
-              //         text: TextSpan(
-              //           children: [
-              //             TextSpan(
-              //               text: materi[pos].createdAt,
-              //               style: TextStyle(
-              //                 color: kTextColor.withOpacity(.5),
-              //                 fontSize: 18,
-              //               ),
-              //             ),
-              //             TextSpan(
-              //               text: materi[pos].judul,
-              //               style: kSubtitleTextSyule.copyWith(
-              //                 fontWeight: FontWeight.w600,
-              //                 height: 1.5,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Spacer(),
-              //       Container(
-              //         margin: EdgeInsets.only(left: 20),
-              //         height: 40,
-              //         width: 40,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: kGreenColor.withOpacity(isDone ? 1 : .5),
-              //         ),
-              //         child: Icon(Icons.play_arrow, color: Colors.white),
-              //       )
-              //     ],
-              //   ),
-              // ),
-            ),
+                            }
+                          },
+                        ),
+                      )));
+            },
           );
         });
   }

@@ -29,19 +29,13 @@ class GoToDetailMateriPage extends PageEvent {
 }
 
 class GoToDetailTugasMindfull extends PageEvent {
-  final Category category;
-  GoToDetailTugasMindfull(this.category);
-
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [];
 }
 
 class GoToDetailTugasPwb extends PageEvent {
-  final Category category;
-  GoToDetailTugasPwb(this.category);
-
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [];
 }
 
 class GoToDetailMateriPwb extends PageEvent {
@@ -53,11 +47,8 @@ class GoToDetailMateriPwb extends PageEvent {
 }
 
 class GoToDetailTugasKomunikasi extends PageEvent {
-  final Category category;
-  GoToDetailTugasKomunikasi(this.category);
-
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [];
 }
 
 class GoToDetailMateriKomunikasi extends PageEvent {
@@ -78,12 +69,8 @@ class GoToTaskPage extends PageEvent {
 }
 
 class GoToTaskMindfullPage extends PageEvent {
-  final TugasMindfull tugas;
-  final Category category;
-  GoToTaskMindfullPage(this.tugas, this.category);
-
   @override
-  List<Object> get props => [tugas, category];
+  List<Object> get props => [];
 }
 
 class GoToByDoingPage extends PageEvent {
@@ -142,6 +129,21 @@ class GoToMoodOnlyPage extends PageEvent {
 }
 
 class GoToChoicesPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToChoices1Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToChoices2Page extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToChoices3Page extends PageEvent {
   @override
   List<Object> get props => [];
 }

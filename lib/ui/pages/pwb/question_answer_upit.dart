@@ -17,12 +17,77 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
   Color myFeedbackColor = mainColor;
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
+  int idTugas;
+  var idUser;
+  String namaTugas;
+  bool visible = false;
+
+  void postKebahagiaan() async {
+    setState(() {
+      visible = true;
+    });
+    String jawaban = controller.text;
+    String mood = selectedMood.toString();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    idTugas = prefs.getInt('idTugas');
+    idUser = prefs.getInt("id");
+    namaTugas = prefs.getString("namaTugas");
+    var jwb = "yang lebih bahagia : $mood    alasannya : $jawaban";
+    var url =
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+    var data = {
+      "id_tugas": idTugas.toString(),
+      "id_pengguna": idUser.toString(),
+      "jawaban": jwb,
+    };
+    if (jawaban == '') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Form Tidak Boleh Kosong"),
+            //content: Text("Form Tidak Boleh Kosong"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      setState(() {
+        visible = false;
+      });
+    } else {
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        setDone(namaTugas);
+        setState(() {
+          visible = false;
+        });
+        context.bloc<PageBloc>().add(GoToInti2Page());
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Error saat mengirim jawaban"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          context.bloc<PageBloc>().add(GoToMainPage());
+          context.bloc<PageBloc>().add(GoToByDoingPage());
 
           return;
         },
@@ -44,9 +109,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            context
-                                .bloc<PageBloc>()
-                                .add(GoToDetailTugasPwb(widget.category));
+                            context.bloc<PageBloc>().add(GoToByDoingPage());
                           },
                           child: Icon(Icons.arrow_back),
                         ),
@@ -112,7 +175,7 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                                     // hintText: 'Ceritakan pengalamanmu disini',
                                   ),
                                   controller: controller,
-                                  maxLength: 200,
+                                  //maxLength: 200,
                                 ),
                               ),
                               Padding(
@@ -160,7 +223,14 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                 //     ),
                 //   ),
                 // ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
+                Visibility(
+                  visible: visible,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                SizedBox(height: 15),
                 Container(
                   height: 50,
                   width: 200,
@@ -173,7 +243,8 @@ class _QuestAnswerUPageState extends State<QuestAnswerUPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25)),
                     onPressed: () {
-                      context.bloc<PageBloc>().add(GoToInti2Page());
+                      postKebahagiaan();
+                      //context.bloc<PageBloc>().add(GoToInti2Page());
                     },
                   ),
                 ),

@@ -6,12 +6,72 @@ class SyukurPage extends StatefulWidget {
 }
 
 class _SyukurPageState extends State<SyukurPage> {
-  bool viewVisible1 = false;
-  bool viewVisible2 = false;
-  bool viewVisible3 = false;
-  bool viewVisible4 = false;
+  bool viewVisible1 = true;
+  bool viewVisible2 = true;
+  bool viewVisible3 = true;
+  bool viewVisible4 = true;
 
-  TextEditingController controller = TextEditingController();
+  TextEditingController dirisendiri = TextEditingController();
+  TextEditingController keluarga = TextEditingController();
+  TextEditingController pekerjaan = TextEditingController();
+
+  void postSyukur() async {
+    String jawaban1 = dirisendiri.text;
+    String jawaban2 = keluarga.text;
+    String jawaban3 = pekerjaan.text;
+    var jawaban =
+        "Diri Sendiri.$jawaban1  Keluarga.$jawaban2  Pekerjaan.$jawaban3";
+    var url =
+        'https://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var id_pengguna = await prefs.getInt("id");
+    var idTugas = await prefs.getInt("idTugas");
+    print(id_pengguna);
+    if (jawaban1 == '' || jawaban2 == '' || jawaban3 == '') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Error"),
+            content: Text("Form Tidak Boleh Kosong"),
+            actions: [
+              CupertinoDialogAction(
+                  isDefaultAction: true, child: new Text("Close"))
+            ],
+          );
+        },
+      );
+    } else {
+      var data = {
+        "id_tugas": idTugas.toString(),
+        "id_pengguna": id_pengguna.toString(),
+        "jawaban": jawaban,
+      };
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        context.bloc<PageBloc>().add(GoToRateEmojiPage());
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Error saat mengirim jawaban"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
 
   void showWidget1() {
     setState(() {
@@ -47,7 +107,7 @@ class _SyukurPageState extends State<SyukurPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -69,7 +129,7 @@ class _SyukurPageState extends State<SyukurPage> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -93,6 +153,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -129,6 +192,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -162,6 +228,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -195,6 +264,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -228,6 +300,9 @@ class _SyukurPageState extends State<SyukurPage> {
                 color: accentColor4,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
               // RaisedButton(
               //   child: Text('Show Widget on Button Click'),
@@ -247,8 +322,9 @@ class _SyukurPageState extends State<SyukurPage> {
                       // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
-                          child: Text('Diri Sendiri',
-                              textAlign: TextAlign.justify,
+                          child: Text(
+                              'Apa yang anda syukuri dari diri anda sendiri?',
+                              textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 20))))),
             ],
           ),
@@ -274,18 +350,18 @@ class _SyukurPageState extends State<SyukurPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              // hintText: '1.\n2.\n3.',
+                              hintText: 'isikan disini...',
                             ),
-                            controller: controller,
-                            maxLength: 200,
+                            controller: dirisendiri,
+                            //maxLength: 200,
                           ),
                         ),
-                        Padding(
+                        /*Padding(
                             padding: const EdgeInsets.all(30),
                             child: Text(
                               controller.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
@@ -306,8 +382,9 @@ class _SyukurPageState extends State<SyukurPage> {
                       // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
-                          child: Text('Keluarga',
-                              textAlign: TextAlign.justify,
+                          child: Text(
+                              'Apa yang anda syukuri dari keluarga anda?',
+                              textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 20))))),
             ],
           ),
@@ -333,18 +410,18 @@ class _SyukurPageState extends State<SyukurPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              // hintText: '1.\n2.\n3.',
+                              hintText: 'Isikan disini...',
                             ),
-                            controller: controller,
-                            maxLength: 200,
+                            controller: keluarga,
+                            //maxLength: 200,
                           ),
                         ),
-                        Padding(
+                        /*Padding(
                             padding: const EdgeInsets.all(30),
                             child: Text(
                               controller.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
@@ -365,8 +442,9 @@ class _SyukurPageState extends State<SyukurPage> {
                       // color: Colors.green,
                       margin: EdgeInsets.fromLTRB(30, 25, 30, 25),
                       child: Center(
-                          child: Text('Pekerjaan',
-                              textAlign: TextAlign.justify,
+                          child: Text(
+                              'Apa yang anda syukuri dari pekerjaan anda?',
+                              textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 20))))),
             ],
           ),
@@ -392,18 +470,18 @@ class _SyukurPageState extends State<SyukurPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              // hintText: '1.\n2.\n3.',
+                              hintText: 'isikan disini...',
                             ),
-                            controller: controller,
-                            maxLength: 200,
+                            controller: pekerjaan,
+                            //maxLength: 200,
                           ),
                         ),
-                        Padding(
+                        /*Padding(
                             padding: const EdgeInsets.all(30),
                             child: Text(
                               controller.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
@@ -423,7 +501,8 @@ class _SyukurPageState extends State<SyukurPage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)),
               onPressed: () {
-                context.bloc<PageBloc>().add(GoToKalenderPageOne());
+                postSyukur();
+                //context.bloc<PageBloc>().add(GoToKalenderPageOne());
               },
             ),
           ),

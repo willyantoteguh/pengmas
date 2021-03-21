@@ -2,11 +2,6 @@ part of '../pages.dart';
 
 // ignore: must_be_immutable
 class TaskMindfullPage extends StatefulWidget {
-  final Category category;
-  final TugasMindfull tugas;
-
-  TaskMindfullPage(this.tugas, this.category);
-
   @override
   _TaskMindfullPageState createState() => _TaskMindfullPageState();
 }
@@ -14,17 +9,30 @@ class TaskMindfullPage extends StatefulWidget {
 class _TaskMindfullPageState extends State<TaskMindfullPage> {
   PerintahBloc perintahBloc;
   OnTaskMindfullPage state;
+  int id;
+  String nama;
 
-  void saveData() async {
+  void setData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("idTugas", widget.tugas.id.toString());
+    setState(() {
+      id = prefs.getInt("idTugas");
+      nama = prefs.getString("namaTugas");
+    });
+  }
+
+  void getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int no = prefs.getInt("idTugas");
+    print(no);
+    perintahBloc = BlocProvider.of<PerintahBloc>(context);
+    perintahBloc.add(FetchPerintahEvent(no));
   }
 
   @override
   void initState() {
     super.initState();
-    perintahBloc = BlocProvider.of<PerintahBloc>(context);
-    perintahBloc.add(FetchPerintahEvent(widget.tugas.id));
+    setData();
+    getData();
   }
 
   Widget build(BuildContext context) {
@@ -32,7 +40,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
 
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasMindfull(widget.category));
+        context.bloc<PageBloc>().add(GoToDetailTugasMindfull());
 
         return;
       },
@@ -59,14 +67,14 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                           onTap: () {
                             context
                                 .bloc<PageBloc>()
-                                .add(GoToDetailTugasMindfull(widget.category));
+                                .add(GoToDetailTugasMindfull());
                           },
                           child: Icon(Icons.arrow_back),
                         ),
                       ),
                       Center(
                         child: Text(
-                          'Latihan:\nTenang',
+                          'Latihan:',
                           textAlign: TextAlign.center,
                           style: blackTextFont.copyWith(fontSize: 20),
                         ),
@@ -91,7 +99,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                               // borderRadius: BorderRadius.all(Radius.circular(20)),
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://images.unsplash.com/photo-1590510923941-59240b77124d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
+                                      "https://images.unsplash.com/photo-1522621032211-ac0031dfbddc?ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80"),
                                   fit: BoxFit.cover)),
                         ),
                         Container(
@@ -110,7 +118,7 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                             children: <Widget>[
                               Center(
                                 child: Text(
-                                  widget.tugas.nama,
+                                  nama,
                                   maxLines: 2,
                                   style: whiteTextFont.copyWith(
                                       fontSize: 16,
@@ -154,27 +162,6 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                   },
                 ),
               ),
-              /*
-              Container(
-                margin: EdgeInsets.only(left: 30, right: 30),
-                child: Theme(
-                    data: Theme.of(context)
-                        .copyWith(canvasColor: Colors.transparent),
-                    child: ModalTrigger(widget.materi)),
-              ),
-              SizedBox(height: 30),
-              
-              Container(
-                margin: EdgeInsets.only(left: 30, right: 30),
-                child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(canvasColor: Colors.transparent),
-                  child: ModalTrigger2(
-                    materi: materi,
-                  ),
-                ),
-              ),
-              */
               SizedBox(height: 45),
               Container(
                 height: 50,
@@ -187,20 +174,20 @@ class _TaskMindfullPageState extends State<TaskMindfullPage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25)),
                   onPressed: () {
-                    print(widget.tugas.id);
+                    print(id);
                     //navigateToMateriDetailPage(context, materi[pos]);
-                    saveData();
-                    if (widget.tugas.id == 1) {
+
+                    if (id == 1) {
                       context.bloc<PageBloc>().add(GoToSadarPageOne());
-                    } else if (widget.tugas.id == 2) {
+                    } else if (id == 2) {
                       context.bloc<PageBloc>().add(GoToMengamatiPageOne());
-                    } else if (widget.tugas.id == 3) {
+                    } else if (id == 3) {
                       context.bloc<PageBloc>().add(GoToPerspektifPageOne());
-                    } else if (widget.tugas.id == 4) {
+                    } else if (id == 4) {
                       context.bloc<PageBloc>().add(GoToKalenderPageOne());
-                    } else if (widget.tugas.id == 5) {
+                    } else if (id == 5) {
                       context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
-                    } else if (widget.tugas.id == 6) {
+                    } else if (id == 6) {
                       context.bloc<PageBloc>().add(GoToSyukurPage());
                     }
                   },
@@ -261,7 +248,7 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
-                    topRight: Radius.circular(0),
+                    topRight: Radius.circular(40),
                   )),
               child: ListView(children: <Widget>[
                 Column(children: <Widget>[
@@ -277,10 +264,10 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                     ),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.only(left: 40),
+                        margin: EdgeInsets.only(left: 0),
                         child: Text(
                           widget.perintah.pertanyaan,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: blackTextFont.copyWith(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         ),
@@ -296,7 +283,7 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                       thickness: 1,
                     )),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(40, 20, 20, 20),
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: Html(
                     data: widget.perintah.detail,
                     //style: purpleTextFont.copyWith(fontSize: 16),
@@ -330,6 +317,7 @@ class _ModalTriggerMIndfullState extends State<ModalTrigger> {
                   child: Text(
                     widget.perintah.pertanyaan,
                     style: purpleTextFont.copyWith(fontSize: 13),
+                    textAlign: TextAlign.left,
                   ),
                 ),
               ),
@@ -374,12 +362,12 @@ class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
                 Column(children: <Widget>[
                   Row(children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.only(left: 5.0),
                       child: IconButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon: Icon(Icons.cancel, color: mainColor, size: 20),
+                        icon: Icon(Icons.cancel, color: mainColor, size: 10),
                       ),
                     ),
                     Center(
@@ -388,7 +376,7 @@ class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
                         child: Text(
                           // widget.materi.judul,
                           'Judul',
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: blackTextFont.copyWith(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         ),
@@ -410,8 +398,8 @@ class _ModalTriggerMIndfull2State extends State<ModalTriggerMIndfull2> {
                     // '1. Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.\n'
                     // '2. Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.\n'
                     // '3. Lorem ipsum dolor sit amet, consect adipiscing elit, sed do.\n',
-                    style: purpleTextFont.copyWith(fontSize: 16),
-                    textAlign: TextAlign.left,
+                    style: purpleTextFont.copyWith(fontSize: 18),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ]),

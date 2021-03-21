@@ -22,23 +22,42 @@ class _PlayListState extends State<PlayList> {
 
   YoutubePlayerController _liveController;
 
+  int id;
+  String nama;
+  String jawaban;
+
+  List<bool> _checked = [];
+
+  void getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = prefs.getInt('idTugas');
+      nama = prefs.getString('nama');
+    });
+  }
+
+  getKasus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.getInt('idTugas');
+    var response = await http.get(
+        "https://timkecilproject.com/pengmas/public/api/kasus_kebahagiaans?id_tugas=" +
+            id.toString());
+    var body = jsonDecode(response.body);
+    print(body);
+    return body;
+  }
+
   @override
   void initState() {
-    _liveController = YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(liveVideo),
-        flags: YoutubePlayerFlags(
-          autoPlay: false,
-          isLive: true,
-        ));
-
     super.initState();
+    getId();
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        //context.bloc<PageBloc>().add(GoToDetailMateriPage());
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
 
         return;
       },
@@ -96,24 +115,85 @@ class _PlayListState extends State<PlayList> {
                         ),
                       ),
                       SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: defaultMargin, right: defaultMargin),
-                        child: YoutubePlayer(
-                          controller: _liveController,
-                        ),
-                      )
+                      FutureBuilder(
+                        future: getKasus(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            var video = snapshot.data["data"];
+                            print(video);
+                            return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: video.length,
+                                itemBuilder: (context, index) {
+                                  _liveController = YoutubePlayerController(
+                                    initialVideoId:
+                                        YoutubePlayer.convertUrlToId(
+                                            video[index]["audio"]),
+                                    flags: YoutubePlayerFlags(
+                                      autoPlay: false,
+                                      isLive: true,
+                                    ),
+                                  );
+                                  return Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: defaultMargin,
+                                            right: defaultMargin),
+                                        child: YoutubePlayer(
+                                          controller: _liveController,
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 150,
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                2 * defaultMargin -
+                                                24),
+                                        margin: EdgeInsets.fromLTRB(
+                                            defaultMargin,
+                                            25,
+                                            defaultMargin,
+                                            25),
+                                        decoration: BoxDecoration(
+                                          color: Colors.lightBlueAccent,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.all(defaultMargin),
+                                          child: SingleChildScrollView(
+                                            child: Text(
+                                                video[index]["deskripsi"],
+                                                textAlign: TextAlign.justify,
+                                                style: whiteTextFont.copyWith(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          } else {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                        },
+                      ),
                     ],
                   )),
                 ),
               ],
             ),
-            SizedBox(height: 100),
+            SizedBox(height: 20),
             Container(
               height: 50,
               margin: EdgeInsets.only(left: 50, right: 50),
               child: RaisedButton(
-                child: Text('Selesai',
+                child: Text('Lanjut',
                     style: whiteTextFont.copyWith(
                         fontSize: 18, fontWeight: FontWeight.w400)),
                 color: mainColor,

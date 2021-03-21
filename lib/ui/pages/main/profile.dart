@@ -52,12 +52,6 @@ class ProfilePage extends StatelessWidget {
               ),
               SizedBox(height: 40),
               RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) {
-                    return SignInPage();
-                  }), ModalRoute.withName('/'));
-                },
                 color: mainColor,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -69,6 +63,14 @@ class ProfilePage extends StatelessWidget {
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
+                onPressed: () async {
+                  delPref();
+                  context.bloc<PageBloc>().add(GoToLoginPage());
+                  /*Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) {
+                    return SignInPage();
+                  }), ModalRoute.withName('/'));*/
+                },
               )
             ],
           ),

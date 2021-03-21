@@ -6,14 +6,14 @@ class MengamatiPageOne extends StatefulWidget {
 }
 
 class _MengamatiPageOneState extends State<MengamatiPageOne> {
-  bool viewVisible1 = false;
-  bool viewVisible2 = false;
-  bool viewVisible3 = false;
-  bool viewVisible4 = false;
-  bool viewVisible5 = false;
-  bool viewVisible6 = false;
-  bool viewVisible7 = false;
-  bool viewVisible8 = false;
+  bool viewVisible1 = true;
+  bool viewVisible2 = true;
+  bool viewVisible3 = true;
+  bool viewVisible4 = true;
+  bool viewVisible5 = true;
+  bool viewVisible6 = true;
+  bool viewVisible7 = true;
+  bool viewVisible8 = true;
 
   void showWidget1() {
     setState(() {
@@ -73,7 +73,7 @@ class _MengamatiPageOneState extends State<MengamatiPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToSadarPageOne());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -95,7 +95,7 @@ class _MengamatiPageOneState extends State<MengamatiPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToSadarPageOne());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),

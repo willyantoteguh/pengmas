@@ -1,4 +1,5 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/cupertino.dart';
 // import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +21,14 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_html/flutter_html.dart';
+<<<<<<< HEAD
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+=======
+import 'package:flutter/src/widgets/framework.dart';
+
+>>>>>>> b0082911699a1d56ea03b3adf6e4073e23f6c276
 import '../../bloc/blocs.dart';
 import '../../models/models.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -73,6 +80,9 @@ part 'komunikasi/sukses.dart';
 part 'komunikasi/taskkomunikasi.dart';
 part 'komunikasi/study_case.dart';
 part 'pwb/choices_quiz.dart';
+part 'pwb/choices_quiz1.dart';
+part 'pwb/choices_quiz2.dart';
+part 'pwb/choices_quiz3.dart';
 part 'pwb/question_answer_upit.dart';
 part 'pwb/rate_only.dart';
 part 'pwb/study_rate_only.dart';

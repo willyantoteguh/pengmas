@@ -22,11 +22,11 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToMainPage) {
       yield OnMainPage();
     } else if (event is GoToDetailTugasMindfull) {
-      yield OnDetailTugasMindfull(event.category);
+      yield OnDetailTugasMindfull();
     } else if (event is GoToDetailTugasKomunikasi) {
-      yield OnDetailTugasKomunikasi(event.category);
+      yield OnDetailTugasKomunikasi();
     } else if (event is GoToDetailTugasPwb) {
-      yield OnDetailTugasPwb(event.category);
+      yield OnDetailTugasPwb();
     } else if (event is GoToDetailMateriPwb) {
       yield OnDetailMateriPwb(event.category);
     } else if (event is GoToDetailMateriKomunikasi) {
@@ -34,7 +34,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToDetailMateriPage) {
       yield OnDetailMateriPage(event.category);
     } else if (event is GoToTaskMindfullPage) {
-      yield OnTaskMindfullPage(event.tugas, event.category);
+      yield OnTaskMindfullPage();
     } else if (event is GoToTaskKomunikasiPage) {
       yield OnTaskKomunikasiPage(event.tugas, event.category);
     } else if (event is GoToTaskPwbPage) {
@@ -65,6 +65,12 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnMoodOnlyPage();
     } else if (event is GoToChoicesPage) {
       yield OnChoicesPage();
+    } else if (event is GoToChoices1Page) {
+      yield OnChoices1Page();
+    } else if (event is GoToChoices2Page) {
+      yield OnChoices2Page();
+    } else if (event is GoToChoices3Page) {
+      yield OnChoices3Page();
     } else if (event is GoToQuestAnswerUPage) {
       yield OnQuestAnswerUPage();
     } else if (event is GoToQuestChoicesPage) {
@@ -116,7 +122,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToPenjelasanTantangan3Page) {
       yield OnPenjelasanTantangan3Page();
     } else if (event is GoToPenjelasanTantangan4Page) {
-      yield OnPenjelasanTantangan3Page();
+      yield OnPenjelasanTantangan4Page();
     } else if (event is GoToTantangan5Page) {
       yield OnTantangan5Page();
     } else if (event is GoToTugas6Page) {

@@ -2,9 +2,6 @@ part of 'pages.dart';
 
 class DetailTugasKomunikasi extends StatefulWidget {
   TugasKomunikasi tugasKomunikasi;
-  final Category category;
-
-  DetailTugasKomunikasi(this.category);
 
   @override
   _DetailTugasKomunikasiState createState() => _DetailTugasKomunikasiState();
@@ -14,18 +11,18 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
   TugasKomunikasiBloc tugaskomunikasiBloc;
   OnDetailTugasKomunikasi state;
 
-  void saveData(id) async {
+  void getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("idTugas", id.toString());
+    int id = prefs.getInt("cat");
+    tugaskomunikasiBloc = BlocProvider.of<TugasKomunikasiBloc>(context);
+    tugaskomunikasiBloc.add(FetchTugaskomunikasiEvent(id));
   }
 
   @override
   void initState() {
     super.initState();
-
+    getData();
     //int id = state.category.id;
-    tugaskomunikasiBloc = BlocProvider.of<TugasKomunikasiBloc>(context);
-    tugaskomunikasiBloc.add(FetchTugaskomunikasiEvent(widget.category.id));
   }
 
   @override
@@ -47,7 +44,7 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
               decoration: BoxDecoration(
                 color: Color(0xFFF6F7F9),
                 image: DecorationImage(
-                  image: AssetImage("assets/images/newpack/6 SCENE.png"),
+                  image: AssetImage("assets/images/newpack/8 SCENE.png"),
                   alignment: Alignment.topRight,
                 ),
               ),
@@ -79,21 +76,6 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                         SizedBox(height: 30),
-                        ClipPath(
-                          clipper: BestSellerClipper(),
-                          child: Container(
-                            color: accentColor2,
-                            padding: EdgeInsets.only(
-                                left: 10, top: 5, right: 20, bottom: 5),
-                            child: Text(
-                              "Tenang".toUpperCase(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 16),
                         Text("Komunikasi", style: kHeadingextStyle),
                       ],
                     ),
@@ -158,12 +140,12 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               defaultMargin, 10, defaultMargin, 20),
-                          child: Padding(
+                          /*child: Padding(
                             padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: Text("Daftar Latihan Komunikasi",
                                 style: kTitleTextStyle.copyWith(
                                     color: Colors.white)),
-                          ),
+                          ),*/
                         ),
                         // SizedBox(height: 30),
                       ],
@@ -182,23 +164,25 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
     return ListView.builder(
         itemCount: tugas.length,
         itemBuilder: (ctx, pos) {
-          // String number;
-          // var isDone = false;
-          return Container(
-            margin: EdgeInsets.only(top: 30),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                  defaultMargin, 10, defaultMargin, 0),
-              child: Card(
-                color: Colors.yellow,
-                child: ListTile(
-                  trailing: Icon(MdiIcons.arrowRightDropCircle),
-                  title: Text(tugas[pos].nama, style: blackTextFont),
-                  subtitle: Text(tugas[pos].createdAt),
-                  onTap: () {
-                    saveData(tugas[pos].id);
-                    context.bloc<PageBloc>().add(GoToStudyCasePage());
-                    /*
+          return FutureBuilder(
+            future: getRiwayat(tugas[pos].nama),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              bool isDone = snapshot.data;
+              return Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                      defaultMargin, 0, defaultMargin, 0),
+                  child: Card(
+                    color: isDone != true ? Colors.yellow : Colors.red,
+                    child: ListTile(
+                      trailing: Icon(MdiIcons.arrowRightDropCircle),
+                      title: Text(tugas[pos].nama, style: blackTextFont),
+                      /*subtitle: Text(tugas[pos].createdAt),*/
+                      onTap: () {
+                        saveTugas(tugas[pos].id, tugas[pos].nama);
+                        context.bloc<PageBloc>().add(GoToStudyCasePage());
+                        /*
                     if (tugas[pos].id == 1 ||
                         tugas[pos].id == 3 ||
                         tugas[pos].id == 6) {
@@ -210,58 +194,60 @@ class _DetailTugasKomunikasiState extends State<DetailTugasKomunikasi> {
                     context.bloc<PageBloc>().add(
                         GoToTaskKomunikasiPage(tugas[pos], widget.category));
                     */
-                  },
+                      },
+                    ),
+                  ),
+                  // child: InkWell(
+                  //   onTap: () {
+                  //     navigateToMateriDetailPage(context, materi[pos]);
+                  //   },
+                  //   child: Row(
+                  //     children: <Widget>[
+                  //       Text(
+                  //         number,
+                  //         style: kHeadingextStyle.copyWith(
+                  //           color: kTextColor.withOpacity(.15),
+                  //           fontSize: 32,
+                  //         ),
+                  //       ),
+                  //       SizedBox(width: 20),
+                  //       RichText(
+                  //         text: TextSpan(
+                  //           children: [
+                  //             TextSpan(
+                  //               text: materi[pos].createdAt,
+                  //               style: TextStyle(
+                  //                 color: kTextColor.withOpacity(.5),
+                  //                 fontSize: 18,
+                  //               ),
+                  //             ),
+                  //             TextSpan(
+                  //               text: materi[pos].judul,
+                  //               style: kSubtitleTextSyule.copyWith(
+                  //                 fontWeight: FontWeight.w600,
+                  //                 height: 1.5,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       Spacer(),
+                  //       Container(
+                  //         margin: EdgeInsets.only(left: 20),
+                  //         height: 40,
+                  //         width: 40,
+                  //         decoration: BoxDecoration(
+                  //           shape: BoxShape.circle,
+                  //           color: kGreenColor.withOpacity(isDone ? 1 : .5),
+                  //         ),
+                  //         child: Icon(Icons.play_arrow, color: Colors.white),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                 ),
-              ),
-              // child: InkWell(
-              //   onTap: () {
-              //     navigateToMateriDetailPage(context, materi[pos]);
-              //   },
-              //   child: Row(
-              //     children: <Widget>[
-              //       Text(
-              //         number,
-              //         style: kHeadingextStyle.copyWith(
-              //           color: kTextColor.withOpacity(.15),
-              //           fontSize: 32,
-              //         ),
-              //       ),
-              //       SizedBox(width: 20),
-              //       RichText(
-              //         text: TextSpan(
-              //           children: [
-              //             TextSpan(
-              //               text: materi[pos].createdAt,
-              //               style: TextStyle(
-              //                 color: kTextColor.withOpacity(.5),
-              //                 fontSize: 18,
-              //               ),
-              //             ),
-              //             TextSpan(
-              //               text: materi[pos].judul,
-              //               style: kSubtitleTextSyule.copyWith(
-              //                 fontWeight: FontWeight.w600,
-              //                 height: 1.5,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Spacer(),
-              //       Container(
-              //         margin: EdgeInsets.only(left: 20),
-              //         height: 40,
-              //         width: 40,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: kGreenColor.withOpacity(isDone ? 1 : .5),
-              //         ),
-              //         child: Icon(Icons.play_arrow, color: Colors.white),
-              //       )
-              //     ],
-              //   ),
-              // ),
-            ),
+              );
+            },
           );
         });
   }

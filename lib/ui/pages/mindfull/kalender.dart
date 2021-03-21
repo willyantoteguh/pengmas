@@ -7,6 +7,10 @@ class KalenderPageOne extends StatefulWidget {
 
 class _KalenderPageOneState extends State<KalenderPageOne> {
   String _date = "Silahkan Pilih Tanggal";
+<<<<<<< HEAD
+=======
+  String _jam = '';
+>>>>>>> b0082911699a1d56ea03b3adf6e4073e23f6c276
   bool viewVisible1 = true;
   bool viewVisible2 = true;
   bool viewVisible3 = true;
@@ -22,6 +26,23 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   TextEditingController perasaan = TextEditingController();
   TextEditingController tindakan = TextEditingController();
 
+  String namaTugas;
+  bool isDone = false;
+
+  tugas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      namaTugas = prefs.getString("namaTugas");
+      isDone = prefs.getBool(namaTugas + 'isDone');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    tugas();
+  }
+
   void save() async {
     String jawaban1 = '$_date';
     String jawaban2 = bagaimana.text;
@@ -29,13 +50,46 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
     String jawaban4 = pikiran.text;
     String jawaban5 = perasaan.text;
     String jawaban6 = tindakan.text;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('kapan', jawaban1);
-    prefs.setString('bagaimana', jawaban2);
-    prefs.setString('fisik', jawaban3);
-    prefs.setString('pikiran', jawaban4);
-    prefs.setString('perasaan', jawaban5);
-    prefs.setString('tindakan', jawaban6);
+    if (isDone == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Tugas Sudah Dikerjakan"),
+            //content: Text("Tugas Sudah Dikerjakan"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      context.bloc<PageBloc>().add(GoToSuccessPage());
+    } else if (jawaban1 == 'Silahkan Pilih Tanggal' ||
+        jawaban2 == '' ||
+        jawaban3 == '' ||
+        jawaban4 == '' ||
+        jawaban5 == '' ||
+        jawaban6 == '') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Form Tidak Boleh Ada yang Kosong"),
+
+            //content: Text("Form Tidak Boleh Kosong"),
+          );
+        },
+        barrierDismissible: true,
+      );
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('kapan', jawaban1);
+      prefs.setString('jam', _jam);
+      prefs.setString('bagaimana', jawaban2);
+      prefs.setString('fisik', jawaban3);
+      prefs.setString('pikiran', jawaban4);
+      prefs.setString('perasaan', jawaban5);
+      prefs.setString('tindakan', jawaban6);
+      context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
+    }
   }
 
   void showWidget1() {
@@ -84,7 +138,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToPerspektifPageOne());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -106,7 +160,7 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToPerspektifPageOne());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -184,12 +238,25 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                                 maxTime: DateTime(2022, 12, 31),
                                 onConfirm: (date) {
                               print('confirm $date');
+<<<<<<< HEAD
                               _date =
                                   '${date.year} - ${date.month} - ${date.day}';
                               setState(() {});
                             },
                                 currentTime: DateTime.now(),
                                 locale: LocaleType.en);
+=======
+
+                              setState(() {
+                                _date =
+                                    '${date.year} - ${date.month} - ${date.day}';
+                                _jam = '${date.hour}';
+                                print(_jam);
+                              });
+                            },
+                                currentTime: DateTime.now(),
+                                locale: LocaleType.id);
+>>>>>>> b0082911699a1d56ea03b3adf6e4073e23f6c276
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -317,14 +384,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: bagaimana,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              bagaimana.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -391,14 +454,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: fisik,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              fisik.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -465,14 +524,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: pikiran,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              pikiran.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -536,14 +591,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: perasaan,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              perasaan.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -610,14 +661,10 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                             ),
                             controller: tindakan,
                             maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              tindakan.text,
-                              style: kTitleTextStyle,
-                            )),
                       ],
                     ),
                   ]),
@@ -639,7 +686,6 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
               onPressed: () {
                 //String jawaban = controller.text;
                 save();
-                context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
               },
             ),
           ),

@@ -6,13 +6,67 @@ class Tantangan5Page extends StatefulWidget {
 }
 
 class _Tantangan5PageState extends State<Tantangan5Page> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController jwb1 = TextEditingController();
+  TextEditingController jwb2 = TextEditingController();
+
+  int idTugas;
+  int idUser;
+  String nama;
+  @override
+  void initState() {
+    super.initState();
+    getId();
+  }
+
+  void getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idTugas = prefs.getInt('idTugas');
+      idUser = prefs.getInt("id");
+      nama = prefs.getString('nama');
+    });
+  }
+
+  void postKebahagiaan() async {
+    String j1 = jwb1.text;
+    String j2 = jwb2.text;
+    var jawaban = "Kelebihan : $j1   Kekurangan : $j2";
+
+    var url =
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+    var data = {
+      "id_tugas": idTugas.toString(),
+      "id_pengguna": idUser.toString(),
+      "jawaban": jawaban
+    };
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      context.bloc<PageBloc>().add(GoToRateOnlyPage());
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Error saat mengirim jawaban"),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToNoteHomePage());
+        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
 
         return;
       },
@@ -66,14 +120,14 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
                                   border: InputBorder.none,
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
-                                controller: controller,
+                                controller: jwb1,
                                 maxLength: 200,
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.all(30),
                                 child: Text(
-                                  controller.text,
+                                  jwb1.text,
                                   style: kTitleTextStyle,
                                 )),
                           ],
@@ -123,14 +177,14 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
                                   border: InputBorder.none,
                                   hintText: 'Tulis jawabannya disini...',
                                 ),
-                                controller: controller,
+                                controller: jwb2,
                                 maxLength: 200,
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.all(30),
                                 child: Text(
-                                  controller.text,
+                                  jwb2.text,
                                   style: kTitleTextStyle,
                                 )),
                           ],
@@ -154,7 +208,8 @@ class _Tantangan5PageState extends State<Tantangan5Page> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25)),
                   onPressed: () {
-                    context.bloc<PageBloc>().add(GoToRateOnlyPage());
+                    postKebahagiaan();
+                    //context.bloc<PageBloc>().add(GoToRateOnlyPage());
                   },
                 ),
               ),

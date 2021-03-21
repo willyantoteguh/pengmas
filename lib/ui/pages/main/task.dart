@@ -255,15 +255,13 @@ class _ModalTriggerState extends State<ModalTrigger> {
                       ),
                     ),
                     Flexible(
-                      child: Center(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 40),
-                          child: Text(
-                            widget.perintah.pertanyaan ?? "",
-                            textAlign: TextAlign.center,
-                            style: blackTextFont.copyWith(
-                                fontSize: 20, fontWeight: FontWeight.w500),
-                          ),
+                      child: Container(
+                        margin: EdgeInsets.only(left: 0),
+                        child: Text(
+                          widget.perintah.pertanyaan ?? "",
+                          textAlign: TextAlign.center,
+                          style: blackTextFont.copyWith(
+                              fontSize: 20, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
@@ -271,7 +269,7 @@ class _ModalTriggerState extends State<ModalTrigger> {
                 ]),
                 Container(
                     margin: EdgeInsets.symmetric(
-                        vertical: 20, horizontal: defaultMargin),
+                        vertical: 10, horizontal: defaultMargin),
                     child: Divider(
                       color: Color(0xFFE4E4E4),
                       thickness: 1,

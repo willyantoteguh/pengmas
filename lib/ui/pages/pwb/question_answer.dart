@@ -80,7 +80,7 @@ class QuestAnswerPage extends StatelessWidget {
                                     hintText: 'Ceritakan pengalamanmu disini',
                                   ),
                                   controller: controller,
-                                  maxLength: 200,
+                                  //maxLength: 200,
                                 ),
                               ),
                               Padding(

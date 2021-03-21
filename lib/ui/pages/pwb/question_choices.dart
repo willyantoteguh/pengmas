@@ -18,6 +18,57 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
 
+  int idTugas;
+  int idUser;
+  String nama;
+  @override
+  void initState() {
+    super.initState();
+    getId();
+  }
+
+  void getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idTugas = prefs.getInt('idTugas');
+      idUser = prefs.getInt("id");
+      nama = prefs.getString('nama');
+    });
+  }
+
+  void postKebahagiaan() async {
+    var jwb = controller.text;
+    var jawaban = "$selectedMood   $jwb";
+    var url =
+        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
+    var data = {
+      "id_tugas": idTugas.toString(),
+      "id_pengguna": idUser.toString(),
+      "jawaban": jawaban.toString()
+    };
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      context.bloc<PageBloc>().add(GoToSuksesPage());
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Error saat mengirim jawaban"),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -44,9 +95,7 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            context
-                                .bloc<PageBloc>()
-                                .add(GoToDetailTugasPwb(widget.category));
+                            context.bloc<PageBloc>().add(GoToDetailTugasPwb());
                           },
                           child: Icon(Icons.arrow_back),
                         ),
@@ -112,7 +161,7 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
                                     // hintText: 'Ceritakan pengalamanmu disini',
                                   ),
                                   controller: controller,
-                                  maxLength: 200,
+                                  //maxLength: 200,
                                 ),
                               ),
                               Padding(
@@ -173,7 +222,8 @@ class _QuestChoicesPageState extends State<QuestChoicesPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25)),
                     onPressed: () {
-                      context.bloc<PageBloc>().add(GoToSuksesPage());
+                      postKebahagiaan();
+                      //context.bloc<PageBloc>().add(GoToSuksesPage());
                     },
                   ),
                 ),

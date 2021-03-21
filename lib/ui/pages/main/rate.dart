@@ -24,51 +24,133 @@ class _RateEmojiState extends State<RateEmoji> {
   Color myFeedbackColor = mainColor;
   List<String> selectedMood = [];
   TextEditingController controller = TextEditingController();
+  bool visible = false;
+  String namaTugas;
+  bool isDone = false;
+
+  tugas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      namaTugas = prefs.getString("namaTugas");
+      isDone = prefs.getBool(namaTugas + 'isDone');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    tugas();
+  }
 
   void postRate() async {
     String jawaban = controller.text;
+    setState(() {
+      visible = true;
+    });
     var url =
-        'https://rsiaisyiyahnganjuk.com/pengmas/public/api/pengalaman_mindfulnesses';
+        'https://timkecilproject.com/pengmas/public/api/pengalaman_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
-    var idTugas = await prefs.getString("idTugas");
+    var idTugas = await prefs.getInt("idTugas");
+
     print(id_pengguna);
-    var data = {
-      "id_tugas": idTugas,
-      "id_pengguna": id_pengguna.toString(),
-      "perasaan": myFeedbackText,
-      "kesulitan": selectedMood[0],
-      "pengalaman": jawaban
-    };
-    var response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      context.bloc<PageBloc>().add(GoToSuccessPage());
-    } else {
+    if (isDone == true) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error saat mengirim jawaban"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+          return CupertinoAlertDialog(
+            title: Text("Tugas Sudah Dikerjakan"),
+            //content: Text("Tugas Sudah Dikerjakan"),
           );
         },
+        barrierDismissible: true,
       );
+      setState(() {
+        visible = false;
+      });
+      context.bloc<PageBloc>().add(GoToSuccessPage());
+    } else if (jawaban == '' || selectedMood == null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Error"),
+            content: Text("Form Tidak Boleh Kosong"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      setState(() {
+        visible = false;
+      });
+    } else {
+      var data = {
+        "id_tugas": idTugas.toString(),
+        "id_pengguna": id_pengguna.toString(),
+        "perasaan": myFeedbackText,
+        "kesulitan": selectedMood.toString(),
+        "pengalaman": jawaban
+      };
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        setDone(namaTugas);
+        setState(() {
+          visible = false;
+        });
+        context.bloc<PageBloc>().add(GoToSuccessPage());
+      } else {
+        setState(() {
+          visible = false;
+        });
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Isi Jawaban Terlebih Dahulu"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: <Widget>[
+    return WillPopScope(
+      onWillPop: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        int id = prefs.getInt("idTugas");
+        if (id == 1) {
+          context.bloc<PageBloc>().add(GoToSadarPageOne());
+          return;
+        } else if (id == 2) {
+          context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+          return;
+        } else if (id == 3) {
+          context.bloc<PageBloc>().add(GoToPerspektifPageOne());
+          return;
+        } else if (id == 4) {
+          context.bloc<PageBloc>().add(GoToKesimpulanPageOne());
+          return;
+        } else if (id == 5) {
+          context.bloc<PageBloc>().add(GoToPerkataanPageOne());
+          return;
+        } else if (id == 6) {
+          context.bloc<PageBloc>().add(GoToSyukurPage());
+          return;
+        }
+      },
+      child: Stack(children: <Widget>[
         Container(color: accentColor4),
         SafeArea(
             child: Container(
@@ -83,7 +165,7 @@ class _RateEmojiState extends State<RateEmoji> {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        "Bagaimana perasaanmu saat ini ?",
+                        "Bagaimana perasaanmu saat ini ? \n Geser tombol sesuai perasaanmu.",
                         textAlign: TextAlign.center,
                         style: purpleTextFont.copyWith(fontSize: 16),
                       ),
@@ -113,7 +195,7 @@ class _RateEmojiState extends State<RateEmoji> {
                           shadowColor: Color(0x802196F3),
                           child: Container(
                               width: 200.0,
-                              height: 280.0,
+                              height: 230.0,
                               child: Column(
                                 children: <Widget>[
                                   Padding(
@@ -203,7 +285,7 @@ class _RateEmojiState extends State<RateEmoji> {
                                     child: Container(
                                         child: Align(
                                       alignment: Alignment.bottomCenter,
-                                      child: RaisedButton(
+                                      /*child: RaisedButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 new BorderRadius.circular(
@@ -215,7 +297,7 @@ class _RateEmojiState extends State<RateEmoji> {
                                               color: Color(0xffffffff)),
                                         ),
                                         onPressed: () {},
-                                      ),
+                                      ),*/
                                     )),
                                   ),
                                 ],
@@ -264,19 +346,19 @@ class _RateEmojiState extends State<RateEmoji> {
                                         hintText:
                                             'Ceritakan pengalamanmu disini',
                                       ),
-                                      autofocus: true,
-                                      onChanged: (isifield) {
+                                      autofocus: false,
+                                      /*onChanged: (isifield) {
                                         setState(() {});
-                                      },
+                                      },*/
                                       controller: controller,
-                                      maxLength: 200,
+                                      //maxLength: 200,
                                     ),
                                   ),
                                   SizedBox(height: 20),
-                                  Container(
+                                  /*Container(
                                       margin: EdgeInsets.all(20),
                                       child: Text(controller.text,
-                                          style: kTitleTextStyle))
+                                          style: kTitleTextStyle))*/
                                 ],
                               ),
                             ]),
@@ -284,7 +366,14 @@ class _RateEmojiState extends State<RateEmoji> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
+                    Visibility(
+                      visible: visible,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    SizedBox(height: 15),
                     Container(
                       height: 50,
                       width: 200,

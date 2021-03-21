@@ -6,58 +6,102 @@ class PerspektifPageOne extends StatefulWidget {
 }
 
 class _PerspektifPageOneState extends State<PerspektifPageOne> {
-  bool viewVisible1 = false;
-  bool viewVisible2 = false;
-  bool viewVisible3 = false;
-  bool viewVisible4 = false;
-  bool visible = false;
+  bool viewVisible1 = true;
+  bool viewVisible2 = true;
+  bool viewVisible3 = true;
+  bool viewVisible4 = true;
 
   TextEditingController controller = TextEditingController();
 
+  String namaTugas;
+  bool isDone = false;
+
+  tugas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      namaTugas = prefs.getString("namaTugas");
+      isDone = prefs.getBool(namaTugas + 'isDone');
+    });
+  }
+
+  void initState() {
+    super.initState();
+    tugas();
+  }
+
   Future postJawaban() async {
     setState(() {
-      visible = true;
+      //visible = true;
     });
     String jawaban = controller.text;
     var url =
-        'https://rsiaisyiyahnganjuk.com/pengmas/public/api/jawaban_mindfulnesses';
+        'https://timkecilproject.com/pengmas/public/api/jawaban_mindfulnesses';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var id_pengguna = await prefs.getInt("id");
-    var idTugas = await prefs.getString("idTugas");
+    var idTugas = await prefs.getInt("idTugas");
     print(id_pengguna);
-    var data = {
-      "id_tugas": idTugas,
-      "id_pengguna": id_pengguna.toString(),
-      "jawaban": jawaban
-    };
-    var response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      setState(() {
-        visible = false;
-      });
-      context.bloc<PageBloc>().add(GoToRateEmojiPage());
-    } else {
-      setState(() {
-        visible = false;
-      });
+    if (isDone == true) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error saat mengirim jawaban"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+          return CupertinoAlertDialog(
+            title: Text("Tugas Sudah Dikerjakan"),
+            //content: Text("Tugas Sudah Dikerjakan"),
           );
         },
+        barrierDismissible: true,
       );
+      context.bloc<PageBloc>().add(GoToSuccessPage());
+    } else if (jawaban == '') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Error"),
+            content: Text("Form Tidak Boleh Kosong"),
+          );
+        },
+        barrierDismissible: true,
+      );
+      setState(() {
+        //visible = false;
+      });
+    } else {
+      var data = {
+        "id_tugas": idTugas.toString(),
+        "id_pengguna": id_pengguna.toString(),
+        "jawaban": jawaban
+      };
+      var response = await http.post(url, body: data);
+      if (response.statusCode == 200) {
+        setState(() {
+          //visible = false;
+        });
+        context.bloc<PageBloc>().add(GoToRateEmojiPage());
+      } else {
+        setState(() {
+          //visible = false;
+        });
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Error saat mengirim jawaban"),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
@@ -95,7 +139,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
 
         return;
       },
@@ -117,7 +161,7 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       onTap: () {
-                        context.bloc<PageBloc>().add(GoToMengamatiPageOne());
+                        context.bloc<PageBloc>().add(GoToTaskMindfullPage());
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -288,20 +332,22 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
                           padding: const EdgeInsets.fromLTRB(
                               10, defaultMargin, 10, defaultMargin),
                           child: TextField(
-                            decoration: InputDecoration(
+                            decoration: InputDecoration.collapsed(
                               border: InputBorder.none,
                               hintText: 'Saya baru menyadari...',
                             ),
                             controller: controller,
-                            maxLength: 200,
+                            //maxLength: 200,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                        Padding(
+                        /*Padding(
                             padding: const EdgeInsets.all(30),
                             child: Text(
                               controller.text,
                               style: kTitleTextStyle,
-                            )),
+                            )),*/
                       ],
                     ),
                   ]),
@@ -310,11 +356,13 @@ class _PerspektifPageOneState extends State<PerspektifPageOne> {
             ),
           ),
           SizedBox(height: 35),
-          Visibility(
-              visible: visible,
-              child: Container(
-                  margin: EdgeInsets.only(bottom: 30),
-                  child: CircularProgressIndicator())),
+          /*Visibility(
+            //visible: visible,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),*/
+          SizedBox(height: 35),
           Container(
             height: 50,
             margin: EdgeInsets.only(left: 50, right: 50),

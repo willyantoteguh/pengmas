@@ -1,86 +1,28 @@
 part of '../pages.dart';
 
-class ChoicesQuiz extends StatefulWidget {
+class ChoicesQuiz3 extends StatefulWidget {
   Category category;
 
   @override
-  _ChoicesQuizState createState() => _ChoicesQuizState();
+  _ChoicesQuiz3State createState() => _ChoicesQuiz3State();
 }
 
-class _ChoicesQuizState extends State<ChoicesQuiz> {
+class _ChoicesQuiz3State extends State<ChoicesQuiz3> {
   int _rgProgramming = -1;
   String _selectedValue;
 
-  int idTugas;
-  int idUser;
-  String nama;
-  @override
-  void initState() {
-    super.initState();
-    getId();
-  }
-
-  void getId() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      idTugas = prefs.getInt('idTugas');
-      idUser = prefs.getInt("id");
-      nama = prefs.getString('nama');
-    });
-  }
-
-  void postKebahagiaan() async {
-    String jwb = 'Kuadran I : $_selectedValue';
-    var url =
-        'https://timkecilproject.com/pengmas/public/api/jawaban_kebahagiaans';
-    var data = {
-      "id_tugas": idTugas.toString(),
-      "id_pengguna": idUser.toString(),
-      "jawaban": jwb
-    };
-    var response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      context.bloc<PageBloc>().add(GoToChoices1Page());
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error saat mengirim jawaban"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
   final List<RadioGroup> _programmingList = [
-    RadioGroup(
-        index: 1,
-        text:
-            "1. Mengantar anak ke Rumah sakit karena pendarahan di kepala yang tidak berhenti"),
-    RadioGroup(
-        index: 2,
-        text:
-            "2. Membuat laporan kerja untuk di presentasikan di rapat keesokan harinya"),
-    RadioGroup(
-        index: 3,
-        text: "3. Menyiapkan materi ujian/tugas yang harus dikumpulkan besok"),
-    RadioGroup(index: 4, text: "4. Beri contoh lain.."),
+    RadioGroup(index: 1, text: "13. Bermain games di HP."),
+    RadioGroup(index: 2, text: "14. Menonton gossip di TV."),
+    RadioGroup(index: 3, text: "15. Melihat-lihat online shop."),
+    RadioGroup(index: 4, text: "16. Beri contoh lain.."),
   ];
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToDetailTugasPwb());
+        context.bloc<PageBloc>().add(GoToMainPage());
         return;
       },
       child: Scaffold(
@@ -122,7 +64,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Kuadran I"),
+                Text("Kuadran IV  "),
                 Text(
                     "Sangat penting dan sangat mendesak(lakukan segera sendiri)"),
                 SizedBox(height: 25),
@@ -157,7 +99,7 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
                         style: whiteTextFont.copyWith(fontSize: 16),
                       ),
                       onPressed: () {
-                        postKebahagiaan();
+                        context.bloc<PageBloc>().add(GoToInti3Page());
                       }),
                 )),
               ],
@@ -191,8 +133,8 @@ class _ChoicesQuizState extends State<ChoicesQuiz> {
   }
 }
 
-class RadioGroup {
-  final int index;
-  final String text;
-  RadioGroup({this.index, this.text});
+class RadioGroup3 {
+  final int index1;
+  final String text1;
+  RadioGroup3({this.index1, this.text1});
 }
