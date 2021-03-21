@@ -23,12 +23,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_html/flutter_html.dart';
-<<<<<<< HEAD
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-=======
-import 'package:flutter/src/widgets/framework.dart';
-
->>>>>>> b0082911699a1d56ea03b3adf6e4073e23f6c276
 import '../../bloc/blocs.dart';
 import '../../models/models.dart';
 import 'package:audioplayers/audioplayers.dart';

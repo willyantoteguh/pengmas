@@ -7,10 +7,6 @@ class KalenderPageOne extends StatefulWidget {
 
 class _KalenderPageOneState extends State<KalenderPageOne> {
   String _date = "Silahkan Pilih Tanggal";
-<<<<<<< HEAD
-=======
-  String _jam = '';
->>>>>>> b0082911699a1d56ea03b3adf6e4073e23f6c276
   bool viewVisible1 = true;
   bool viewVisible2 = true;
   bool viewVisible3 = true;
@@ -238,25 +234,12 @@ class _KalenderPageOneState extends State<KalenderPageOne> {
                                 maxTime: DateTime(2022, 12, 31),
                                 onConfirm: (date) {
                               print('confirm $date');
-<<<<<<< HEAD
                               _date =
                                   '${date.year} - ${date.month} - ${date.day}';
                               setState(() {});
                             },
                                 currentTime: DateTime.now(),
                                 locale: LocaleType.en);
-=======
-
-                              setState(() {
-                                _date =
-                                    '${date.year} - ${date.month} - ${date.day}';
-                                _jam = '${date.hour}';
-                                print(_jam);
-                              });
-                            },
-                                currentTime: DateTime.now(),
-                                locale: LocaleType.id);
->>>>>>> b0082911699a1d56ea03b3adf6e4073e23f6c276
                           },
                           child: Container(
                             alignment: Alignment.center,
